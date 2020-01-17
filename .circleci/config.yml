@@ -146,17 +146,18 @@ jobs:
 #       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 #       - run: cp .test.rb
 #       - run: bundle exec rake db:setup
-jobs:
-  lintering:
-    executor: default
-    steps:
-      - defaults
-      - run_linters
-  run_specs:
-    executor: default
-    steps:
-      - defaults
-      - run_specs
+
+# jobs:
+#   lintering:
+#     executor: default
+#     steps:
+#       - defaults
+#       - run_linters
+#   run_specs:
+#     executor: default
+#     steps:
+#       - defaults
+#       - run_specs
 
 workflows:
   version: 2.1
