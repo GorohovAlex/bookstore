@@ -63,7 +63,7 @@ commands:
           key: *bundle_cache
           paths:
             - bundle vendor/bundle
-      
+
 jobs:
   lintering:
     executor: default
