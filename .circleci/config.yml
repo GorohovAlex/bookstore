@@ -7,11 +7,11 @@ executors:
     docker:
       - image: circleci/ruby:2.6.3-node
         environment:
-          RAILS_ENV: test ./bin/rails webpacker:compile
+          RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: bookstore_admin
           PGPASSWORD: "bookstore_admin"
-      - image: circleci/postgres:10 
+      - image: circleci/postgres:9.5-alpine 
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_PASSWORD: "bookstore_admin"
@@ -35,7 +35,7 @@ commands:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
             bundle exec rspec --format progress \
                               --out /tmp/test-results/rspec.xml \
                               --format progress \
@@ -44,18 +44,13 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          key: circlev2-{{ checksum "Gemfile.lock" }}
-      # - run: gem install bundler:2.0.2
-      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+          key: *bundle_cache
+      - run: gem install bundler:2.0.2
       - run: bundle install
       - save_cache:
-          key: circlev2-{{ checksum "Gemfile.lock" }}
+          key: *bundle_cache
           paths:
             - bundle vendor/bundle
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: cp .test.rb
-      - run: bundle exec rake db:setup
-
 jobs:
   lintering:
     executor: default
