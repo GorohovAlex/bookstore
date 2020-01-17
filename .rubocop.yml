@@ -9,6 +9,11 @@ AllCops:
     - 'node_modules/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
 
+RSpec/DescribeClass:
+  Exclude:
+    - spec/features/**/*
+    - spec/views/**/*
+
 Metrics/LineLength:
   Max: 120
 
