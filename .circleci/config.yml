@@ -7,14 +7,15 @@ executors:
     docker:
       - image: circleci/ruby:2.6.3-node
         environment:
+          PG_HOST: 127.0.0.1
+          PG_USER: bookstore_admin
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: bookstore_admin
-          PGPASSWORD: "bookstore_admin"
-      - image: circleci/postgres:9.5-alpine 
+          RACK_ENV: test
+      - image: circleci/postgres:12.1
         environment:
           POSTGRES_USER: bookstore_admin
-          POSTGRES_PASSWORD: "bookstore_admin"
+          POSTGRES_DB: bookstore_admin
+
 caches: 
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
 
@@ -40,6 +41,9 @@ commands:
                               --out /tmp/test-results/rspec.xml \
                               --format progress \
                               $TEST_FILES
+          environment:
+            DATABASE_URL: "postgres://postgres@localhost:5432/bookstore_test"
+
   defaults:
     steps:
       - checkout
@@ -47,10 +51,19 @@ commands:
           key: *bundle_cache
       - run: gem install bundler:2.0.2
       - run: bundle install
+      - run: yarn install
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
+          environment:
+            DATABASE_URL: "postgres://postgres@localhost:5432/bookstore_test"
       - save_cache:
           key: *bundle_cache
           paths:
             - bundle vendor/bundle
+      
 jobs:
   lintering:
     executor: default
@@ -62,18 +75,22 @@ jobs:
     steps:
       - defaults
       - run_specs
+      
+general:
+  branches:
+    only: feature/STEP-1
 
 workflows:
-  version: 2.1
+  version: 2.
   build:
     jobs:
       - lintering:
           filters:
             branches:
-              only: feature/step-1
+              only: feature/STEP-1
       - run_specs:
           filters:
             branches:
-              only: feature/step-1
+              only: feature/STEP-1
           requires:
             - lintering
