@@ -6,7 +6,15 @@ executors:
     description: The official CircleCI Ruby Docker image
     docker:
       - image: circleci/ruby:2.6.3-node
-
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: bookstore_admin
+          PGPASSWORD: "bookstore_admin"
+      - image: circleci/postgres:9.5-alpine 
+        environment:
+          POSTGRES_USER: bookstore_admin
+          POSTGRES_PASSWORD: "bookstore_admin"
 caches: 
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
 
