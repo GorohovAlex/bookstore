@@ -88,6 +88,20 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - lintering:
+          filters:
+            branches:
+              only: feature/step-1
+      - run_specs:
+          filters:
+            branches:
+              only: feature/step-1
+          requires:
+            - lintering
 
 # version: 2.1
 
@@ -159,17 +173,17 @@ jobs:
 #       - defaults
 #       - run_specs
 
-workflows:
-  version: 2.1
-  build:
-    jobs:
-      - lintering:
-          filters:
-            branches:
-              only: feature/step-1
-      - run_specs:
-          filters:
-            branches:
-              only: feature/step-1
-          requires:
-            - lintering
+# workflows:
+#   version: 2.1
+#   build:
+#     jobs:
+#       - lintering:
+#           filters:
+#             branches:
+#               only: feature/step-1
+#       - run_specs:
+#           filters:
+#             branches:
+#               only: feature/step-1
+#           requires:
+#             - lintering
