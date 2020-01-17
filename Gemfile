@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 3.9'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
 
