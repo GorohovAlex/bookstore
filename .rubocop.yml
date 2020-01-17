@@ -1,5 +1,14 @@
 require: rubocop-rspec
 
+AllCops:
+  Exclude:
+    - 'db/*'
+    - 'config/*'
+    - 'script/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
 Metrics/LineLength:
   Max: 120
 
