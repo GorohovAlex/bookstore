@@ -1,60 +1,151 @@
-version: 2.1
+version: 2
 
-executors:
-  default:
-    working_directory: ~/repo
-    description: The official CircleCI Ruby Docker image
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: circleci/ruby:2.6.3-stretch-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: bookstore_admin
+      PGPASSWORD: "bookstore_admin"
+      RAILS_ENV: test
+  postgres: &postgres
+    image: circleci/postgres:9.5-alpine
+    environment:
+      POSTGRES_USER: bookstore_admin
+      POSTGRES_PASSWORD: "bookstore_admin"
+
+jobs:
+  build:
     docker:
-      - image: circleci/ruby:2.6.3-node
-        environment:
-          RAILS_ENV: test ./bin/rails webpacker:compile
-          PGHOST: 127.0.0.1
-          PGUSER: bookstore_admin
-          PGPASSWORD: "bookstore_admin"
-      - image: circleci/postgres:10 
-        environment:
-          POSTGRES_USER: bookstore_admin
-          POSTGRES_PASSWORD: "bookstore_admin"
-caches: 
-  - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
-
-commands:
-  run_linters:
-    description: command to start linters
+      - *default_docker_ruby_executor
     steps:
-      - run: 
-          name: rubocop
-          command: bundle exec rubocop
-      - run: 
-          name: fasterer
-          command: bundle exec fasterer
-
-  run_specs:
-    steps:
-      - run: 
-          name: run specs
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)"
-            bundle exec rspec --format progress \
-                              --out /tmp/test-results/rspec.xml \
-                              --format progress \
-                              $TEST_FILES
-  defaults:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      # bundle cache
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+  test:
+    parallelism: 3
+    docker:
+      - *default_docker_ruby_executor
+      - *postgres
     steps:
       - checkout
       - restore_cache:
-          key: circlev2-{{ checksum "Gemfile.lock" }}
-      # - run: gem install bundler:2.0.2
-      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
-      - run: bundle install
-      - save_cache:
-          key: circlev2-{{ checksum "Gemfile.lock" }}
-          paths:
-            - bundle vendor/bundle
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: cp .test.rb
-      - run: bundle exec rake db:setup
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
+          command: |
+            mkdir /tmp/test-results
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+# version: 2.1
+
+# executors:
+#   default:
+#     working_directory: ~/repo
+#     description: The official CircleCI Ruby Docker image
+#     docker:
+#       - image: circleci/ruby:2.6.3-node
+#         environment:
+#           RAILS_ENV: test ./bin/rails webpacker:compile
+#           PGHOST: 127.0.0.1
+#           PGUSER: bookstore_admin
+#           PGPASSWORD: "bookstore_admin"
+#       - image: circleci/postgres:10 
+#         environment:
+#           POSTGRES_USER: bookstore_admin
+#           POSTGRES_PASSWORD: "bookstore_admin"
+# caches: 
+#   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
+
+# commands:
+#   run_linters:
+#     description: command to start linters
+#     steps:
+#       - run: 
+#           name: rubocop
+#           command: bundle exec rubocop
+#       - run: 
+#           name: fasterer
+#           command: bundle exec fasterer
+
+#   run_specs:
+#     steps:
+#       - run: 
+#           name: run specs
+#           command: |
+#             mkdir /tmp/test-results
+#             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)"
+#             bundle exec rspec --format progress \
+#                               --out /tmp/test-results/rspec.xml \
+#                               --format progress \
+#                               $TEST_FILES
+#   defaults:
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: circlev2-{{ checksum "Gemfile.lock" }}
+#       # - run: gem install bundler:2.0.2
+#       - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+#       - run: bundle install
+#       - save_cache:
+#           key: circlev2-{{ checksum "Gemfile.lock" }}
+#           paths:
+#             - bundle vendor/bundle
+#       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+#       - run: cp .test.rb
+#       - run: bundle exec rake db:setup
 jobs:
   lintering:
     executor: default
