@@ -11,7 +11,7 @@ executors:
           PGHOST: 127.0.0.1
           PGUSER: bookstore_admin
           PGPASSWORD: "bookstore_admin"
-      - image: circleci/postgres:9.5-alpine 
+      - image: circleci/postgres:10 
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_PASSWORD: "bookstore_admin"
