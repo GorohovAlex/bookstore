@@ -43,7 +43,6 @@ commands:
           key: *bundle_cache
           paths:
             - bundle vendor/bundle
-      
 jobs:
   lintering:
     executor: default
@@ -63,10 +62,10 @@ workflows:
       - lintering:
           filters:
             branches:
-              only: div
+              only: feature/step-1
       - run_specs:
           filters:
             branches:
-              only: div
+              only: feature/step-1
           requires:
             - lintering
