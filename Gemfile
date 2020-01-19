@@ -33,6 +33,7 @@ end
 group :development do
   gem 'fasterer', '~> 0.8.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
   gem 'rubocop-rspec'
   gem 'spring'
