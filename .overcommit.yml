@@ -19,10 +19,7 @@ PreCommit:
     enabled: true
 
   AuthorName:
-    enabled: true
-
-  BundleAudit:
-    enabled: true
+    enabled: false
 
   Fasterer:
     enabled: true
