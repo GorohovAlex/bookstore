@@ -3,7 +3,7 @@
   %head
     %meta{charset: "UTF-8"}
     %meta{name: "viewport", content: "width=device-width"}
-    %title Bookstore
+    %title= t('site_name')
     %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
     %link{href: "../css/style.css", rel: "stylesheet"}
   %body
@@ -15,7 +15,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand Bookstore
+          %a.navbar-brand= t('site_name')
           %a.shop-link.pull-right.visible-xs{href: "#"}
             %span.shop-icon
               %span.shop-quantity 3
@@ -28,36 +28,36 @@
               %span{'aria-hidden': "true"} &times;
             %ul.nav.navbar-nav
               %li
-                %a{href: "#"} Home
+                %a{href: "#"}= t('home')
               %li
-                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
+                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t('shop')
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
                   %li
-                    %a.collapse-link{href: "#"} Mobile development
+                    %a.collapse-link{href: "#"}= t('mobile_development')
                   %li
-                    %a.collapse-link{href: "#"} Photo
+                    %a.collapse-link{href: "#"}= t('photo')
                   %li
-                    %a.collapse-link{href: "#"} Web design
+                    %a.collapse-link{href: "#"}= t('web_design')
               %li
-                %a{href: "#"} My account
+                %a{href: "#"}= t('my_account')
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                %a{href: "#"} Home
+                %a{href: "#"}= t('home')
               %li.dropdown
-                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('shop')
                 %ul.dropdown-menu
                   %li
-                    %a{href: "#"} Mobile development
+                    %a{href: "#"}= t('mobile_development')
                   %li
-                    %a{href: "#"} Photo
+                    %a{href: "#"}= t('photo')
                   %li
-                    %a{href: "#"} Web design
+                    %a{href: "#"}= t('web_design')
                   %li.divider{role: "separator"}
                   %li
-                    %a{href: "#"} Log out
+                    %a{href: "#"}= t('log_out')
               %li
-                %a{href: "#"} My account
+                %a{href: "#"}= t('my_account')
     %main.container
       #slider.carousel.slide{'data-ride': "carousel"}
         %ol.carousel-indicators
@@ -75,7 +75,7 @@
                   %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
                   %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
                   .general-align
-                    %button.disabled.btn Buy Now
+                    %button.disabled.btn= t('buy_now')
           .item
             .row
               .col-sm-5
@@ -87,7 +87,7 @@
                   %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
                   %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
                   .general-align
-                    %button.btn.btn-primary Buy Now
+                    %button.btn.btn-primary= t('buy_now')
         %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
           %span.icon-prev{'aria-hidden': "true"}
           %span.sr-only Previous
@@ -96,12 +96,12 @@
           %span.sr-only Next
     .container
       .jumbotron.text-center.mb-0
-        %h2.h1 Welcome to our amazing Bookstore!
+        %h2.h1= t('welcome_caption')
         .mb-res-50
-          %p We pore through hundreds of new books each month and select the five best we can find to share with our members.
-        %button.btn.btn-default Get Started
+          %p= t('welcome_message')
+        %button.btn.btn-default= t('get_started')
       .mb-35
-        %h3 Best Sellers
+        %h3= t('best_sellers' )
         .row
           .col-sm-6.col-md-3
             .general-thumb-wrap
@@ -173,13 +173,13 @@
           .col-sm-9
             %ul.list-inline.general-align.mb-25
               %li
-                %a.nav-link{href: "#"} Home
+                %a.nav-link{href: "#"}= t('home')
               %li
-                %a.nav-link{href: "#"} Shop
+                %a.nav-link{href: "#"}= t('shop')
               %li
-                %a.nav-link{href: "#"} Orders
+                %a.nav-link{href: "#"}= t('orders')
               %li
-                %a.nav-link{href: "#"} Settings
+                %a.nav-link{href: "#"}= t('settings')
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
