@@ -61,33 +61,25 @@
     %main.container
       #slider.carousel.slide{'data-ride': "carousel"}
         %ol.carousel-indicators
-          %li.active{'data-target': "#slider", 'data-slide-to': "0"}
-          %li{'data-target': "#slider", 'data-slide-to': "1"}
+          - @books_latest.count.times do
+            %li.active{'data-target': "#slider", 'data-slide-to': "0"}
         .carousel-inner{role: "listbox"}
-          .item.active
-            .row
-              .col-sm-5
-                .general-img-wrap
-                  %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-              .col-sm-7
-                .mb-60
-                  %h1 Real-Life Responsive Web Design
-                  %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-                  %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
-                  .general-align
-                    %button.disabled.btn= t('buy_now')
-          .item
-            .row
-              .col-sm-5
-                .general-img-wrap
-                  %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-              .col-sm-7
-                .mb-60
-                  %h1 Real-Life Responsive Web Design
-                  %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-                  %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
-                  .general-align
-                    %button.btn.btn-primary= t('buy_now')
+          -@books_latest.each do |book|
+            .item.active
+              .row
+                .col-sm-5
+                  .general-img-wrap
+                    %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+                .col-sm-7
+                  .mb-60
+                    %h1
+                      = book.name
+                    %p.lead
+                      = book.description.split('.')[0]
+                    %p.lead.small
+                      = book.authors.collect(&:name).join(', ')
+                    .general-align
+                      %button.disabled.btn= t('buy_now')
         %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
           %span.icon-prev{'aria-hidden': "true"}
           %span.sr-only= t('Previous')
@@ -99,7 +91,8 @@
         %h2.h1= t('welcome_caption')
         .mb-res-50
           %p= t('welcome_message')
-        = link_to(t('get_started'), catalog_path, class: 'btn btn-default')
+        %button.btn.btn-default t('get_started')
+        -# = link_to(t('get_started'), home_path, class: 'btn btn-default')
       .mb-35
         %h3= t('best_sellers' )
         .row

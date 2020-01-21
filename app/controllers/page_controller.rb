@@ -1,5 +1,5 @@
 class PageController < ApplicationController
-  def home; end
-
-  def catalog; end
+  def home
+    @books_latest = Book.last(3)
+  end
 end

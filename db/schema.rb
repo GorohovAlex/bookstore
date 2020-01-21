@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2020_01_21_122831) do
   create_table "authors_books", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
