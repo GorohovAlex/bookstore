@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'page/home'
+  get 'catalog', to: 'page#catalog'
   get 'home/index'
   
   root 'page#home'

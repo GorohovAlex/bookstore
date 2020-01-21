@@ -99,7 +99,7 @@
         %h2.h1= t('welcome_caption')
         .mb-res-50
           %p= t('welcome_message')
-        %button.btn.btn-default= t('get_started')
+        = link_to(t('get_started'), catalog_path, class: 'btn btn-default')
       .mb-35
         %h3= t('best_sellers' )
         .row
