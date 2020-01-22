@@ -3,7 +3,6 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - 'db/*'
-    - 'config/*'
     - 'script/*'
     - 'bin/*'
     - 'node_modules/**/*'
