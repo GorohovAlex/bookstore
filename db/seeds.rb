@@ -6,7 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-authors = Author.create([{name: 'Dane Hillard'}])
-Book.create(name: 'Practices of the Python Pro (2020)', authors: authors, description: 'Разработчики-профессионалы знают о преимуществах написания хорошо организованного и читабельного кода. Изучая и следуя приведённым в книге советам и шаблонам, вы научитесь проектировать чистое, легко поддерживаемое программное обеспечение, используя Python. Книга подойдет всем, кто собирается начать изучение этого языка программирования.')
-
+30.times do
+    authors     = Author.create(Array.new(rand(1..2)) { {first_name: Faker::Name.first_name, last_name: Faker::Name.last_name} })
+    category    = Category.where(name: Faker::Name.category).first_or_create
+    description = Faker::Lorem.paragraph
+    title       = Faker::Book.title
+    price       = Faker::Number.between(from: 20, to: 120)
+    year        = Faker::Number.between(from: 1981, to: 2019)
+    # material = Material.where(name: Faker::Construction.material).first_or_create
+    Book.create(name: title, authors: authors, price: price, description: description, year_of_publication: year, category_id: category.id)                           
+  end

@@ -21,6 +21,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 3.30'
   gem 'database_cleaner'
+  gem 'faker', '~> 2.10', '>= 2.10.1'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   # gem 'rspec-rails', '~> 3.9'

@@ -15,3 +15,9 @@ en:
   settings: "Settings"
   previous: "Previous"
   next: "Next"
+  faker:
+    name:
+      category:
+        - Mobile Development
+        - Photo
+        - Web Design
