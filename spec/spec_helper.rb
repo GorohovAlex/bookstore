@@ -1,11 +1,8 @@
 # require 'simplecov'
-
-# SimpleCov.minimum_coverage 90
-# SimpleCov.start 'rails' do
-#   add_filter '/bin/'
-#   add_filter '/db/'
-#   add_filter '/spec/' # for rspec
-#   add_filter '/test/' # for minitest
+# SimpleCov.start do
+#   track_files '{app,lib}/**/*.rb'
+#   add_group "Controllers", "app/controllers"
+#   add_group "Models", "app/models"
 # end
 
 # require 'simplecov'
@@ -15,8 +12,11 @@
 #   track_files '{app,lib}/**/*.rb'
 # end
 
-require 'simplecov'
-SimpleCov.start 'rails'
+if ENV['RAILS_ENV'] == 'test'
+  require 'simplecov'
+  SimpleCov.start 'rails'
+  puts "required simplecov"
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

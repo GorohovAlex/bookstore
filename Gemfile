@@ -24,7 +24,6 @@ group :development, :test do
   gem 'faker', '~> 2.10', '>= 2.10.1'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
-  # gem 'rspec-rails', '~> 3.9'
   gem 'rspec-rails', '~> 4.0.0.beta4'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
