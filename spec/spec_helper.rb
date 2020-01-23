@@ -1,24 +1,21 @@
-# require 'simplecov'
-# SimpleCov.start do
-#   track_files '{app,lib}/**/*.rb'
-#   add_group "Controllers", "app/controllers"
-#   add_group "Models", "app/models"
-# end
-
-# require 'simplecov'
-
-# SimpleCov.minimum_coverage 90
-# SimpleCov.start do
-#   track_files '{app,lib}/**/*.rb'
-# end
-
-if ENV['RAILS_ENV'] == 'test'
-  require 'simplecov'
-  SimpleCov.start 'rails'
-  puts "required simplecov"
-end
+require 'simplecov'
+SimpleCov.start 'rails'
 
 RSpec.configure do |config|
+
+  # config.before(:suite) do
+  #   DatabaseCleaner.clean_with(:truncation)
+  #   DatabaseCleaner.strategy = :transaction
+  # end
+
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
