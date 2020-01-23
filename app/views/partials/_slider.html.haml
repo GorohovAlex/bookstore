@@ -1,0 +1,27 @@
+#slider.carousel.slide{'data-ride': "carousel"}
+  %ol.carousel-indicators
+    - books.each_with_index do |_book, index|
+      %li{'data-target': "#slider", 'data-slide-to': "0", class: ('active' if index == 0)}
+  .carousel-inner{role: "listbox"}
+    - books.each_with_index do |book, index|
+      .item{ class: ('active' if index == 0) }
+        .row
+          .col-sm-5
+            .general-img-wrap
+              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+          .col-sm-7
+            .mb-60
+              %h1
+                = book.name
+              %p.lead
+                = book.description&.truncate(250)
+              %p.lead.small
+                = book.authors.collect { |author| "#{author.last_name} #{author.first_name}" }.join(', ')
+              .general-align
+                %button.disabled.btn= t('buy_now')
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only= t('Previous')
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only= t('next')
