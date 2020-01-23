@@ -22,20 +22,23 @@ ActiveRecord::Schema.define(version: 2020_01_22_121055) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "authors_books", id: false, force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "author_id", null: false
-    t.index ["author_id"], name: "index_authors_books_on_author_id"
-    t.index ["book_id"], name: "index_authors_books_on_book_id"
+  create_table "book_authors", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_book_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
     t.string "name"
-    t.float "price"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
     t.string "description"
+    t.integer "year_of_publication"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "year_of_publication"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_books_on_category_id"
   end

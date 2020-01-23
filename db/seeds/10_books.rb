@@ -6,5 +6,10 @@
   price       = Faker::Number.between(from: 20, to: 120)
   year        = Faker::Number.between(from: 1981, to: 2019)
   # material = Material.where(name: Faker::Construction.material).first_or_create
-  Book.create(name: title, authors: authors, price: price, description: description, year_of_publication: year, category_id: category.id)                           
+  Book.create(name: title,
+              authors: authors,
+              price: price,
+              description: description,
+              year_of_publication: year,
+              category: category)
 end

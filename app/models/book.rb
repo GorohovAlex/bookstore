@@ -1,3 +1,6 @@
 class Book < ApplicationRecord
-  has_and_belongs_to_many :authors
+  has_many :book_authors
+  has_many :authors, through: :book_authors
+  belongs_to :category
+  monetize :price_cents
 end

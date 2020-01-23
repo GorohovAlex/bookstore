@@ -13,7 +13,7 @@ gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
-
+gem 'money-rails', '~> 1.13', '>= 1.13.3'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
