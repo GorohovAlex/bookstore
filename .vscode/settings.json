@@ -1,0 +1,13 @@
+{
+  "sqltools.connections": [
+    {
+      "database": "bookstore_development",
+      "dialect": "PostgreSQL",
+      "name": "localhost",
+      "password": "bookstore_admin",
+      "port": 5432,
+      "server": "localhost",
+      "username": "bookstore_admin"
+    }
+  ]
+}
