@@ -4,5 +4,11 @@ class PageController < ApplicationController
     @books_best_sellers = Books::BestSellers.call
   end
 
-  def catalog; end
+  def catalog
+    @books = Books::CatalogBooks.new(Book.all).call(permitted_params)
+  end
+
+  def permitted_params
+    params.permit(:category_id, :sort_direction, :sort_type, :page)
+  end
 end
