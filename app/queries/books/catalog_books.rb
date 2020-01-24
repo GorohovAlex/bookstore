@@ -19,12 +19,12 @@ module Books
       category_id ? scoped.where(category_id: category_id) : scoped
     end
 
-    def sort(scoped, sort_type = :desc, sort_direction = :price)
-      scoped.order(sort_type: sort_direction)
-    end
+    # def sort(scoped, _sort_type = :desc, sort_direction = :price)
+    #   scoped.order(sort_type: sort_direction)
+    # end
 
-    def paginate(scoped, page_number = 0)
-      scoped.page(page_number)
-    end
+    # def paginate(scoped, page_number = 0)
+    #   scoped.page(page_number)
+    # end
   end
 end
