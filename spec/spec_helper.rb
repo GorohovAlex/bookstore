@@ -24,7 +24,7 @@ Capybara.javascript_driver = :headless_chrome
 
 RSpec.configure do |config|
   config.before(:each, type: :feature) do
-    Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
+    # Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
   end
 
   config.expect_with :rspec do |expectations|
