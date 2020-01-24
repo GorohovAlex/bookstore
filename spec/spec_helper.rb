@@ -1,7 +1,6 @@
 require 'simplecov'
 require 'capybara/rspec'
 
-
 SimpleCov.start 'rails'
 
 Capybara.register_driver :chrome do |app|
