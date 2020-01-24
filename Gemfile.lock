@@ -58,8 +58,6 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     ast (2.4.0)
     autoprefixer-rails (9.7.4)
       execjs
@@ -83,9 +81,6 @@ GEM
       capybara (>= 1.0, < 4)
       launchy
     childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     colorize (0.8.1)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
@@ -115,7 +110,6 @@ GEM
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     iniparse (1.4.4)
-    io-like (0.3.0)
     jaro_winkler (1.5.4)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -312,7 +306,6 @@ DEPENDENCIES
   byebug
   capybara (~> 3.30)
   capybara-screenshot
-  chromedriver-helper
   database_cleaner
   factory_bot_rails
   faker (~> 2.10, >= 2.10.1)
