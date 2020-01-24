@@ -21,18 +21,21 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 3.30'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
 
 group :test do
+  gem 'capybara', '~> 3.30'
+  gem 'capybara-screenshot'
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 group :development do
