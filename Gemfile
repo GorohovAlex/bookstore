@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'faker', '~> 2.10', '>= 2.10.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'jbuilder', '~> 2.7'
@@ -23,7 +24,6 @@ group :development, :test do
   gem 'capybara', '~> 3.30'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'faker', '~> 2.10', '>= 2.10.1'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'
