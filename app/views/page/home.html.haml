@@ -1,104 +1,13 @@
-<!DOCTYPE html>
-%html
-  %head
-    %meta{charset: "UTF-8"}
-    %meta{name: "viewport", content: "width=device-width"}
-    %title= t('site_name')
-    %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
-    %link{href: "../css/style.css", rel: "stylesheet"}
-  %body
-    %header.navbar.navbar-default
-      .container
-        .navbar-header
-          %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
-            %span.sr-only
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand= t('site_name')
-          %a.shop-link.pull-right.visible-xs{href: "#"}
-            %span.shop-icon
-              %span.shop-quantity 3
-        %a.shop-link.pull-right.hidden-xs{href: "#"}
-          %span.shop-icon
-            %span.shop-quantity 3
-        #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
-          .visible-xs
-            %button.close{type: "button", 'aria-label': "Close"}
-              %span{'aria-hidden': "true"} &times;
-            %ul.nav.navbar-nav
-              %li
-                %a{href: "#"}= t('home')
-              %li
-                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t('shop')
-                %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-                  %li
-                    %a.collapse-link{href: "#"}= t('mobile_development')
-                  %li
-                    %a.collapse-link{href: "#"}= t('photo')
-                  %li
-                    %a.collapse-link{href: "#"}= t('web_design')
-              %li
-                %a{href: "#"}= t('my_account')
-          .hidden-xs
-            %ul.nav.navbar-nav
-              %li
-                %a{href: "#"}= t('home')
-              %li.dropdown
-                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('shop')
-                %ul.dropdown-menu
-                  %li
-                    %a{href: "#"}= t('mobile_development')
-                  %li
-                    %a{href: "#"}= t('photo')
-                  %li
-                    %a{href: "#"}= t('web_design')
-                  %li.divider{role: "separator"}
-                  %li
-                    %a{href: "#"}= t('log_out')
-              %li
-                %a{href: "#"}= t('my_account')
-    %main.container
-      = render 'partials/slider', books: @books_latest
-    .container
-      .jumbotron.text-center.mb-0
-        %h2.h1= t('welcome_caption')
-        .mb-res-50
-          %p= t('welcome_message')
-        %button.btn.btn-default= t('get_started')
-        -# = link_to(t('get_started'), home_path, class: 'btn btn-default')
-      .mb-35
-        %h3
-          = t('best_sellers' )
-        .row
-          = render partial: 'partials/book_best_sellers', locals: { books: @books_best_sellers }
-    %footer.navbar-inverse
-      .container
-        .row
-          .col-sm-9
-            %ul.list-inline.general-align.mb-25
-              %li
-                %a.nav-link{href: "#"}= t('home')
-              %li
-                %a.nav-link{href: "#"}= t('shop')
-              %li
-                %a.nav-link{href: "#"}= t('orders')
-              %li
-                %a.nav-link{href: "#"}= t('settings')
-          .col-sm-3
-            %p.general-nav-mail support@bookstore.com
-            %p.general-nav-number (555)-555-5555
-            %ul.list-inline.general-align
-              %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-facebook{'aria-hidden': "true"}
-              %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-twitter{'aria-hidden': "true"}
-              %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-google-plus{'aria-hidden': "true"}
-              %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-instagram{'aria-hidden': "true"}
-    %script{src: "https://use.fontawesome.com/67602d7308.js"}
+%main.container
+  = render 'partials/slider', books: @books_latest
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1
+      = t('welcome_caption')
+    .mb-res-50
+      %p
+        = t('welcome_message')
+    %button.btn.btn-default= t('get_started')
+    -# = link_to(t('get_started'), home_path, class: 'btn btn-default')
+  .mb-35
+    = render partial: 'partials/book_best_sellers', locals: { books: @books_best_sellers }
