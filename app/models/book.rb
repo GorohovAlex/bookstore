@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   validates :name,  presence: true
-  validates :price, presence: true, numericality: { only_integer: true }
-  validates :year_of_publication, presence: true, numericality: { only_integer: true }
+  validates :price_cents, presence: true, numericality: { only_integer: true }
+  validates :year_of_publication, presence: true, numericality: { only_integer: true }, length: { maximum: 4 }
 
   monetize :price_cents
 
