@@ -15,15 +15,14 @@ Capybara.register_driver :headless_chrome do |app|
   )
 
   Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    desired_capabilities: capabilities
+                                 browser: :chrome,
+                                 desired_capabilities: capabilities
 end
 
 Capybara.default_driver = :headless_chrome
 Capybara.javascript_driver = :headless_chrome
 
 RSpec.configure do |config|
-
   config.before(:each, type: :feature) do
     Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
   end
