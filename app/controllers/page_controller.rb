@@ -3,4 +3,6 @@ class PageController < ApplicationController
     @books_latest = Books::LastestBooks.call
     @books_best_sellers = Books::BestSellers.call
   end
+
+  def catalog; end
 end
