@@ -1,6 +1,6 @@
 class PageController < ApplicationController
   def home
-    @books_latest = Book.last(3)
-    @books_best_sellers = Book.last(4)
+    @books_latest = Books::LastestBooks.call
+    @books_best_sellers = Books::BestSellers.call
   end
 end
