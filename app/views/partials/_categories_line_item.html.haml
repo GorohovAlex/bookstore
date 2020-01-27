@@ -1,5 +1,5 @@
 %li.mr-35
-  %a.filter-link{href: "#{categories_line_item.id}"}
+  = link_to(catalog_path(category_id: categories_line_item.id), class: 'filter-link') do 
     = categories_line_item.name
     %span.badge.general-badge
       = categories_line_item.books.size
