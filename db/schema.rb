@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255, null: false
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "EUR", null: false
     t.string "description"
@@ -44,17 +44,18 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "materials", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "book_authors", "books"
-  add_foreign_key "books", "categories"
+  add_foreign_key "book_authors", "authors", on_delete: :cascade
+  add_foreign_key "book_authors", "books", on_delete: :cascade
+  add_foreign_key "books", "categories", on_delete: :nullify
 end

@@ -1,6 +1,8 @@
 class Author < ApplicationRecord
-  validates :first_name, presence: true
-  validates :last_name,  presence: true
+  NAME_MAX_LENGTH = 255
+
+  validates :first_name, presence: true, length: { maximum: NAME_MAX_LENGTH }
+  validates :last_name,  presence: true, length: { maximum: NAME_MAX_LENGTH }
 
   has_many :books, through: :book_authors
 end
