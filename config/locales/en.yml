@@ -1,5 +1,11 @@
 en:
-  all: All
+  books:
+    all: All
+    dimensions: Dimensions
+    read_more: Read More
+    materials: Materials
+    year_of_publication: Year of publication
+  add_to_cart: Add to Cart  
   buy_now: "Buy Now"
   site_name: "Bookstore"
   welcome_caption: "Welcome to our amazing Bookstore!"
