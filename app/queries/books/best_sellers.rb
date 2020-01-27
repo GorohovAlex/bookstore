@@ -4,7 +4,6 @@ module Books
 
     def self.call(relation: Book.all, quantity: DEAFULT_QUANTITY)
       relation.order(price_cents: :desc).limit(quantity)
-      # relation.first(quantity)
     end
   end
 end

@@ -15,7 +15,7 @@
             %a{href: "#"} Price: Low to hight
           %li
             %a{href: "#"} Price: Hight to low
-    = render "partials/categories_line.html.haml"
+    = render partial: "partials/categories_line.html.haml", locals: { categories: @categories }
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10 Filter by category
     .dropdown

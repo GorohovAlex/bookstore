@@ -5,6 +5,7 @@ class PageController < ApplicationController
   end
 
   def catalog
+    @categories = Categories::CategoriesAll.call
     @books = Books::CatalogBooks.new(Book.all).call(permitted_params)
   end
 
