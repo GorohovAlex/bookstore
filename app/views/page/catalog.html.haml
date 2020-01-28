@@ -62,9 +62,9 @@
             %p.title
               = book.name
             %p.font-16.in-gold-500
-              = "#{humanized_money_with_symbol book.price}"
+              = book.price_show
             %span.divider-sm
             %p.lead.small
-              = book.authors.collect { |author| "#{author.last_name} #{author.first_name}" }.join(', ')
+              = book.authors_show
     .text-center
       %button.btn.btn-primary View More
