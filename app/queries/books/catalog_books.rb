@@ -9,7 +9,7 @@ module Books
     def call(params)
       scoped = filter_by_category(initial_scope, params[:category_id])
       # scoped = sort(scoped, params[:sort_type], params[:sort_direction])
-      # scoped = paginate(scoped, params[:page])
+      scoped = paginate(scoped, params[:page])
       scoped
     end
 
@@ -23,8 +23,8 @@ module Books
     #   scoped.order(sort_type: sort_direction)
     # end
 
-    # def paginate(scoped, page_number = 0)
-    #   scoped.page(page_number)
-    # end
+    def paginate(scoped, page_number = 0)
+      scoped.paginate(page: page_number, per_page: 12)
+    end
   end
 end
