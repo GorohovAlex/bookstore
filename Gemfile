@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'draper', '~> 3.1'
 gem 'faker', '~> 2.10', '>= 2.10.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'haml', '~> 5.1', '>= 5.1.2'

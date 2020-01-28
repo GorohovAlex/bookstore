@@ -1,12 +1,12 @@
 class PageController < ApplicationController
   def home
-    @books_latest = Books::LastestBooks.call
-    @books_best_sellers = Books::BestSellers.call
+    @books_latest = Books::LastestBooks.call.decorate
+    @books_best_sellers = Books::BestSellers.call.decorate
   end
 
   def catalog
     @categories = Categories::CategoriesAll.call
-    @books = Books::CatalogBooks.new(Book.all).call(permitted_params)
+    @books = Books::CatalogBooks.new(Book.all).call(permitted_params).decorate
   end
 
   def permitted_params
