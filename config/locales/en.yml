@@ -1,6 +1,8 @@
 en:
   books:
     all: All
+    back_to_results: Back to results
+    description: Description
     dimensions: Dimensions
     read_more: Read More
     materials: Materials
