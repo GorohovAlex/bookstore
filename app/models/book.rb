@@ -11,7 +11,7 @@ class Book < ApplicationRecord
   monetize :price_cents
 
   has_many :book_authors
-  has_many :authors, through: :book_authors
+  has_many :authors, through: :book_authors, dependent: :destroy
 
   belongs_to :category
 end
