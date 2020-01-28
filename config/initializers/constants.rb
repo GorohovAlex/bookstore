@@ -1,0 +1,4 @@
+NAME_MAX_LENGTH = 50
+REGEX_LETTER_ONLY = /\A[a-zA-Z]+\z/.freeze
+
+YEAR_MAX_LENGTH = 4

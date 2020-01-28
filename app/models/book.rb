@@ -1,6 +1,4 @@
 class Book < ApplicationRecord
-  YEAR_MAX_LENGTH = 4
-
   validates :name, presence: true
   validates :price_cents, presence: true, numericality: { only_integer: true }
   validates :year_of_publication,
