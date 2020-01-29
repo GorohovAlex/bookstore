@@ -1,5 +1,5 @@
 %li.mr-35
-  = link_to(catalog_path(params.permit(:page, :sort).merge(category_id: categories_line_item.id)), class: 'filter-link') do 
+  = link_to(request.params.merge(category_id: categories_line_item.id), class: 'filter-link') do 
     = categories_line_item.name
     %span.badge.general-badge
       = categories_line_item.books.size

@@ -1,9 +1,6 @@
-%ul.dropdown-menu
-  %li
-    %a{href: "?sort=newest"} Newest first
-  %li
-    %a{href: "?sort=popular"} Popular first
-  %li
-    %a{href: "#"} Price: Low to hight
-  %li
-    %a{href: "#"} Price: Hight to low
+.dropdown{ class: dropdown_style }
+  %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+    = SORT_LIST.detect { |sort| sort[:type] == sort_selected}[:value] || SORT_LIST[1][:value]
+    %i.fa.fa-angle-down.dropdown-icon.pull-right
+  %ul.dropdown-menu
+    = render partial: 'partials/sorting_select_item', collection: SORT_LIST

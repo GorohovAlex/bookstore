@@ -1,6 +1,6 @@
 %ul.list-inline.pt-10.mb-25.mr-240
   %li.mr-35
-    %a.filter-link{href: "#"}
+    = link_to(catalog_path(params.permit(:page, :sort).merge(category_id: nil)), class: 'filter-link') do
       = t('all')
       %span.badge.general-badge
         = categories.map(&:books).sum(&:size)
