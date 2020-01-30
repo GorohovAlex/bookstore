@@ -1,6 +1,6 @@
 describe 'Home page', type: :feature do
   before do
-    create_list(:book, 10, :two_authors)
+    create_list(:book, 10, :authors)
   end
 
   it 'Visitor registers successfull' do
