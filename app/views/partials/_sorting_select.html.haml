@@ -1,6 +1,6 @@
 .dropdown{ class: dropdown_style }
-  %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-    = SORT_LIST.detect { |sort| sort[:type] == sort_selected}[:value] || SORT_LIST[1][:value]
+  %a.dropdown-toggle.lead.small{ href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false" }
+    = Sortings::SortCurrent.call(params[:sort])
     %i.fa.fa-angle-down.dropdown-icon.pull-right
   %ul.dropdown-menu
-    = render partial: 'partials/sorting_select_item', collection: SORT_LIST
+    = render partial: 'partials/sorting_select_item', collection: Constants::SORT_LIST
