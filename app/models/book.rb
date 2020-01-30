@@ -8,6 +8,8 @@ class Book < ApplicationRecord
   has_many :book_authors
   has_many :authors, through: :book_authors
 
+  has_one :book_dimension
+
   belongs_to :category
   has_and_belongs_to_many :materials
 end

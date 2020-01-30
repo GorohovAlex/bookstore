@@ -1,7 +1,7 @@
 %main.container
   = link_to :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
-    = t('back_to_results')
+    = t('.back_to_results')
   .row
     .col-sm-6
       .product-gallery
@@ -35,26 +35,27 @@
             = t('add_to_cart')
       .general-info-wrap.divider-lg
         %p
-          = t('description')
+          = t('.description')
         %p.lead.small.line-height-2
           = @book.description
           %a.in-gold-500.ml-10{href: "#"}
-            = t('read_more')
+            = t('.read_more')
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
-            = t('year_of_publication')
+            = t('.year_of_publication')
           %p.lead.small.pull-right 2016
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
-            = t('dimensions')
+            = t('.dimensions')
           %p.lead.small.pull-right
-            H:6.4\" x W: 0.9\" x D: 5.0
+            -# = t('.dimension_line')
+            = t('.dimension_line', height: @book.book_dimension.height, width: @book.book_dimension.width, depth: @book.book_dimension.depth)
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
-            = t('materials')
+            = t('.materials')
           %p.lead.small.pull-right
             = @book.materials_show
   .mb-80

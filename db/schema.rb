@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_140546) do
+ActiveRecord::Schema.define(version: 2020_01_30_154754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 2020_01_30_140546) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_book_authors_on_author_id"
     t.index ["book_id"], name: "index_book_authors_on_book_id"
+  end
+
+  create_table "book_dimensions", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.decimal "height", precision: 6, scale: 1
+    t.decimal "width", precision: 6, scale: 1
+    t.decimal "depth", precision: 6, scale: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_dimensions_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_140546) do
   end
 
   add_foreign_key "book_authors", "books"
+  add_foreign_key "book_dimensions", "books"
   add_foreign_key "books", "categories"
   add_foreign_key "books_materials", "books", on_delete: :cascade
   add_foreign_key "books_materials", "materials", on_delete: :cascade
