@@ -3,9 +3,8 @@
   category    = Category.order('RANDOM()').first
   description = FFaker::Lorem.paragraph
   title       = FFaker::Book.title
-  price       = FFaker::Numeric.between(from: 20, to: 120)
-  year        = FFaker::Numeric.between(from: 1981, to: 2019)
-  # material = Material.where(name: FFaker::Construction.material).first_or_create
+  price       = FFaker::Random.rand(20..120)
+  year        = FFaker::Random.rand(1981..2019)
   Book.create(name: title,
               authors: authors,
               price: price,
