@@ -1,8 +1,10 @@
-NAME_MAX_LENGTH = 50
-TITLE_MAX_LENGTH = 80
-TEXTBOX_MAX_LENGTH = 500
+module Constants
+  NAME_MAX_LENGTH = 50
+  TITLE_MAX_LENGTH = 80
+  TEXTBOX_MAX_LENGTH = 500
 
-REGEX_LETTER_ONLY = /\A[a-zA-Z]+\z/.freeze
-REGEX_TITLE = %r{\A[a-zA-Z!#$%&'*+-\/=?^_`{|}~\s]+\z}.freeze
+  REGEX_LETTER_ONLY = /\A[a-zA-Z]+\z/.freeze
+  REGEX_TITLE = %r{\A[a-zA-Z!#$%&'*+-\/=?^_`{|}~\s]+\z}.freeze
 
-YEAR_MAX_LENGTH = 4
+  YEAR_MAX_LENGTH = 4
+end
