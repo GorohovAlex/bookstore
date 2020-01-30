@@ -9,4 +9,5 @@ class Book < ApplicationRecord
   has_many :authors, through: :book_authors
 
   belongs_to :category
+  has_and_belongs_to_many :materials
 end
