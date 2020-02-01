@@ -25,9 +25,7 @@
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
               = t('shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              - Categories::CategoriesAll.call.each do |category_item|
-                %li
-                  = link_to(category_item.name, catalog_path(category_id: category_item.id), class: 'collapse-link')
+              = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
           %li
             %a{href: "#"}= t('my_account')
       .hidden-xs
@@ -38,9 +36,7 @@
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
               = t('shop')
             %ul.dropdown-menu
-              - Categories::CategoriesAll.call.each do |category_item|
-                %li
-                  = link_to(category_item.name, catalog_path(category_id: category_item.id), class: 'collapse-link')
+              = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
               %li.divider{role: "separator"}
               %li
                 %a{href: "#"}= t('log_out')
