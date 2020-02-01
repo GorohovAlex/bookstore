@@ -1,1 +1,2 @@
-!= pagy_next_link(@pagy, 'View More', 'id="next_link" class="btn btn-primary"')
+.text-center{id: "div_next_link"}
+  != pagy_next_link(@pagy, 'View More', 'id="next_link" class="btn btn-primary"') if @pagy.next
