@@ -12,6 +12,7 @@ gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'money-rails', '~> 1.13', '>= 1.13.3'
+gem 'pagy', '~> 3.7', '>= 3.7.2'
 gem 'pg', '~> 1.2', '>= 1.2.2'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -19,7 +20,6 @@ gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
-gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
