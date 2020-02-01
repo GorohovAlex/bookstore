@@ -1,8 +1,5 @@
 class Material < ApplicationRecord
-  validates :name,
-            presence: true,
-            format: { with: Constants::REGEX_TITLE },
-            length: { maximum: Constants::TITLE_MAX_LENGTH }
+  validates :name, presence: true
 
   has_and_belongs_to_many :books
 end
