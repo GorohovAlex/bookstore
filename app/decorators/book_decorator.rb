@@ -12,4 +12,12 @@ class BookDecorator < Draper::Decorator
   def price_show
     h.humanized_money_with_symbol object.price
   end
+
+  def description_begin
+    object.description[0...200]
+  end
+
+  def description_end
+    object.description[200...object.description.size]
+  end
 end

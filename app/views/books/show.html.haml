@@ -25,10 +25,10 @@
             = @book.price_show
         .col-xs-5.col-md-3
           .input-group.general-position
-            %a.input-link{href: "#"}
+            %a.input-link{href: "#", id:"quantity-minus"}
               %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
+            %input.form-control.quantity-input{type: "text", id:"quantity-value", value: "1"}
+            %a.input-link{href: "#", id:"quantity-plus"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
           %button.btn.btn-default.pull-right.general-position
@@ -37,20 +37,21 @@
         %p
           = t('.description')
         %p.lead.small.line-height-2
-          = @book.description
-          %a.in-gold-500.ml-10{href: "#"}
-            = t('.read_more')
+          - if @book.description.size <= 200
+            = @book.description
+          - else
+            = render partial: 'partials/book_description'
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
             = t('.year_of_publication')
-          %p.lead.small.pull-right 2016
+          %p.lead.small.pull-right
+            = @book.year_of_publication 
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
             = t('.dimensions')
           %p.lead.small.pull-right
-            -# = t('.dimension_line')
             = t('.dimension_line', height: @book.book_dimension.height, width: @book.book_dimension.width, depth: @book.book_dimension.depth)
       .general-info-wrap.divider-lg
         .clearfix
@@ -62,3 +63,17 @@
     = render partial: 'partials/reviews_write'
   .mb-80
     = render partial: 'partials/reviews_list'
+:javascript
+  $("#quantity-plus").on('click', function(){
+    event.preventDefault()
+    var value = $("#quantity-value").val()
+    value = isNaN(value) || value == '' ? BOOK_ORDER_COUNT_DEFAULT : parseInt(value) + 1
+    $("#quantity-value").val(value)
+  })
+
+  $("#quantity-minus").on('click', function(){
+    event.preventDefault()
+    var value = $("#quantity-value").val()
+    value = isNaN(value) || value == '' || value == '1' ? 1 : parseInt(value) - 1
+    $("#quantity-value").val(value)
+  })
