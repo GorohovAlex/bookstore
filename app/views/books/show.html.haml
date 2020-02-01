@@ -37,7 +37,7 @@
         %p
           = t('.description')
         %p.lead.small.line-height-2
-          - if @book.description.size <= 200
+          - if @book.description.size <= Book::DESCRIPTION_SHORT_LENGTH
             = @book.description
           - else
             = render partial: 'partials/book_description'

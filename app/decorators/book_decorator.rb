@@ -14,10 +14,10 @@ class BookDecorator < Draper::Decorator
   end
 
   def description_begin
-    object.description[0...200]
+    object.description[0...Book::DESCRIPTION_SHORT_LENGTH]
   end
 
   def description_end
-    object.description[200...object.description.size]
+    object.description[Book::DESCRIPTION_SHORT_LENGTH...object.description.size]
   end
 end
