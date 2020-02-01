@@ -8,7 +8,6 @@ module Constants
     { type: :price_desc,    value: 'Title: Z - A' }
   ].freeze
 
-  NAME_MAX_LENGTH = 50
   TITLE_MAX_LENGTH = 80
   TEXTBOX_MAX_LENGTH = 500
 

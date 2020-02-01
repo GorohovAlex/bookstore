@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 2020_01_30_154754) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "book_dimensions", "books"
-  add_foreign_key "books_materials", "books", on_delete: :cascade
-  add_foreign_key "books_materials", "materials", on_delete: :cascade
   add_foreign_key "book_authors", "authors", on_delete: :cascade
   add_foreign_key "book_authors", "books", on_delete: :cascade
+  add_foreign_key "book_dimensions", "books"
   add_foreign_key "books", "categories", on_delete: :nullify
+  add_foreign_key "books_materials", "books", on_delete: :cascade
+  add_foreign_key "books_materials", "materials", on_delete: :cascade
 end
