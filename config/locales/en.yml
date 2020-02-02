@@ -12,7 +12,7 @@ en:
       read_less: Read less
   add_to_cart: Add to Cart  
   buy_now: "Buy Now"
-  site_name: "Bookstore"
+  site_name: Bookstore
   welcome_caption: "Welcome to our amazing Bookstore!"
   welcome_message: " We pore through hundreds of new books each month and select the five best we can find to share with our members."
   get_started:  "Get Started"
@@ -27,3 +27,10 @@ en:
   settings: "Settings"
   previous: "Previous"
   next: "Next"
+  sort_list:
+    newest_first: Newest first
+    popular_first: Popular first
+    price_asc: 'Price: Low to hight'
+    price_desc: 'Price: Hight to low'
+    title_asc: 'Title: A - Z'
+    title_desc: 'Title: Z - A'
