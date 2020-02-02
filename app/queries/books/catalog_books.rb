@@ -7,9 +7,9 @@ module Books
     end
 
     def call(params)
+      sorting = Sortings::SortCurrent.call(sort_selected: params[:sort])
       scoped = filter_by_category(initial_scope, params[:category_id])
-      # scoped = sort(scoped, params[:sort_type], params[:sort_direction])
-      # scoped = paginate(scoped, params[:page])
+      scoped = sort(scoped, sorting[:sort_field], sorting[:sort_direction])
       scoped
     end
 
@@ -19,12 +19,8 @@ module Books
       category_id ? scoped.where(category_id: category_id) : scoped
     end
 
-    # def sort(scoped, _sort_type = :desc, sort_direction = :price)
-    #   scoped.order(sort_type: sort_direction)
-    # end
-
-    def paginate(scoped, page_number = 1)
-      scoped.pagy(page_number)
+    def sort(scoped, sort_field = :id, sort_direction = :desc)
+      scoped.order(sort_field => sort_direction)
     end
   end
 end
