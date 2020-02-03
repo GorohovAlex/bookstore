@@ -10,23 +10,29 @@ en:
       year_of_publication: Year of publication
       read_more: Read more
       read_less: Read less
+  page:
+    catalog:
+      title: Catalog
+      filter_by_category: Filter by category
+      sort_by: Sort by
+  view_more: View more
   add_to_cart: Add to Cart  
-  buy_now: "Buy Now"
+  buy_now: Buy Now
   site_name: Bookstore
-  welcome_caption: "Welcome to our amazing Bookstore!"
-  welcome_message: " We pore through hundreds of new books each month and select the five best we can find to share with our members."
-  get_started:  "Get Started"
-  best_sellers: "Best Sellers"
-  home: "Home"
-  shop: "Shop"
-  my_account: "My Account"
-  mobile_development: "Mobile development"
-  photo: "Photo"
-  web_design: "Web design"
-  log_out: "Log out"
-  settings: "Settings"
-  previous: "Previous"
-  next: "Next"
+  welcome_caption: Welcome to our amazing Bookstore!
+  welcome_message: We pore through hundreds of new books each month and select the five best we can find to share with our members.
+  get_started:  Get Started
+  best_sellers: Best Sellers
+  home: Home
+  shop: Shop
+  my_account: My Account
+  mobile_development: Mobile development
+  photo: Photo
+  web_design: Web design
+  log_out: Log out
+  settings: Settings
+  previous: Previous
+  next: Next
   sort_list:
     newest_first: Newest first
     popular_first: Popular first
