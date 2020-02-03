@@ -1,5 +1,5 @@
 %main.container
-  = link_to :back, class: 'general-back-link' do
+  = link_to url_for(:back), class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
     = t('.back_to_results')
   .row
@@ -63,17 +63,4 @@
     = render partial: 'partials/reviews_write'
   .mb-80
     = render partial: 'partials/reviews_list'
-:javascript
-  $("#quantity-plus").on('click', function(){
-    event.preventDefault()
-    var value = $("#quantity-value").val()
-    value = isNaN(value) || value == '' ? BOOK_ORDER_COUNT_DEFAULT : parseInt(value) + 1
-    $("#quantity-value").val(value)
-  })
-
-  $("#quantity-minus").on('click', function(){
-    event.preventDefault()
-    var value = $("#quantity-value").val()
-    value = isNaN(value) || value == '' || value == '1' ? 1 : parseInt(value) - 1
-    $("#quantity-value").val(value)
-  })
+= javascript_pack_tag 'books/show'
