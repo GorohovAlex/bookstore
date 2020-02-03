@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   TITLE_MAX_LENGTH = 80
   TEXTBOX_MAX_LENGTH = 500
   YEAR_MAX_LENGTH = 4
-  DESCRIPTION_SHORT_LENGTH = 200
+  DESCRIPTION_SHORT_LENGTH = 250
 
   validates :name,
             presence: true,
