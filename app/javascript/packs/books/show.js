@@ -17,25 +17,10 @@ $(document).ready(function() {
     event.preventDefault()
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
-    var btnLess = document.getElementById("read_less");
     var btnMore = document.getElementById("read_more");
    
     dots.style.display = "none";
     moreText.style.display = "inline";
-    btnLess.style.display = "inline";
     btnMore.style.display = "none";
-  });
-
-  $("#read_less").on('click', function(){
-    event.preventDefault()
-    var dots = document.getElementById("dots");
-    var moreText = document.getElementById("more");
-    var btnLess = document.getElementById("read_less");
-    var btnMore = document.getElementById("read_more");
-  
-    dots.style.display = "inline";
-    moreText.style.display = "none";
-    btnLess.style.display = "none";
-    btnMore.style.display = "inline";
   });
 });
