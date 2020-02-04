@@ -1,5 +1,4 @@
 module Constants
-
   PAGY_COUNT_DEFAULT = 12
 
   SORT_LIST = [
