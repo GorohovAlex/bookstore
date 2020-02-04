@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "Books", type: :request do
+RSpec.describe Book, type: :request do
+  describe 'GET /show' do
+    let(:book) { create :book, :with_authors }
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/book/index"
+    it 'returns http success' do
+      get book_path(book)
       expect(response).to have_http_status(:success)
     end
   end
-
 end

@@ -1,4 +1,7 @@
 module Constants
+
+  PAGY_COUNT_DEFAULT = 12
+
   SORT_LIST = [
     { type: :newest_first,  value: 'sort_list.newest_first',  sort_field: :created_at,   sort_direction: :desc },
     { type: :popular_first, value: 'sort_list.popular_first', sort_field: :id,           sort_direction: :asc  },
