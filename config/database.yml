@@ -23,7 +23,8 @@ test:
   <<: *default
   database: bookstore_test
 
-
 production:
-  <<: *default
-  database: bookstore_production
+  host: ec2-52-203-98-126.compute-1.amazonaws.com
+  username: sqxlggghlgpqhe
+  password: f3d3e44dfdd9479e8a1ce79f3d618ed82cd33a5283d9440a8c809fdb3b13a52c
+  database: d1vn7hdovilcc1
