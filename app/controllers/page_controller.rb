@@ -10,6 +10,10 @@ class PageController < ApplicationController
                                    link_extra: 'data-remote="true"')
   end
 
+  def log_in
+  
+  end
+
   private
 
   def permitted_params
