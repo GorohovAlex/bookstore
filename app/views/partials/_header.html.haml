@@ -39,6 +39,10 @@
               = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
               %li.divider{role: "separator"}
               %li
-                %a{href: "#"}= t('log_out')
+                = link_to(t('log_out'), user_sign_out_path, method: :delete)
           %li
-            %a{href: "#"}= t('my_account')
+            - unless current_user
+              = link_to(t('my_account'), user_log_in_path)
+            - else
+              %a{href: "#"}= current_user.name
+
