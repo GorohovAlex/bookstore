@@ -15,21 +15,12 @@ executors:
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_DB: bookstore_test
-      - image: selenium/standalone-chrome:3.1.0
-
 caches: 
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
-
 commands:
   run_linters:
     description: command to start linters
     steps:
-      - run:
-          name: Install Latest Browsers
-          command: |
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get install google-chrome-stable
       - run: 
           name: rubocop
           command: bundle exec rubocop
