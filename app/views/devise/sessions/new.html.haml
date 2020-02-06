@@ -3,25 +3,16 @@
     %h3.general-login-title Log In
     = link_to(user_facebook_omniauth_authorize_path, class: 'general-login-icon') do
       %i.fa.fa-facebook-official
-    %p.general-login-text or
+    %p.general-login-text or  
   = simple_form_for user_log_in_path, html: { class: 'general-form' } do |f|
     .form-group.mb-30
       = f.input :email, label_html:{ class: 'control-label input-label' }, label: 'Enter Email', placeholder: "Enter Email"
     .form-group.mb-30
       = f.input :password, placeholder: "Password", label_html:{ class: 'control-label input-label' }
-    .text-center
-      = f.button :submit, 'Back to Store', class: 'btn btn-default mb-20'
-  
-  %form.general-form
-    .form-group.mb-30
-      %label.control-label.input-label{for: "email"} Enter Email
-      %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
-    .form-group.mb-30
-      %label.control-label.input-label{for: "password"} Password
-      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
       %a.help-block.in-gold-500{href: "#"} Forgot password?
     .form-group.checkbox.text-center.mb-30
       %label.checkbox-label
+        = f.input_field :remember_me, as: :boolean, class: { display: 'none'}
         %input.checkbox-input{type: "checkbox", hidden: "true"}
         %span.checkbox-icon
           %i.fa.fa-check
@@ -32,7 +23,8 @@
     Don’t have an Account?
     %a.in-gold-500{href: "#"} Sign Up
 
-
+  -#   .text-center
+  -#     = f.button :submit, 'Back to Store', class: 'btn btn-default mb-20'
 
     
 -# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
