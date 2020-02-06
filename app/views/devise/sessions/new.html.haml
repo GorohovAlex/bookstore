@@ -4,7 +4,7 @@
     = link_to(user_facebook_omniauth_authorize_path, class: 'general-login-icon') do
       %i.fa.fa-facebook-official
     %p.general-login-text or  
-  = simple_form_for user_log_in_path, html: { class: 'general-form' } do |f|
+  = simple_form_for user_session_path, html: { class: 'general-form' } do |f|
     .form-group.mb-30
       = f.input :email, label_html:{ class: 'control-label input-label' }, label: 'Enter Email', placeholder: "Enter Email"
     .form-group.mb-30
