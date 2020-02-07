@@ -4,7 +4,7 @@ Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.expire_all_remember_me_on_sign_out = true
   config.mailer_sender = 'gorochov.as@gmail.com'
-  config.omniauth :facebook, '789874988166617', '3a1893964add349d0f0a976a2552bca0',
+  config.omniauth :facebook, '328931194668186', '9bfd3ea1f19e15e3e71566232b56234c',
                   callback_url: 'http://localhost:3000/users/auth/facebook/callback',
                   scope: 'email', display: 'page'
   config.password_length = 6..128

@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  # PASSWORD_FORMAT_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}\z/.freeze
+
+  # # validates :email,
+  # #           presence: true
+  # # validates :password,
+  # #           presence: true,
+  # #           format: { with: PASSWORD_FORMAT_REGEX, message: "error ha-ha" }
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
