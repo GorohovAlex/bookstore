@@ -6,7 +6,7 @@
       %i.fa.fa-facebook-official
     %p.general-login-text
       = t('.or')  
-  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general-form' }) do |f|
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general-form' }, validate: true) do |f|
     .form-group.mb-30
       = f.input :email, label_html: { class: 'control-label input-label' }, label: t('.email_label'), placeholder: t('.email_placeholder')
     .form-group.mb-30
@@ -25,3 +25,4 @@
   %p.general-sign-text.text-center
     = t('.dont_have_account')
     = link_to(t('.sign_up'), new_user_registration_path, class: 'in-gold-500')
+    = console
