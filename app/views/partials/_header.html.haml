@@ -39,7 +39,7 @@
               = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
           %li
             - unless user_signed_in?
-              = link_to(t('my_account'), new_user_registration_path)
+              = link_to('Log In', new_user_session_path)
             - else
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
                 = current_user.email

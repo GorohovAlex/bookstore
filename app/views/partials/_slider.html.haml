@@ -18,10 +18,10 @@
               %p.lead.small
                 = book.authors.collect { |author| "#{author.last_name} #{author.first_name}" }.join(', ')
               .general-align
-                %button.disabled.btn= t('buy_now')
+                %button.disabled.btn= t('.buy_now')
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
-    %span.sr-only= t('Previous')
+    %span.sr-only= t('.previous')
   %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
     %span.icon-next{'aria-hidden': "true"}
-    %span.sr-only= t('next')
+    %span.sr-only= t('.next')
