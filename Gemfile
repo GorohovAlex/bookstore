@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta4'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'letter_opener'
 end
 
 group :test do

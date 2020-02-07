@@ -17,7 +17,6 @@ en:
       sort_by: Sort by
   view_more: View more
   add_to_cart: Add to Cart  
-  buy_now: Buy Now
   site_name: Bookstore
   welcome_caption: Welcome to our amazing Bookstore!
   welcome_message: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -32,7 +31,7 @@ en:
   log_out: Log out
   settings: Settings
   previous: Previous
-  next: Next
+  orders: Orders
   sort_list:
     newest_first: Newest first
     popular_first: Popular first
@@ -40,3 +39,8 @@ en:
     price_desc: 'Price: Hight to low'
     title_asc: 'Title: A - Z'
     title_desc: 'Title: Z - A'
+  partials:
+    slider:
+      buy_now: Buy Now
+      previous: Previous
+      next: Next
