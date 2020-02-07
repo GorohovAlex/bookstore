@@ -83,7 +83,7 @@ workflows:
   version: 2.
   build:
     jobs:
-      - lintering:
+      - lintering
           # filters:
           #   branches:
           #     only: feature/step-2
