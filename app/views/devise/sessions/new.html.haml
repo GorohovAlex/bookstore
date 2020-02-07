@@ -20,9 +20,11 @@
         %span.checkbox-text
           = t('.remember_me')
     .text-center
+      - if alert
+        .alert.alert-danger{:role => "alert"}
+          = alert
       %button.btn.btn-default.mb-20
         = t('.back_to_store')
   %p.general-sign-text.text-center
     = t('.dont_have_account')
     = link_to(t('.sign_up'), new_user_registration_path, class: 'in-gold-500')
-    = console
