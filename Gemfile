@@ -24,12 +24,12 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'
   gem 'shoulda-matchers'
-  gem 'dotenv-rails'
   gem 'simplecov', require: false
 end
 
