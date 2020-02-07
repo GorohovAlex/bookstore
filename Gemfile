@@ -28,12 +28,12 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'letter_opener'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  gem 'letter_opener'
 end
 
 group :test do
