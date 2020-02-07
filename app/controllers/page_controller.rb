@@ -6,7 +6,7 @@ class PageController < ApplicationController
 
   def catalog
     @categories = Category.all.order(name: :asc)
-    @pagy, @books = pagy_countless(Books::CatalogBooks.new(Book.all).call(permitted_params).decorate,
+    @pagy, @books = pagy_countless(Books::CatalogBooks.new.call(permitted_params).decorate,
                                    link_extra: 'data-remote="true"')
   end
 

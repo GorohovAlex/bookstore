@@ -1,14 +1,8 @@
 module Books
   class CatalogBooks
-    attr_accessor :initial_scope
-
-    def initialize(initial_scope)
-      @initial_scope = initial_scope
-    end
-
     def call(params)
       sorting = Sortings::SortCurrent.call(sort_selected: params[:sort])
-      scoped = filter_by_category(initial_scope, params[:category_id])
+      scoped = filter_by_category(Book.all, params[:category_id])
       scoped = sorting(scoped, sorting[:sort_field], sorting[:sort_direction])
       scoped
     end
