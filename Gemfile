@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'dotenv-rails'
 gem 'draper', '~> 3.1'
 gem 'ffaker', '~> 2.13'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
@@ -24,7 +25,6 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
-  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
