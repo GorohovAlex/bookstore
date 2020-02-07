@@ -29,6 +29,7 @@ group :development, :test do
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'
   gem 'shoulda-matchers'
+  gem 'dotenv-rails'
   gem 'simplecov', require: false
 end
 
