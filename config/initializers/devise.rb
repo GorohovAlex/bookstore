@@ -6,9 +6,9 @@ Devise.setup do |config|
   config.mailer_sender = 'gorochov.as@gmail.com'
   config.omniauth :facebook, '328931194668186', '9bfd3ea1f19e15e3e71566232b56234c',
                   callback_url: 'http://localhost:3000/users/auth/facebook/callback',
-                  scope: 'email,user_friends,user_birthday,user_location',
-                  display: 'popup'
-  config.password_length = 6..128
+                  scope: 'email, user_friends, user_birthday, user_location',
+                  display: 'page'
+  config.password_length = 8..128
   config.reconfirmable = true
   config.remember_for = 2.weeks
   config.reset_password_within = 6.hours
