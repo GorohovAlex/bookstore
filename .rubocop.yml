@@ -8,19 +8,28 @@ AllCops:
     - 'node_modules/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
 
-RSpec/DescribeClass:
+Metrics/BlockLength:
   Exclude:
-    - spec/features/**/*
-    - spec/views/**/*
+    - 'Gemfile'
+    - 'spec/**/*.rb'
+    - config/initializers/*
+    - config/environments/*
 
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - config/initializers/*
 
 Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/features/**/*
+    - spec/views/**/*
 
 RSpec/MessageChain:
   Enabled: false
@@ -37,7 +46,4 @@ RSpec/ExampleLength:
 RSpec/MessageSpies:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - 'Gemfile'
-    - 'spec/**/*.rb'
+

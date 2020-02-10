@@ -10,7 +10,7 @@
       = f.input :email, label_html: { class: 'control-label input-label' }, label: t('.email_label'), placeholder: t('.email_placeholder')
     .form-group.mb-30
       = f.input :password, label_html: { class: 'control-label input-label' }, label: t('.password_label'), placeholder: t('.password_placeholder')
-      = link_to(t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500')
+      = link_to(t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500', id:'forgot_password')
     .form-group.checkbox.text-center.mb-30
       %label.checkbox-label
         = f.input_field :remember_me, as: :boolean, class: 'checkbox-input', hidden: 'true'
@@ -21,8 +21,8 @@
     .text-center
       %p
         = alert
-      %button.btn.btn-default.mb-20
-        = t('.back_to_store')
+      %button#log_in.btn.btn-default.mb-20
+        = t('.log_in')
   %p.general-sign-text.text-center
     = t('.dont_have_account')
-    = link_to(t('.sign_up'), new_user_registration_path, class: 'in-gold-500')
+    = link_to(t('.sign_up'), new_user_registration_path, class: 'in-gold-500', id: 'sign_up')

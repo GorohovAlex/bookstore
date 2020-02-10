@@ -18,5 +18,10 @@ RSpec.describe PageController do
       get :catalog
       expect(response).to render_template(:catalog)
     end
+
+    it 'renders the catalog template with sorting' do
+      get :catalog, params: { sort: 'newest_first' }
+      expect(response).to render_template(:catalog)
+    end
   end
 end

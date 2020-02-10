@@ -71,7 +71,6 @@ en:
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
       new:
-        back_to_store: Back to Store
         dont_have_account: Don’t have an Account?
         email_label: Enter Email
         email_placeholder: Enter Email
