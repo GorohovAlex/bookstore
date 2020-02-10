@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_125321) do
+ActiveRecord::Schema.define(version: 2020_01_30_154754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
     t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
+  create_table "book_dimensions", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.decimal "height", precision: 6, scale: 1
+    t.decimal "width", precision: 6, scale: 1
+    t.decimal "depth", precision: 6, scale: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_dimensions_on_book_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "name", limit: 80, null: false
     t.integer "price_cents", default: 0, null: false
@@ -41,6 +51,13 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_books_on_category_id"
+  end
+
+  create_table "books_materials", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "material_id"
+    t.index ["book_id"], name: "index_books_materials_on_book_id"
+    t.index ["material_id"], name: "index_books_materials_on_material_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -57,5 +74,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_125321) do
 
   add_foreign_key "book_authors", "authors", on_delete: :cascade
   add_foreign_key "book_authors", "books", on_delete: :cascade
+  add_foreign_key "book_dimensions", "books"
   add_foreign_key "books", "categories", on_delete: :nullify
+  add_foreign_key "books_materials", "books", on_delete: :cascade
+  add_foreign_key "books_materials", "materials", on_delete: :cascade
 end

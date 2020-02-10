@@ -1,0 +1,19 @@
+%main.container
+  %h1.general-title-margin
+    = t('.title')
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      = render partial: 'partials/sorting_select', locals: { dropdown_style: 'width-240', sort_selected: params[:sort] }
+    = render partial: 'partials/categories_line', locals: { categories: @categories }
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10
+      = t('.filter_by_category')
+    .dropdown
+      = render partial:'partials/category_select', locals: { items: @categories }
+    %p.lead.small.mb-10
+      = t('.sort_by')
+    .dropdown
+      = render partial:'partials/sorting_select', locals: { dropdown_style: '', sort_selected: params[:sort] }
+  .mb-120
+    = render 'partials/categories_books'
+    = render 'partials/next_link'
