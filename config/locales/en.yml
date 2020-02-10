@@ -24,10 +24,11 @@ en:
   best_sellers: Best Sellers
   home: Home
   shop: Shop
-  my_account: My Account
   mobile_development: Mobile development
   photo: Photo
   web_design: Web design
+  sign_up: Sign up
+  log_in: Log in
   log_out: Log out
   settings: Settings
   previous: Previous
@@ -40,6 +41,8 @@ en:
     title_asc: 'Title: A - Z'
     title_desc: 'Title: Z - A'
   partials:
+    header:
+      my_account: My Account
     slider:
       buy_now: Buy Now
       previous: Previous
