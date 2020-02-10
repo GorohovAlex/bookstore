@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :book do
-    description { FFaker::Lorem.paragraph }
+    description { FFaker::Lorem.characters(Book::DESCRIPTION_SHORT_LENGTH * 2) }
     name        { FFaker::Book.title.gsub(/:/, '') }
     price       { FFaker::Random.rand(20..120) }
     category

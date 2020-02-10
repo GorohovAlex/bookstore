@@ -4,6 +4,13 @@ RSpec.describe PageController do
       get :home
       expect(response).to render_template(:home)
     end
+
+    it 'log in user ' do
+      user = FactoryBot.create(:user)
+      sign_in user
+      get :home
+      expect(response).to have_http_status(:success)
+    end
   end
 
   describe 'GET catalog' do
