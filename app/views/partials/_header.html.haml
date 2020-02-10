@@ -36,7 +36,7 @@
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
               = t('shop')
             %ul.dropdown-menu
-              = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
+              = render partial: 'partials/header_menu_categories_item', collection: Category.all
           %li
             - unless user_signed_in?
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
