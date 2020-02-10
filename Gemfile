@@ -6,6 +6,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'draper', '~> 3.1'
 gem 'ffaker', '~> 2.13'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'

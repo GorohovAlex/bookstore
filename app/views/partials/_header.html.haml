@@ -25,7 +25,7 @@
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
               = t('shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              = render partial: 'partials/header_menu_categories_item', collection: Categories::CategoriesAll.call
+              = render partial: 'partials/header_menu_categories_item', collection: Category.all.order(name: :asc)
           %li
             %a{href: "#"}= t('.my_account')
       .hidden-xs

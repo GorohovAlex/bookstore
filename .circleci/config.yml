@@ -73,22 +73,11 @@ jobs:
     steps:
       - defaults
       - run_specs
-      
-general:
-  branches:
-    only: feature/step-2
-
 workflows:
   version: 2.
   build:
     jobs:
-      - lintering:
-          filters:
-            branches:
-              only: feature/step-2
+      - lintering
       - run_specs:
-          filters:
-            branches:
-              only: feature/step-2
           requires:
             - lintering
