@@ -2,8 +2,7 @@
   .text-center
     %h3.general-login-title
       = t('.log_in')
-    = link_to(user_facebook_omniauth_authorize_path, class: 'general-login-icon') do
-      %i.fa.fa-facebook-official
+    = render 'devise/partials/social_buttons'
     %p.general-login-text
       = t('.or')  
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general-form' }, validate: true) do |f|
@@ -20,9 +19,8 @@
         %span.checkbox-text
           = t('.remember_me')
     .text-center
-      - if alert
-        .alert.alert-danger{:role => "alert"}
-          = alert
+      %p
+        = alert
       %button.btn.btn-default.mb-20
         = t('.back_to_store')
   %p.general-sign-text.text-center
