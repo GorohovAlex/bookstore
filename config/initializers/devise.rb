@@ -3,8 +3,8 @@ require 'devise/orm/active_record'
 Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.expire_all_remember_me_on_sign_out = true
-  config.mailer_sender = 'gorochov.as@gmail.com'
-  config.omniauth :facebook, '328931194668186', '9bfd3ea1f19e15e3e71566232b56234c',
+  config.mailer_sender = ENV['MAILER_SENDER']
+  config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_KEY'],
                   callback_url: 'http://localhost:3000/users/auth/facebook/callback',
                   scope: 'email, user_friends, user_birthday, user_location',
                   display: 'page'
