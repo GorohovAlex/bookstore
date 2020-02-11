@@ -34,7 +34,7 @@ commands:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
             bundle exec rspec --format progress \
                               --out /tmp/test-results/rspec.xml \
                               --format progress \
@@ -74,7 +74,7 @@ jobs:
       - defaults
       - run_specs
 workflows:
-  version: 2.
+  version: 2.0
   build:
     jobs:
       - lintering
