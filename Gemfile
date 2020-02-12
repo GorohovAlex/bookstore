@@ -42,6 +42,7 @@ group :test do
   gem 'capybara-screenshot'
   gem 'chromedriver-helper'
   gem 'selenium-webdriver'
+  gem 'site_prism', '~> 3.4', '>= 3.4.2'
   gem 'webdrivers'
 end
 
