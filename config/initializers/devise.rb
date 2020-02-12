@@ -5,7 +5,7 @@ Devise.setup do |config|
   config.expire_all_remember_me_on_sign_out = true
   config.mailer_sender = ENV['MAILER_SENDER']
   config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_KEY'],
-                  callback_url: 'http://localhost:3000/users/auth/facebook/callback',
+                  callback_url: ENV['FACEBOOK_CALLBACK_URL'],
                   scope: 'email, user_friends, user_birthday, user_location',
                   display: 'page'
   config.password_length = 8..128
