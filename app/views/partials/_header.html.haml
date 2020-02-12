@@ -38,7 +38,13 @@
             %ul.dropdown-menu
               = render partial: 'partials/header_menu_categories_item', collection: Category.all
           %li
-            - unless user_signed_in?
+            - if user_signed_in?
+              %a.dropdown-toggle#user-email{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+                = current_user.email
+              %ul.dropdown-menu
+                %li
+                  = link_to(t('log_out'), destroy_user_session_path, method: :delete)
+            - else
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
                 = t('.my_account')
               %ul.dropdown-menu
@@ -46,9 +52,3 @@
                   = link_to(t('log_in'), new_user_session_path, class: 'collapse-link')
                 %li
                   = link_to(t('sign_up'), new_user_registration_path, class: 'collapse-link')
-            - else
-              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-                = current_user.email
-              %ul.dropdown-menu
-                %li
-                  = link_to(t('log_out'), destroy_user_session_path, method: :delete)
