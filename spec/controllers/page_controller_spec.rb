@@ -1,15 +1,12 @@
 RSpec.describe PageController do
-  describe 'GET home' do
+  describe 'GET #home' do
     it 'renders the home template' do
       get :home
       expect(response).to render_template(:home)
     end
 
-    it 'log in user ' do
-      user = FactoryBot.create(:user)
-      sign_in user
-      get :home
-      expect(response).to have_http_status(:success)
+    it 'returns a 200 OK status' do
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -19,9 +16,8 @@ RSpec.describe PageController do
       expect(response).to render_template(:catalog)
     end
 
-    it 'renders the catalog template with sorting' do
-      get :catalog, params: { sort: 'newest_first' }
-      expect(response).to render_template(:catalog)
+    it 'returns a 200 OK status' do
+      expect(response).to have_http_status(:ok)
     end
   end
 end
