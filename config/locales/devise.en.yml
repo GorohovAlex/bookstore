@@ -18,7 +18,12 @@ en:
       confirmation_instructions:
         subject: "Confirmation instructions"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        change_my_password: Change my password
+        hello_message: Hello %{email}!
+        ignore_mail_message: If you didn't request this, please ignore this email.
+        password_information: Your password won't change until you access the link above and create a new one.
+        reset_password_message: Someone has requested a link to change your password. You can do this through the link below.
+        subject: Reset password instructions
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
