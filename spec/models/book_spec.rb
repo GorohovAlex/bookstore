@@ -8,7 +8,7 @@ RSpec.describe Book, type: :model do
   context 'with validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(Book::TITLE_MAX_LENGTH) }
-    it { is_expected.to allow_value(FFaker::Book.title.gsub(/:/, '')).for(:name) }
+    it { is_expected.to allow_value(FFaker::Book.title.delete(':')).for(:name) }
 
     it { is_expected.to validate_presence_of(:price_cents) }
     it { is_expected.to validate_numericality_of(:price_cents).only_integer }
