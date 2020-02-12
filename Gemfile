@@ -6,6 +6,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'draper', '~> 3.1'
 gem 'ffaker', '~> 2.13'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
@@ -23,7 +24,6 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
-gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
