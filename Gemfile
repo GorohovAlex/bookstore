@@ -23,11 +23,11 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
-  gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'factory_bot_rails'
   gem 'letter_opener'
   gem 'rails-controller-testing'
