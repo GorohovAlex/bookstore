@@ -1,36 +1,17 @@
 = simple_form_for(address, validates: true, method: :patch, html:{class: 'general-form'}) do |f|
   .form-group
-    = f.input :first_name
-    -#   %label.control-label.input-label{for: "firstName"} First Name
-    -#   %input#firstName.form-control{name:"fname", type: "text", placeholder: "First Name"}
-    -#   %span.help-block Please enter your first name
+    = f.input :first_name, placeholder: t('.first_name_placeholder'), label: t('.first_name'), label_html: { class: 'control-label input-label' }
   .form-group
-    = f.input :last_name
-    -# %label.control-label.input-label{for: "lastName"} Last Name
-    -# %input#lastName.form-control{name:"lname", type: "text", placeholder: "Last Name"}
+    = f.input :last_name, placeholder: t('.last_name_placeholder'), label: t('.last_name'), label_html: { class: 'control-label input-label' }
   .form-group
-    = f.input :address
-    -# %label.control-label.input-label{for: "address"} Address
-    -# %input#address.form-control{name: "address", type: "text", placeholder: "Address"}
+    = f.input :address, placeholder: t('.address_placeholder'), label: t('.address'), label_html: { class: 'control-label input-label' }
   .form-group
-    = f.input :city
-    -# %label.control-label.input-label{for: "city"} City
-    -# %input#city.form-control{name: "city", type: "text", placeholder: "City"}
+    = f.input :city, placeholder: t('.city_placeholder'), label: t('.city'), label_html: { class: 'control-label input-label' }
   .form-group
-    = f.input :zip
-    -# %label.control-label.input-label{for: "zip"} Zip
-    -# %input#zip.form-control{name: "zip", type: "text", placeholder: "Zip"}
+    = f.input :zip, placeholder: t('.zip_placeholder'), label: t('.zip'), label_html: { class: 'control-label input-label' }
   .form-group
-    = f.input :country, as: :country, id: 'country'
-    -# %label.control-label.input-label{for: "сountry"} Country
-    -# %select#country.form-control{name: "country", placeholder: "Select a country"}
-    -#   %option London
-    -#   %option London
-    -#   %option London
+    = f.input :country, as: :country, id: 'country', placeholder: t('.country_placeholder'), label: t('.country'), label_html: { class: 'control-label input-label' }
   .form-group.mb-60
-    = f.input :phone
-    -# %label.control-label.input-label{for: "phone"} Phone
-    -# %input#phone.form-control{name: "phone", type: "tel", placeholder: "Example +355 66 123 4567"}
+    = f.input :phone, placeholder: t('.phone_placeholder'), label: t('.phone'), label_html: { class: 'control-label input-label' }
   .text-center.general-text-align
-    = f.button :submit, 'Save', class: 'disabled'
-
+    = f.button :submit, t('.save'), class: 'disabled'

@@ -16,6 +16,22 @@ en:
       sort_by: Sort by
   users:
     settings:
+      address_form:
+        first_name: First name
+        first_name_placeholder: First name
+        last_name: Last name
+        last_name_placeholder: Last name
+        address: Address
+        address_placeholder: Address
+        city: City
+        city_placeholder: City
+        zip: Zip
+        zip_placeholder: Zip
+        country: Country
+        country_placeholder: Country
+        phone: Phone
+        phone_placeholder: Phone
+        save: Save
       remove_account_form:
         remove_account_caption: Please Remove My Account
         remove_check_message: I understand that all data will be lost
