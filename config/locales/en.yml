@@ -30,12 +30,21 @@ en:
         country: Country
         country_placeholder: Country
         phone: Phone
-        phone_placeholder: Phone
+        phone_placeholder: Example +355 66 123 4567
         save: Save
       email_form:
         email_caption: Email
         email_label: Enter Email
         email_placeholder: Enter your email
+        save: Save
+      password_form:
+        password_caption: Password
+        password_placeholder: Password
+        old_password_label: Old Password
+        old_password_placeholder: Old Password
+        password_label: Password
+        password_confirmation_label: Confirm Password
+        password_confirmation_placeholder: Confirm Password
         save: Save
       remove_account_form:
         remove_account_caption: Please Remove My Account
