@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'country_select', '~> 4.0'
 gem 'devise'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'draper', '~> 3.1'
@@ -23,6 +24,7 @@ gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
+gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
