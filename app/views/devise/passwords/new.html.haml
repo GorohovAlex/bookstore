@@ -6,8 +6,7 @@
       = t('.instructions_message')
   = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'general-form' }) do |f|
     .form-group.mb-25
-      = f.input_field :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true
-      = f.error :email
+      = f.input :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true, label: false
     = f.submit t('.email_instructions'), class: 'btn btn-default center-block mb-20'
     .text-center
       = link_to(t('.cancel'), new_user_session_path, class: 'in-gold-500 mb-20')
