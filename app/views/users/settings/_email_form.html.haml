@@ -1,0 +1,6 @@
+%p.in-gold-500.font-18.mb-25 Email
+= simple_form_for current_user, url: update_email_path, html: { class: 'general-form-md' } do |f|
+  .form-group.mb-35
+    = f.input :email, label: 'Enter Email', label_html: { class: 'input-label' }, placeholder: "Enter your email"
+  .general-text-align
+    = f.button :submit, 'Save', style: 'btn-default mb-35'

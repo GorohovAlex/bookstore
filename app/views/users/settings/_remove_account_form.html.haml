@@ -1,10 +1,11 @@
 %p.in-gold-500.font-18.mb-25 Remove Account
 %form
   .general-settings-btn
-    %button.btn.disabled.mb-20 Please Remove My Account
+    %button.btn.disabled.mb-20#remove_button Please Remove My Account
   .form-group.checkbox.general-settings-checkbox
     %label.checkbox-label
-      %input.checkbox-input{type: "checkbox", hidden: "true"}
+      %input.checkbox-input{type: "checkbox", hidden: "true", id: "remove_checkbox"}
       %span.checkbox-icon
         %i.fa.fa-check
       %span.checkbox-text I understand that all data will be lost
+= javascript_pack_tag 'users/settings/update'
