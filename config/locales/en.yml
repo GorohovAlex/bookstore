@@ -16,6 +16,9 @@ en:
       sort_by: Sort by
   users:
     settings:
+      remove_account_form:
+        remove_account_caption: Please Remove My Account
+        remove_check_message: I understand that all data will be lost
       update:
         address: Address
         billing_address: Billing Address
