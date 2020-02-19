@@ -7,10 +7,10 @@ executors:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
-          PGHOST: 127.0.0.1
-          PGUSER: bookstore_admin
+          PG_HOST: 127.0.0.1
+          PG_USER: bookstore_admin
           RAILS_ENV: test
-      - image: circleci/postgres:10
+      - image: circleci/postgres:9.4
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_DB: bookstore_test
