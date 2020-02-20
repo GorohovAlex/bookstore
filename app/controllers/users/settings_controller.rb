@@ -5,7 +5,7 @@ module Users
       params_password[:user] = current_user
       @password_form = Users::PasswordForm.new(params_password)
       if @password_form.save
-        redirect_to root_path, notice: 'Signup successfull.'
+        redirect_to root_path, notice: t('.successful_message')
       else
         render :update
       end
@@ -13,7 +13,7 @@ module Users
 
     def update_email
       if current_user.update(email: params[:user][:email])
-        redirect_to user_settings_path
+        redirect_to user_settings_path, notice: t('.successful_message')
       else
         render :update
       end
@@ -25,7 +25,7 @@ module Users
       params_address[:user] = current_user
       @billing_address_form = Users::BillingAddressForm.new(params_address)
       if @billing_address_form.save
-        redirect_to user_settings_path, notice: 'Signup successfull.'
+        redirect_to user_settings_path, notice: t('.successful_message')
       else
         render :update
       end
@@ -37,7 +37,7 @@ module Users
       params_address[:user] = current_user
       @shipping_address_form = Users::ShippingAddressForm.new(params_address)
       if @shipping_address_form.save
-        redirect_to user_settings_path, notice: 'Signup successfull.'
+        redirect_to user_settings_path, notice: t('.successful_message')
       else
         render :update
       end

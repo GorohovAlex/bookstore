@@ -55,6 +55,14 @@ en:
         billing_address: Billing Address
         shipping_address: Shipping Address
         privacy: Privacy
+      update_email:
+        successful_message: Email update successfull.
+      update_password:
+        successful_message: Password update successfull.
+      update_billing_address:
+        successful_message: Billing address update successful.
+      update_shipping_address:
+        successful_message: Shipping address update successful.
   all: All
   view_more: View more
   add_to_cart: Add to Cart  

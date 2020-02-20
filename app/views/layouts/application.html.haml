@@ -11,6 +11,12 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render partial: "partials/header"
+    .container
+      - if alert
+        .alert.alert-danger{:role => "alert"}
+          = alert
+      - if notice
+        .alert.alert-info{:role => "alert"}
+          = notice
     = yield
     = render partial: "partials/footer"
-    = console
