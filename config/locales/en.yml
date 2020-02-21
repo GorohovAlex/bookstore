@@ -15,7 +15,7 @@ en:
       filter_by_category: Filter by category
       sort_by: Sort by
   users:
-    settings:
+    user:
       address_form:
         first_name: First name
         first_name_placeholder: First name
@@ -50,18 +50,18 @@ en:
         remove_account_caption: Remove Account
         remove_account_button: Please Remove My Account
         remove_check_message: I understand that all data will be lost
-      update:
+      index:
         address: Address
         billing_address: Billing Address
         shipping_address: Shipping Address
         privacy: Privacy
-      update_email:
+      email:
         successful_message: Email update successfull.
-      update_password:
+      password:
         successful_message: Password update successfull.
-      update_billing_address:
+      billing_address:
         successful_message: Billing address update successful.
-      update_shipping_address:
+      shipping_address:
         successful_message: Shipping address update successful.
   all: All
   view_more: View more

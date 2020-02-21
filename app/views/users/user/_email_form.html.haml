@@ -1,6 +1,6 @@
 %p.in-gold-500.font-18.mb-25
   = t('.email_caption')
-= simple_form_for current_user, url: update_email_path, html: { class: 'general-form-md' } do |f|
+= simple_form_for current_user, url: update_user_email_path, html: { class: 'general-form-md' } do |f|
   .form-group.mb-35
     = f.input :email, label: t('.email_label'), label_html: { class: 'input-label' }, placeholder: t('.email_placeholder')
   .general-text-align
