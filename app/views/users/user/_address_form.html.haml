@@ -1,4 +1,4 @@
-= simple_form_for(address, validates: true, method: :patch, html:{class: 'general-form'}) do |f|
+= simple_form_for address, remote: true, validate: true, method: :patch, html:{class: 'general-form'}, input_html: {multipart: true} do |f|
   .form-group
     = f.input :first_name, placeholder: t('.first_name_placeholder'), label: t('.first_name'), label_html: { class: 'control-label input-label' }
   .form-group

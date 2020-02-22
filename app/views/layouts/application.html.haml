@@ -12,11 +12,10 @@
   %body
     = render partial: "partials/header"
     .container
-      - if alert
-        .alert.alert-danger{:role => "alert"}
-          = alert
-      - if notice
-        .alert.alert-info{:role => "alert"}
-          = notice
+      .alert.alert-info#alert{ role: "alert", style: "display: #{alert ? 'block' : 'none'}" }
+        = alert
+      .alert.alert-info#notice{ role: "alert", style: "display: #{notice ? 'block' : 'none'}" }
+        = notice
     = yield
     = render partial: "partials/footer"
+    -# = console& if ENV['RACK_ENV'] == 'development'
