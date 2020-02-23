@@ -1,17 +1,17 @@
 = simple_form_for address, remote: true, validate: true, method: :patch, html:{class: 'general-form'}, input_html: {multipart: true} do |f|
-  .form-group
+  .form-group.first-name-group
     = f.input :first_name, placeholder: t('.first_name_placeholder'), label: t('.first_name'), label_html: { class: 'control-label input-label' }
-  .form-group
+  .form-group.last-name-group
     = f.input :last_name, placeholder: t('.last_name_placeholder'), label: t('.last_name'), label_html: { class: 'control-label input-label' }
-  .form-group
+  .form-group.address-group
     = f.input :address, placeholder: t('.address_placeholder'), label: t('.address'), label_html: { class: 'control-label input-label' }
-  .form-group
+  .form-group.city-group
     = f.input :city, placeholder: t('.city_placeholder'), label: t('.city'), label_html: { class: 'control-label input-label' }
-  .form-group
+  .form-group.zip-group
     = f.input :zip, placeholder: t('.zip_placeholder'), label: t('.zip'), label_html: { class: 'control-label input-label' }
-  .form-group
+  .form-group.country-group
     = f.input :country, as: :country, id: 'country', placeholder: t('.country_placeholder'), label: t('.country'), label_html: { class: 'control-label input-label' }
-  .form-group.mb-60
+  .form-group.phone-group.mb-60
     = f.input :phone, placeholder: t('.phone_placeholder'), label: t('.phone'), label_html: { class: 'control-label input-label' }
   .text-center.general-text-align
     = f.button :submit, t('.save')
