@@ -33,12 +33,10 @@ en:
         phone_placeholder: Example +355 66 123 4567
         save: Save
       email_form:
-        email_caption: Email
         email_label: Enter Email
         email_placeholder: Enter your email
         save: Save
       password_form:
-        password_caption: Password
         password_placeholder: Password
         old_password_label: Old Password
         old_password_placeholder: Old Password
@@ -53,7 +51,10 @@ en:
       index:
         address: Address
         billing_address: Billing Address
+        email_caption: Email
+        not_authorized: You are not authorized to perform this action.
         shipping_address: Shipping Address
+        password_caption: Password
         privacy: Privacy
       email:
         successful_message: Email update successfull.
