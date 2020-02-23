@@ -1,5 +1,7 @@
 module Users
   class UserController < Devise::RegistrationsController
+    before_action :set_authorize
+
     def password
       params_password = params.require(:users_password_form).permit(:old_password, :password, :password_confirmation)
       params_password[:user] = current_user
@@ -46,6 +48,12 @@ module Users
           render :index
         end
       end
+    end
+
+    private
+
+    def set_authorize
+      authorize User
     end
   end
 end
