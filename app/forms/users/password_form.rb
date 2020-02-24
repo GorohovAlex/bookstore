@@ -32,7 +32,7 @@ module Users
     end
 
     def verify_old_password
-      errors.add(:old_password, :invalid, message: 'Not valid') unless user.valid_password?(old_password)
+      errors.add(:old_password, :invalid, message: I18n.t('.not_valid')) unless user.valid_password?(old_password)
     end
   end
 end
