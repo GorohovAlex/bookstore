@@ -6,5 +6,5 @@ $(document).ready(function() {
     } else {
       $('#remove_button').addClass('disabled')
     }
-});
+  });
 });
