@@ -1,4 +1,5 @@
 require_relative 'account_remove_form'
+require_relative 'email_form'
 
 class UserSettings < SitePrism::Page
   set_url '/user'
