@@ -1,6 +1,6 @@
 module Users
   class UserController < Devise::RegistrationsController
-    before_action :set_authorize, only: %i[index password]
+    before_action :set_authorize, only: %i[index password email billing_address shipping_address]
 
     def password
       params_password = params.require(:users_password_form).permit(:old_password, :password, :password_confirmation)
