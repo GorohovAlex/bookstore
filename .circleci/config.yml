@@ -10,7 +10,6 @@ executors:
           PG_HOST: 127.0.0.1
           PG_USER: bookstore_admin
           RAILS_ENV: test
-          RACK_ENV: test
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
           POSTGRES_USER: bookstore_admin
