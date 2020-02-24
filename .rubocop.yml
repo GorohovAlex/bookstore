@@ -9,6 +9,10 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'Gemfile'
@@ -39,7 +43,7 @@ RSpec/NestedGroups:
   Max: 5
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Max: 10
 
 RSpec/ExampleLength:
   Max: 10

@@ -7,7 +7,7 @@
       %a.tab-link{href: "#address", 'aria-controls': "address", role: "tab", 'data-toggle': "tab"}
         = t('.address')
     %li.tab-item{role: "presentation"}
-      %a.tab-link{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab"}
+      %a.tab-link{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab", id:'privacy-tab-link'}
         = t('.privacy')
   .tab-content
     #address.tab-pane.fade.in.active{role: "tabpanel"}
@@ -33,12 +33,12 @@
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
+          %p.in-gold-500.font-18.mb-25
+            = t('.email_caption')
           = render 'email_form'
         .col-sm-5.col-sm-offset-1
           %p.in-gold-500.font-18.mb-25
             = t('.password_caption')
           = render 'password_form'
         .col-sm-12
-          %p.in-gold-500.font-18.mb-25
-            = t('.email_caption')
           = render 'remove_account_form'

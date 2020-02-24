@@ -4,6 +4,8 @@ module Users
     ADDRESS_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
 
     CITY_MAX_LENGTH = 50
+    CITY_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
+
     COUNTRY_MAX_LENGTH = 50
     NAME_MAX_LENGTH = 50
 
@@ -39,7 +41,7 @@ module Users
 
     validates :city,
               presence: true,
-              format: { with: Constants::REGEX_LETTER_ONLY },
+              format: { with: CITY_REGEX },
               length: { maximum: CITY_MAX_LENGTH }
 
     validates :zip,
