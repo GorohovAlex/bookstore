@@ -1,5 +1,3 @@
-%p.in-gold-500.font-18.mb-25
-  = t('.remove_account_caption')
 = simple_form_for current_user, url: user_registration_path, method: :delete, html:{ id: 'remove_account_form' } do |f|
   .general-settings-btn
     = f.submit t('.remove_account_button'), id: 'remove_button', class: 'btn disabled mb-20', disabled: true

@@ -45,7 +45,6 @@ en:
         password_confirmation_placeholder: Confirm Password
         save: Save
       remove_account_form:
-        remove_account_caption: Remove Account
         remove_account_button: Please Remove My Account
         remove_check_message: I understand that all data will be lost
       index:
@@ -56,6 +55,7 @@ en:
         shipping_address: Shipping Address
         password_caption: Password
         privacy: Privacy
+        remove_account_caption: Remove Account
       email:
         successful_message: Email update successfull.
       password:
