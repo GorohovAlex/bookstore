@@ -73,7 +73,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.13)
     bindex (0.8.1)
-    bootsnap (1.4.5)
+    bootsnap (1.4.6)
       msgpack (~> 1.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -153,6 +153,11 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
+    haml_lint (0.34.2)
+      haml (>= 4.0, < 5.2)
+      rainbow
+      rubocop (>= 0.50.0)
+      sysexits (~> 1.1)
     hashie (3.6.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -272,7 +277,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.6.0)
+    regexp_parser (1.7.0)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.0)
@@ -337,10 +342,10 @@ GEM
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.18.2)
+    simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
-    simplecov-html (0.12.0)
+    simplecov-html (0.12.1)
     site_prism (3.4.2)
       addressable (~> 2.5)
       capybara (~> 3.3)
@@ -360,6 +365,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sysexits (1.2.0)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -410,6 +416,7 @@ DEPENDENCIES
   capybara (~> 3.30)
   capybara-screenshot
   chromedriver-helper
+  countries
   country_select (~> 4.0)
   database_cleaner
   devise
@@ -420,6 +427,7 @@ DEPENDENCIES
   ffaker (~> 2.13)
   font-awesome-rails (~> 4.7, >= 4.7.0.5)
   haml (~> 5.1, >= 5.1.2)
+  haml_lint
   jbuilder (~> 2.7)
   jquery-rails
   letter_opener

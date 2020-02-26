@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'countries'
 gem 'country_select', '~> 4.0'
 gem 'devise'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
@@ -52,6 +53,7 @@ end
 group :development do
   gem 'bullet', '~> 6.1'
   gem 'fasterer', '~> 0.8.0'
+  gem 'haml_lint', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
