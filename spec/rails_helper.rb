@@ -11,6 +11,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 
+Dir[Rails.root.join('spec/support/pages/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 begin

@@ -24,34 +24,6 @@ module Users
       end
     end
 
-    describe 'POST #billing_address' do
-      it 'send invalid values' do
-        post :billing_address, params: { users_billing_address_form: { first_name: '', last_name: '', address: '',
-                                                                       city: '', zip: '', country: '', phone: '' } }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-
-      it 'send valid values' do
-        billing_address.user_id = current_user.id
-        post :billing_address, params: { users_billing_address_form: billing_address.attributes }
-        expect(response).to redirect_to(user_path)
-      end
-    end
-
-    describe 'POST #shipping_address' do
-      it 'send invalid values' do
-        post :shipping_address, params: { users_shipping_address_form: { first_name: '', last_name: '', address: '',
-                                                                         city: '', zip: '', country: '', phone: '' } }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-
-      it 'send valid values' do
-        shipping_address.user_id = current_user.id
-        post :shipping_address, params: { users_shipping_address_form: shipping_address.attributes }
-        expect(response).to redirect_to(user_path)
-      end
-    end
-
     describe 'POST #email' do
       it 'send invalid values' do
         post :email, params: { user: { email: '' } }

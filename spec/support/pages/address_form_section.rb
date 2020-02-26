@@ -1,5 +1,7 @@
-class AddressForm < SitePrism::Section
-  element :first_name, '.first-name-group input'
+require_relative 'form_group_input_section'
+
+class AddressFormSection < SitePrism::Section
+  section :first_name, FormGroupInputSection, '.first-name-group input'
   element :last_name,  '.last-name-group input'
   element :address,    '.address-group input'
   element :city,       '.city-group input'

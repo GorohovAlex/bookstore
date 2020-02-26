@@ -1,6 +1,6 @@
 describe 'User (Settings) page' do
   let(:current_user) { create(:user) }
-  let(:user_settings) { UserSettings.new }
+  let(:user_settings) { Pages::UserSettingsPage.new }
 
   before do
     login_as(current_user, scope: :user)
@@ -17,6 +17,12 @@ describe 'User (Settings) page' do
     expect(user_settings.billing_address_form).to have_country
     expect(user_settings.billing_address_form).to have_phone
     expect(user_settings.billing_address_form).to have_submit
+  end
+
+  it 'Send form with empty values' do
+    # user_settings.billing_address_form.submit.click
+    # sleep(1)
+    # expect(user_settings.billing_address_form.first_name).to have_error
   end
 
   it 'Show form `ShippingForm`' do
