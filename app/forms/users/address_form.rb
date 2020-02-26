@@ -1,5 +1,7 @@
 module Users
   class AddressForm < UserForm
+    MODEL_CLASS = 'Address'.freeze
+
     ADDRESS_MAX_LENGTH = 50
     ADDRESS_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
 
@@ -15,7 +17,6 @@ module Users
     ZIP_REGEX = /\A[\d]+[-\d]*[\d]+\z/.freeze
     ZIP_MAX_LENGTH = 10
 
-    attribute :id, Integer
     attribute :first_name, String
     attribute :last_name, String
     attribute :address, String
@@ -60,8 +61,12 @@ module Users
               length: { maximum: PHONE_MAX_LENGTH }
 
     def initialize(params = {})
-      params[:id] ? add_parameters(Address.find_by_id(params[:id])) : super
+      @id = params[:id]
+      add_parameters(record)
+      super
     end
+
+    private
 
     def add_parameters(params)
       self.first_name = params.first_name
@@ -71,6 +76,7 @@ module Users
       self.zip = params.zip
       self.country = params.country
       self.phone = params.phone
+      self.user = params.user
     end
   end
 end

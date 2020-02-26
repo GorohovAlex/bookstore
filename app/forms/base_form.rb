@@ -2,6 +2,8 @@ class BaseForm
   include Virtus.model
   include ActiveModel::Model
 
+  attribute :id, Integer
+
   def persisted?
     false
   end
@@ -16,6 +18,8 @@ class BaseForm
   end
 
   private
+
+  def record; end
 
   def persist!; end
 end
