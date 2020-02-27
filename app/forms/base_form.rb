@@ -1,4 +1,4 @@
-class BaseForm
+class BaseForm 
   include Virtus.model
   include ActiveModel::Model
 
@@ -9,17 +9,14 @@ class BaseForm
   end
 
   def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
-  end
+    persist! if valid?
+  end 
 
   private
 
-  def record; end
+  def record
+    self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(id: @id)
+  end
 
   def persist!; end
 end
