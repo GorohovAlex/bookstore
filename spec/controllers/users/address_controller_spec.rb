@@ -2,7 +2,7 @@ module Users
   RSpec.describe AddressController do
     let(:current_user) { create(:user) }
     let(:address) { build(:address) }
-    let(:address_empty) { {first_name: '', last_name: '', address: '', city: '', zip: '', country: '', phone: ''} }
+    let(:address_empty) { { first_name: '', last_name: '', address: '', city: '', zip: '', country: '', phone: '' } }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
