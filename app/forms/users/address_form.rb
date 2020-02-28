@@ -1,15 +1,9 @@
 module Users
   class AddressForm < BaseForm
     MODEL_CLASS = 'Address'.freeze
+    DEFAULT_MAX_LENGTH = 50
 
-    ADDRESS_MAX_LENGTH = 50
-    ADDRESS_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
-
-    CITY_MAX_LENGTH = 50
-    CITY_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
-
-    COUNTRY_MAX_LENGTH = 50
-    NAME_MAX_LENGTH = 50
+    ADDRESS_SITY_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
 
     PHONE_MAX_LENGTH = 15
     PHONE_REGEX = /\A[\d]+\z/.freeze
@@ -29,22 +23,22 @@ module Users
     validates :first_name,
               presence: true,
               format: { with: Constants::REGEX_LETTER_ONLY },
-              length: { maximum: NAME_MAX_LENGTH }
+              length: { maximum: DEFAULT_MAX_LENGTH }
 
     validates :last_name,
               presence: true,
               format: { with: Constants::REGEX_LETTER_ONLY },
-              length: { maximum: NAME_MAX_LENGTH }
+              length: { maximum: DEFAULT_MAX_LENGTH }
 
     validates :address,
               presence: true,
-              format: { with: ADDRESS_REGEX },
-              length: { maximum: ADDRESS_MAX_LENGTH }
+              format: { with: ADDRESS_SITY_REGEX },
+              length: { maximum: DEFAULT_MAX_LENGTH }
 
     validates :city,
               presence: true,
-              format: { with: CITY_REGEX },
-              length: { maximum: CITY_MAX_LENGTH }
+              format: { with: ADDRESS_SITY_REGEX },
+              length: { maximum: DEFAULT_MAX_LENGTH }
 
     validates :zip,
               presence: true,
@@ -54,7 +48,7 @@ module Users
     validates :country,
               presence: true,
               format: { with: Constants::REGEX_LETTER_ONLY },
-              length: { maximum: COUNTRY_MAX_LENGTH }
+              length: { maximum: DEFAULT_MAX_LENGTH }
 
     validates :phone,
               presence: true,
@@ -69,7 +63,8 @@ module Users
     private
 
     def record
-      self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: @user_id, type: type || self.class::MODEL_CLASS)
+      self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: @user_id,
+                                                                         type: type || self.class::MODEL_CLASS)
     end
 
     def persist!
@@ -86,7 +81,8 @@ module Users
     end
 
     def address_params
-      ActionController::Parameters.new(record.attributes).permit(:first_name, :last_name, :address, :zip, :city, :country, :phone, :type)
+      ActionController::Parameters.new(record.attributes).permit(:first_name, :last_name, :address, :zip, :city,
+                                                                 :country, :phone, :type)
     end
   end
 end
