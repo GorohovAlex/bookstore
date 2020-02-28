@@ -1,10 +1,11 @@
 module Users
-  class PasswordForm < UserForm
+  class PasswordForm < BaseForm
     attr_accessor :password_confirmation, :password, :old_password
 
     attribute :old_password, String
     attribute :password, String
     attribute :password_confirmation, String
+    attribute :user, User
 
     validates :old_password,
               presence: true
