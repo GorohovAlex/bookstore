@@ -3,14 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
-    registrations: 'users/user'
+    registrations: 'devise/user'
   }
 
   devise_scope :user do
-    get   'user',                  to: 'users/user#index',              as: 'user'
-    patch 'user/address',          to: 'users/address#update',          as: 'user_address_forms'
-    patch 'user/email',            to: 'users/user#email',              as: 'update_user_email'
-    patch 'user/password',         to: 'users/user#password',           as: 'update_user_password'
+    get   'user',          to: 'devise/user#edit',     as: 'user'
+    patch 'user/password', to: 'devise/user#update',   as: 'update_user_password'
+    patch 'user/email',    to: 'devise/user#update',   as: 'update_user_email'
+    patch 'user/address',  to: 'users/address#update', as: 'user_address_forms'
   end
 
   get 'catalog', to: 'page#catalog'

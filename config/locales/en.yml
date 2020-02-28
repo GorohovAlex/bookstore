@@ -18,51 +18,6 @@ en:
     address:
       update:
         successful_message: '%{type} update successful.'
-    user:
-      address_form:
-        first_name: First name
-        first_name_placeholder: First name
-        last_name: Last name
-        last_name_placeholder: Last name
-        address: Address
-        address_placeholder: Address
-        city: City
-        city_placeholder: City
-        zip: Zip
-        zip_placeholder: Zip
-        country: Country
-        country_placeholder: Country
-        phone: Phone
-        phone_placeholder: Example +355 66 123 4567
-        save: Save
-      email_form:
-        email_label: Enter Email
-        email_placeholder: Enter your email
-        save: Save
-      password_form:
-        password_placeholder: Password
-        old_password_label: Old Password
-        old_password_placeholder: Old Password
-        password_label: Password
-        password_confirmation_label: Confirm Password
-        password_confirmation_placeholder: Confirm Password
-        save: Save
-      remove_account_form:
-        remove_account_button: Please Remove My Account
-        remove_check_message: I understand that all data will be lost
-      index:
-        address: Address
-        billing_address: Billing Address
-        email_caption: Email
-        not_authorized: You are not authorized to perform this action.
-        shipping_address: Shipping Address
-        password_caption: Password
-        privacy: Privacy
-        remove_account_caption: Remove Account
-      email:
-        successful_message: Email update successfull.
-      password:
-        successful_message: Password update successfull.
   all: All
   view_more: View more
   add_to_cart: Add to Cart  

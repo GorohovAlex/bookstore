@@ -15,18 +15,17 @@ describe 'User (Settings) page' do
   end
 
   it 'Show form' do
-    address_forms.each do |form|
-      expect(form).to have_first_name
-      expect(form).to have_last_name
-      expect(form).to have_address
-      expect(form).to have_city
-      expect(form).to have_zip
-      expect(form).to have_country
-      expect(form).to have_phone
-      expect(form).to have_submit
-    end
+    expect(address_forms).to all(have_first_name)
+    expect(address_forms).to all(have_last_name)
+    expect(address_forms).to all(have_address)
+    expect(address_forms).to all(have_city)
+    expect(address_forms).to all(have_zip)
+    expect(address_forms).to all(have_country)
+    expect(address_forms).to all(have_phone)
+    expect(address_forms).to all(have_submit)
   end
 
+  # rubocop:disable RSpec/ExampleLength
   it 'Send form with empty values' do
     address_forms.each do |form|
       form.first_name.input.set address.first_name
@@ -40,6 +39,7 @@ describe 'User (Settings) page' do
       expect(user_settings).to have_notice
     end
   end
+  # rubocop:enable RSpec/ExampleLength.
 
   it 'Send form with valid values' do
     address_forms.each do |form|

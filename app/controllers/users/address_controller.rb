@@ -1,11 +1,10 @@
 module Users
   class AddressController < ApplicationController
-    
     def update
       @address_form = Users::AddressForm.new(params: address_params, user: current_user)
       respond_to_form(@address_form.save)
     end
-    
+
     private
 
     def address_params
@@ -17,8 +16,8 @@ module Users
         if success
           format.html { redirect_to user_path, flash: { notice: t('.successful_message', type: @address_form.type) } }
         else
-          format.html { render 'users/user/index', status: :unprocessable_entity }
-          format.js { render 'users/user/index' }
+          format.html { render 'devise/user/edit', status: :unprocessable_entity }
+          format.js { render 'devise/user/edit' }
         end
       end
     end

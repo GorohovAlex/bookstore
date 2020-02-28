@@ -1,5 +1,6 @@
 = simple_form_for current_user, remote: true, url: update_user_email_path, html: { class: 'general-form-md', id: 'new_users_email_form'} do |f|
   .form-group.mb-35
+    = f.input 'email', as: :hidden
     = f.input :email, label: t('.email_label'), label_html: { class: 'input-label' }, placeholder: t('.email_placeholder')
   .general-text-align
     = f.button :submit, t('.save'), style: 'btn-default mb-35'

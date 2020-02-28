@@ -1,4 +1,4 @@
-module Users
+module Devise
   RSpec.describe UserController do
     let(:current_user) { create(:user) }
     let(:password_new) { FFaker::String.from_regexp(User::PASSWORD_FORMAT_REGEX) }
@@ -12,11 +12,11 @@ module Users
 
     describe 'GET #index' do
       before do
-        get :index
+        get :edit
       end
 
       it 'renders the index template' do
-        expect(response).to render_template(:index)
+        expect(response).to render_template(:edit)
       end
 
       it 'returns a 200 OK status' do
@@ -26,26 +26,26 @@ module Users
 
     describe 'POST #email' do
       it 'send invalid values' do
-        post :email, params: { user: { email: '' } }
+        post :update, params: { user: { email: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'send valid values' do
-        post :email, params: { user: { email: FFaker::Internet.email } }
+        post :update, params: { user: { email: FFaker::Internet.email } }
         expect(response).to redirect_to(user_path)
       end
     end
 
     describe 'POST #password' do
       it 'send invalid values' do
-        post :password, params: { users_password_form: { old_password: '', password: '', password_confirmation: '' } }
+        post :update, params: { users_password_form: { old_password: '', password: '', password_confirmation: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'send valid values' do
-        post :password, params: { users_password_form: { old_password: current_user.password,
-                                                         password: password_new,
-                                                         password_confirmation: password_new } }
+        post :update, params: { users_password_form: { old_password: current_user.password,
+                                                       password: password_new,
+                                                       password_confirmation: password_new } }
         expect(response).to redirect_to(user_path)
       end
     end
