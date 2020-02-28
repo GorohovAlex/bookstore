@@ -2,6 +2,7 @@ module Users
   RSpec.describe AddressController do
     let(:current_user) { create(:user) }
     let(:address) { build(:address) }
+    let(:address_empty) { {first_name: '', last_name: '', address: '', city: '', zip: '', country: '', phone: ''} }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
@@ -10,7 +11,7 @@ module Users
 
     describe 'POST #address' do
       it 'send invalid values' do
-        post :update, params: { first_name: '', last_name: '', address: '', city: '', zip: '', country: '', phone: '' }
+        post :update, params: address_empty
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
