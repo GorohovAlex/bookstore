@@ -3,8 +3,8 @@
     var flash_notice = $("#notice");
     flash_notice.html("#{j(notice)}");
     flash_notice.css('display', flash_notice.text().length == 0 ? 'none' : 'block')
-    $("#new_users_billing_address_form_1").html("#{j(render partial: 'users/user/address_form', locals: {address: @billing_address_form || Users::BillingAddressForm.new(id: current_user.billing_address&.id)})}");
-    $("#new_users_shipping_address_form_2").html("#{j(render partial: 'users/user/address_form', locals: {address: @shipping_address_form || Users::ShippingAddressForm.new(id: current_user.shipping_address&.id)})}");
+    $("#new_users_billing_address_form").html("#{j(render partial: 'users/user/address_form', locals: { address: (@address_form&.type&.eql? 'BillingAddress') ? @address_form : Users::BillingAddressForm.new(user: current_user) }) }");
+    $("#new_users_shipping_address_form").html("#{j(render partial: 'users/user/address_form', locals: {address: (@address_form&.type&.eql? 'ShippingAddress') ? @address_form : Users::ShippingAddressForm.new(user: current_user) }) }");
     $("#address_form_new_users_password_form").html("#{j(render 'users/user/password_form')}");
     $("#new_users_email_form").html("#{j(render 'users/user/email_form')}");
     $("#user-email").html("#{j(current_user.email)}");

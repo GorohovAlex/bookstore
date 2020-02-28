@@ -15,6 +15,9 @@ en:
       filter_by_category: Filter by category
       sort_by: Sort by
   users:
+    address:
+      update:
+        successful_message: '%{type} update successful.'
     user:
       address_form:
         first_name: First name
@@ -60,10 +63,6 @@ en:
         successful_message: Email update successfull.
       password:
         successful_message: Password update successfull.
-      billing_address:
-        successful_message: Billing address update successful.
-      shipping_address:
-        successful_message: Shipping address update successful.
   all: All
   view_more: View more
   add_to_cart: Add to Cart  

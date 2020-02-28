@@ -1,5 +1,5 @@
 module Users
-  class AddressForm < UserForm
+  class AddressForm < BaseForm
     MODEL_CLASS = 'Address'.freeze
 
     ADDRESS_MAX_LENGTH = 50
@@ -24,6 +24,7 @@ module Users
     attribute :zip, String
     attribute :country, String
     attribute :phone, String
+    attribute :type, String
 
     validates :first_name,
               presence: true,
@@ -60,23 +61,32 @@ module Users
               format: { with: PHONE_REGEX },
               length: { maximum: PHONE_MAX_LENGTH }
 
-    def initialize(params = {})
-      @id = params[:id]
-      add_parameters(record)
-      super
+    def initialize(params: {}, user: nil)
+      @user_id = user.id
+      params.empty? ? super(address_params) : super(params)
     end
 
     private
 
-    def add_parameters(params)
-      self.first_name = params.first_name
-      self.last_name = params.last_name
-      self.address = params.address
-      self.city = params.city
-      self.zip = params.zip
-      self.country = params.country
-      self.phone = params.phone
-      self.user = params.user
+    def record
+      self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: @user_id, type: type || self.class::MODEL_CLASS)
+    end
+
+    def persist!
+      user_address = record
+      user_address.first_name = first_name
+      user_address.last_name = last_name
+      user_address.address = address
+      user_address.city = city
+      user_address.zip = zip
+      user_address.country = country
+      user_address.phone = phone
+      user_address.type = type
+      user_address.save
+    end
+
+    def address_params
+      ActionController::Parameters.new(record.attributes).permit(:first_name, :last_name, :address, :zip, :city, :country, :phone, :type)
     end
   end
 end
