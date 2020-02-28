@@ -1,6 +1,6 @@
 describe 'User (Settings) page' do
   let(:current_user) { create(:user) }
-  let(:user_settings) { Pages::UserSettingsPage.new }
+  let(:user_settings) { UserSettingsPage.new }
   let(:address) { build(:address) }
   let(:address_forms) { [user_settings.billing_address_form, user_settings.shipping_address_form] }
 
