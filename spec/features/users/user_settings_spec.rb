@@ -1,40 +1,57 @@
 describe 'User (Settings) page' do
   let(:current_user) { create(:user) }
   let(:user_settings) { Pages::UserSettingsPage.new }
+  let(:address) { build(:address) }
+  let(:address_forms) { [user_settings.billing_address_form, user_settings.shipping_address_form] }
 
   before do
     login_as(current_user, scope: :user)
     user_settings.load
   end
 
-  it 'Show form `BillingForm`' do
-    expect(user_settings).to have_billing_address_form
-    expect(user_settings.billing_address_form).to have_first_name
-    expect(user_settings.billing_address_form).to have_last_name
-    expect(user_settings.billing_address_form).to have_address
-    expect(user_settings.billing_address_form).to have_city
-    expect(user_settings.billing_address_form).to have_zip
-    expect(user_settings.billing_address_form).to have_country
-    expect(user_settings.billing_address_form).to have_phone
-    expect(user_settings.billing_address_form).to have_submit
+  it 'Show tabs' do
+    expect(user_settings).to have_address_tab_link
+    expect(user_settings).to have_privacy_tab_link
+  end
+
+  it 'Show form' do
+    address_forms.each do |form|
+      expect(form).to have_first_name
+      expect(form).to have_last_name
+      expect(form).to have_address
+      expect(form).to have_city
+      expect(form).to have_zip
+      expect(form).to have_country
+      expect(form).to have_phone
+      expect(form).to have_submit
+    end
   end
 
   it 'Send form with empty values' do
-    # user_settings.billing_address_form.submit.click
-    # sleep(1)
-    # expect(user_settings.billing_address_form.first_name).to have_error
+    address_forms.each do |form|
+      form.first_name.input.set address.first_name
+      form.last_name.input.set address.last_name
+      form.address.input.set address.address
+      form.city.input.set address.city
+      form.zip.input.set address.zip
+      form.country.select.find("option[value='#{address.country}']").select_option
+      form.phone.input.set address.phone
+      form.submit.click
+      expect(user_settings).to have_notice
+    end
   end
 
-  it 'Show form `ShippingForm`' do
-    expect(user_settings).to have_shipping_address_form
-    expect(user_settings.shipping_address_form).to have_first_name
-    expect(user_settings.shipping_address_form).to have_last_name
-    expect(user_settings.shipping_address_form).to have_address
-    expect(user_settings.shipping_address_form).to have_city
-    expect(user_settings.shipping_address_form).to have_zip
-    expect(user_settings.shipping_address_form).to have_country
-    expect(user_settings.shipping_address_form).to have_phone
-    expect(user_settings.shipping_address_form).to have_submit
+  it 'Send form with valid values' do
+    address_forms.each do |form|
+      form.submit.click
+      expect(form.last_name).to have_error
+      expect(form.address).to have_error
+      expect(form.city).to have_error
+      expect(form.zip).to have_error
+      expect(form.country).to have_error
+      expect(form.phone).to have_error
+      expect(form).to have_submit
+    end
   end
 
   it 'Show form `EmailForm`' do

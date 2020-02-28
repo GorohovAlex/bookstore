@@ -9,7 +9,6 @@ module Users
       end
 
       it 'sets user_id' do
-        sleep(1)
         expect(session['warden.user.user.key'].flatten.first).to eq(User.last.id)
       end
 

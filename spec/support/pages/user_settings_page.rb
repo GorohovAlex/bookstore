@@ -1,13 +1,10 @@
-require_relative 'account_remove_form_section'
-require_relative 'email_form_section'
-require_relative 'address_form_section'
-require_relative 'passwords_form_section'
-
 module Pages
   class UserSettingsPage < SitePrism::Page
     set_url '/user'
 
+    element :address_tab_link, '#privacy-tab-link'
     element :privacy_tab_link, '#privacy-tab-link'
+    element :notice, '#notice'
 
     section :billing_address_form,  AddressFormSection,       'form#new_users_billing_address_form'
     section :shipping_address_form, AddressFormSection,       'form#new_users_shipping_address_form'
