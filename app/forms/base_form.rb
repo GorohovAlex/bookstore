@@ -1,4 +1,4 @@
-class BaseForm 
+class BaseForm
   include Virtus.model
   include ActiveModel::Model
 
@@ -10,7 +10,7 @@ class BaseForm
 
   def save
     persist! if valid?
-  end 
+  end
 
   private
 
