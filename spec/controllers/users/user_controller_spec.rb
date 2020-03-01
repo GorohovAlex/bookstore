@@ -38,14 +38,15 @@ module Devise
 
     describe 'POST #password' do
       it 'send invalid values' do
-        post :update, params: { users_password_form: { old_password: '', password: '', password_confirmation: '' } }
+        post :update, params: { password_form: { old_password: '', password: '', password_confirmation: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'send valid values' do
-        post :update, params: { users_password_form: { old_password: current_user.password,
-                                                       password: password_new,
-                                                       password_confirmation: password_new } }
+        post :update, params: { password_form: { old_password: current_user.password,
+                                                 password: password_new,
+                                                 password_confirmation: password_new } }
+
         expect(response).to redirect_to(user_path)
       end
     end

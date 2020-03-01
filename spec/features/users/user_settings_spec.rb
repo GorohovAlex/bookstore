@@ -2,7 +2,7 @@ describe 'User (Settings) page' do
   let(:current_user) { create(:user) }
   let(:user_settings) { UserSettingsPage.new }
   let(:address) { build(:address) }
-  let(:address_forms) { [user_settings.billing_address_form, user_settings.shipping_address_form] }
+  let(:address_forms) { [user_settings.new_billing_address_form, user_settings.new_shipping_address_form] }
 
   before do
     login_as(current_user, scope: :user)
@@ -26,7 +26,7 @@ describe 'User (Settings) page' do
   end
 
   # rubocop:disable RSpec/ExampleLength
-  it 'Send form with empty values' do
+  it 'Send form with valid values' do
     address_forms.each do |form|
       form.first_name.input.set address.first_name
       form.last_name.input.set address.last_name
@@ -41,9 +41,11 @@ describe 'User (Settings) page' do
   end
   # rubocop:enable RSpec/ExampleLength.
 
-  it 'Send form with valid values' do
+  # rubocop:disable RSpec/ExampleLength.
+  it 'Send form with empty values' do
     address_forms.each do |form|
       form.submit.click
+      expect(form.first_name).to have_error
       expect(form.last_name).to have_error
       expect(form.address).to have_error
       expect(form.city).to have_error
@@ -53,6 +55,7 @@ describe 'User (Settings) page' do
       expect(form).to have_submit
     end
   end
+  # rubocop:enable RSpec/ExampleLength.
 
   it 'Show form `EmailForm`' do
     user_settings.privacy_tab_link.click
