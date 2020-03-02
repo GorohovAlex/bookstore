@@ -1,6 +1,12 @@
 module Devise
   class UserController < Devise::RegistrationsController
+    include Rectify::ControllerHelpers
+
     before_action :authorize_resource, only: %i[index password email]
+
+    def edit
+      present AddressPresenter.new(user: current_user)
+    end
 
     def update
       return password if params.key?(:password_form)
@@ -25,6 +31,7 @@ module Devise
     end
 
     def respond_to_form(success)
+      present AddressPresenter.new(user: current_user)
       respond_to do |format|
         if success
           format.html { redirect_to user_path, flash: { notice: t('.successful_message') } }

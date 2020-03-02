@@ -14,10 +14,9 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
-  users:
-    address:
-      update:
-        successful_message: '%{type} update successful.'
+  address:
+    create:
+      successful_message: '%{type} update successful.'
   all: All
   view_more: View more
   add_to_cart: Add to Cart  
