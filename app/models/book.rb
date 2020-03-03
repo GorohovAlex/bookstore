@@ -23,7 +23,7 @@ class Book < ApplicationRecord
   has_many :book_authors
   has_many :authors, through: :book_authors, dependent: :destroy
 
-  has_one :book_dimension
+  has_one :book_dimension, dependent: :destroy
 
   belongs_to :category, counter_cache: true
   has_and_belongs_to_many :materials
