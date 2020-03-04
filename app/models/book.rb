@@ -17,7 +17,7 @@ class Book < ApplicationRecord
             presence: true,
             numericality: { only_integer: true },
             length: { maximum: YEAR_MAX_LENGTH }
-            
+
   validates :description,
             length: { maximum: TEXTBOX_MAX_LENGTH }
 

@@ -1,9 +1,13 @@
 class AddressController < ApplicationController
   def create
     authorize Address
-
     present AddressPresenter.new(user_id: current_user.id)
+    address
+  end
 
+  private
+
+  def address
     @address_form = AddressForm.new(address_params)
     respond_to do |format|
       if @address_form.save
@@ -13,8 +17,6 @@ class AddressController < ApplicationController
       end
     end
   end
-
-  private
 
   def address_params
     params_full = params.permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type, :user_id)

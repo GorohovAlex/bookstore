@@ -58,8 +58,7 @@ class AddressForm < BaseForm
   end
 
   def params
-    {
-      user_id: user_id,
+    { user_id: user_id,
       first_name: first_name,
       last_name: last_name,
       address: address,
@@ -67,8 +66,7 @@ class AddressForm < BaseForm
       zip: zip,
       country: country,
       phone: phone,
-      type: type,
-    }
+      type: type }
   end
 
   def address_params

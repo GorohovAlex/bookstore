@@ -7,7 +7,7 @@ class PasswordForm < BaseForm
   attribute :user_id, Integer
 
   validate :verify_old_password
-  
+
   validates :old_password, presence: true
   validates :password, :password_confirmation,
             presence: true,
