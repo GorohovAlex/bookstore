@@ -37,7 +37,8 @@ ActiveAdmin.register Book do
     f.inputs do
       f.input :name
       f.input :authors, collection: Hash[Author.all.map { |author| [author.decorate.full_name, author.id] }]
-      f.input :price, :description
+      f.input :price 
+      f.input :description
       f.input :year_of_publication
       f.input :materials
       f.inputs t('.dimensions'), for: [:book_dimension, f.object.book_dimension] do |t|
