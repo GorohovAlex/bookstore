@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :reviews
+  resources :reviews, only: [:create]
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :books, only: [:show]

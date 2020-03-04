@@ -8,16 +8,14 @@
   %i.fa.fa-star.rate-empty
   %i.fa.fa-star.rate-empty
   %i.fa.fa-star.rate-empty
-%form.row
+= simple_form_for review, remote: true, html: { class: 'row' }, method: :post do |f|
+  = f.input_field :rating, as: :hidden, value: '5', id: 'review_rating'
+  = f.input_field :book_id, as: :hidden
   .col-md-8
     .mb-40
       .form-group
-        %label.control-label.input-label.in-grey-600{for: "title"}
-          = t('.title')
-        %input#title.form-control{name:"title", type: "text"}
+        = f.input :title, label_html: { class: 'input-label in-grey-600' }
       .form-group
-        %label.control-label.input-label.in-grey-600{for: "review"} Review
-        %textarea#review.form-control{name:"review", type: "text"}
+        = f.input :review, as: :text, label_html: { class: 'input-label in-grey-600' }
     .text-right
-      %button.btn.disabled.mb-20
-        = t('.post')
+      = f.submit t('.post'), class: 'btn mb-20'
