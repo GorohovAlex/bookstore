@@ -1,3 +1,4 @@
+require_relative 'sections/address_form_section'
 class UserSettingsPage < SitePrism::Page
   set_url '/user'
 
