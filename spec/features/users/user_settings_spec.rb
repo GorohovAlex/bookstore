@@ -2,7 +2,7 @@ describe 'User (Settings) page' do
   let(:current_user) { create(:user) }
   let(:user_settings) { UserSettingsPage.new }
   let(:address) { build(:address) }
-  let(:address_forms) { [user_settings.new_billing_address_form, user_settings.new_shipping_address_form] }
+  let(:address_forms) { [user_settings.billing_address_form, user_settings.shipping_address_form] }
 
   before do
     login_as(current_user, scope: :user)
