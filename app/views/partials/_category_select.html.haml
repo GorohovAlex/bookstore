@@ -1,6 +1,6 @@
 .dropdown
   %a.dropdown-toggle.lead.small{ href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false" }
-    = @presenter.selected_caption(params[:category_id])
+    = presenter.selected_caption(params[:category_id])
     %i.fa.fa-angle-down.dropdown-icon.pull-right
   %ul.dropdown-menu
     %li

@@ -8,7 +8,7 @@ class PageController < ApplicationController
     @categories = Category.all.order(name: :asc)
     @pagy, @books = pagy_countless(Books::CatalogBooks.new.call(permitted_params).decorate,
                                    link_extra: 'data-remote="true"')
-    @presenter = CategoryPresenter.new
+    present CategoryPresenter.new
   end
 
   private
