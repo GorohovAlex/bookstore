@@ -37,7 +37,7 @@ ActiveAdmin.register Book do
     f.inputs do
       f.input :name
       f.input :authors, collection: Hash[Author.all.map { |author| [author.decorate.full_name, author.id] }]
-      f.input :price 
+      f.input :price
       f.input :description
       f.input :year_of_publication
       f.input :materials
