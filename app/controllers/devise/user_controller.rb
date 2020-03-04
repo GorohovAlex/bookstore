@@ -16,9 +16,7 @@ module Devise
     private
 
     def password
-      params_password = password_params
-      params_password[:user_id] = current_user.id
-      @password_form = PasswordForm.new(params_password)
+      @password_form = PasswordForm.new(password_params)
       respond_to_form(@password_form.save)
     end
 
@@ -27,7 +25,9 @@ module Devise
     end
 
     def password_params
-      params.require(:password_form).permit(:old_password, :password, :password_confirmation)
+      params.require(:password_form)
+            .permit(:old_password, :password, :password_confirmation)
+            .merge(user_id: current_user.id)
     end
 
     def respond_to_form(success)
