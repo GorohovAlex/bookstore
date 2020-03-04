@@ -26,7 +26,7 @@ module Devise
 
     describe 'POST #email' do
       it 'send invalid values' do
-        post :update, params: { user: { email: '' } }
+        post :update, format: 'js', params: { user: { email: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
@@ -38,7 +38,7 @@ module Devise
 
     describe 'POST #password' do
       it 'send invalid values' do
-        post :update, params: { password_form: { old_password: '', password: '', password_confirmation: '' } }
+        post :update, format: 'js', params: { password_form: { old_password: '', password: '', password_confirmation: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
