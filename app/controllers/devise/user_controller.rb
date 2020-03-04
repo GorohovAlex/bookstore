@@ -5,7 +5,7 @@ module Devise
     before_action :authorize_resource, only: %i[index password email]
 
     def edit
-      present AddressPresenter.new(user: current_user)
+      present AddressPresenter.new(user_id: current_user.id)
     end
 
     def update
@@ -17,7 +17,7 @@ module Devise
 
     def password
       params_password = password_params
-      params_password[:user] = current_user
+      params_password[:user_id] = current_user.id
       @password_form = PasswordForm.new(params_password)
       respond_to_form(@password_form.save)
     end
@@ -31,7 +31,7 @@ module Devise
     end
 
     def respond_to_form(success)
-      present AddressPresenter.new(user: current_user)
+      present AddressPresenter.new(user_id: current_user.id)
       respond_to do |format|
         if success
           format.html { redirect_to user_path, flash: { notice: t('.successful_message') } }

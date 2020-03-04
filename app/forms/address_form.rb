@@ -10,6 +10,7 @@ class AddressForm < BaseForm
   ZIP_REGEX = /\A[\d]+[-\d]*[\d]+\z/.freeze
   ZIP_MAX_LENGTH = 10
 
+  attribute :user_id
   attribute :first_name, String
   attribute :last_name, String
   attribute :address, String
@@ -19,22 +20,12 @@ class AddressForm < BaseForm
   attribute :phone, String
   attribute :type, String
 
-  validates :first_name,
+  validates :first_name, :last_name, :country,
             presence: true,
             format: { with: Constants::REGEX_LETTER_ONLY },
             length: { maximum: DEFAULT_MAX_LENGTH }
 
-  validates :last_name,
-            presence: true,
-            format: { with: Constants::REGEX_LETTER_ONLY },
-            length: { maximum: DEFAULT_MAX_LENGTH }
-
-  validates :address,
-            presence: true,
-            format: { with: ADDRESS_SITY_REGEX },
-            length: { maximum: DEFAULT_MAX_LENGTH }
-
-  validates :city,
+  validates :address, :city,
             presence: true,
             format: { with: ADDRESS_SITY_REGEX },
             length: { maximum: DEFAULT_MAX_LENGTH }
@@ -44,43 +35,44 @@ class AddressForm < BaseForm
             format: { with: ZIP_REGEX },
             length: { maximum: ZIP_MAX_LENGTH }
 
-  validates :country,
-            presence: true,
-            format: { with: Constants::REGEX_LETTER_ONLY },
-            length: { maximum: DEFAULT_MAX_LENGTH }
-
   validates :phone,
             presence: true,
             format: { with: PHONE_REGEX },
             length: { maximum: PHONE_MAX_LENGTH }
 
-  def initialize(params: {}, user: nil)
-    @user_id = user.id
-    params.empty? ? super(address_params) : super(params)
+  def initialize(attr = {})
+    attr.empty? ? super(address_params) : super(attr)
   end
 
   private
 
   def record
-    self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: @user_id,
+    self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: user_id,
                                                                        type: type || self.class::MODEL_CLASS)
   end
 
   def persist!
     user_address = record
-    user_address.first_name = first_name
-    user_address.last_name = last_name
-    user_address.address = address
-    user_address.city = city
-    user_address.zip = zip
-    user_address.country = country
-    user_address.phone = phone
-    user_address.type = type
+    user_address.assign_attributes(params)
     user_address.save
+  end
+
+  def params
+    {
+      user_id: user_id,
+      first_name: first_name,
+      last_name: last_name,
+      address: address,
+      city: city,
+      zip: zip,
+      country: country,
+      phone: phone,
+      type: type,
+    }
   end
 
   def address_params
     ActionController::Parameters.new(record.attributes).permit(:first_name, :last_name, :address, :zip, :city,
-                                                               :country, :phone, :type)
+                                                               :country, :phone, :type, :user_id)
   end
 end

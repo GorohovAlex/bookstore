@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :address do
-    type { '' }
     first_name { FFaker::Name.first_name }
     last_name { FFaker::Name.last_name.gsub(/\W/, '') }
     address { FFaker::Address.street_address }
@@ -8,6 +7,12 @@ FactoryBot.define do
     zip { FFaker::AddressUS.zip_code }
     country { FFaker::Address.country_code }
     phone { FFaker::PhoneNumber.short_phone_number.gsub(/\D/, '') }
-    user_id { '' }
+    user
+    trait :billing_type do
+      type { 'BillingAddress' }
+    end
+    trait :shipping_type do
+      type { 'BillingAddress' }
+    end
   end
 end
