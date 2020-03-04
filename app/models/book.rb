@@ -8,13 +8,16 @@ class Book < ApplicationRecord
             presence: true,
             format: { with: Constants::REGEX_TITLE },
             length: { maximum: TITLE_MAX_LENGTH }
+
   validates :price_cents,
             presence: true,
             numericality: { only_integer: true }
+
   validates :year_of_publication,
             presence: true,
             numericality: { only_integer: true },
             length: { maximum: YEAR_MAX_LENGTH }
+            
   validates :description,
             length: { maximum: TEXTBOX_MAX_LENGTH }
 
