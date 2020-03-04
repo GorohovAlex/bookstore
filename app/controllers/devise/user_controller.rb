@@ -36,7 +36,6 @@ module Devise
         if success
           format.html { redirect_to user_path, flash: { notice: t('.successful_message') } }
         else
-          format.html { render :edit, status: :unprocessable_entity }
           format.js { render :edit, status: :unprocessable_entity }
         end
       end
