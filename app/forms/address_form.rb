@@ -11,6 +11,7 @@ class AddressForm < BaseForm
   ZIP_MAX_LENGTH = 10
 
   attribute :user_id
+  attribute :type, String
   attribute :first_name, String
   attribute :last_name, String
   attribute :address, String
@@ -47,14 +48,13 @@ class AddressForm < BaseForm
   private
 
   def record
-    self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(user_id: user_id,
-                                                                       type: type || self.class::MODEL_CLASS)
+    @record ||= self.class::MODEL_CLASS.classify.constantize
+                                       .find_or_initialize_by(user_id: user_id, type: type || self.class::MODEL_CLASS)
   end
 
   def persist!
-    user_address = record
-    user_address.assign_attributes(params)
-    user_address.save
+    record.assign_attributes(params)
+    record.save
   end
 
   def params
