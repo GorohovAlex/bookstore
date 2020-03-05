@@ -2,8 +2,6 @@ module Devise
   RSpec.describe UserController do
     let(:current_user) { create(:user) }
     let(:password_new) { FFaker::String.from_regexp(User::PASSWORD_FORMAT_REGEX) }
-    let(:billing_address) { build(:address) }
-    let(:shipping_address) { build(:address) }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
