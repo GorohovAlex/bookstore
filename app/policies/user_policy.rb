@@ -3,11 +3,7 @@ class UserPolicy < ApplicationPolicy
     user.present?
   end
 
-  def email?
-    user.present?
-  end
-
-  def password?
-    user.present?
+  def update?
+    user.present? && user.id.eql?(record.id)
   end
 end

@@ -1,8 +1,9 @@
 class AddressController < ApplicationController
-  before_action :authorize_resource, only: %i[create]
-
   def create
+    present AddressPresenter.new(user_id: current_user.id)
     @address_form = AddressForm.new(address_params)
+    authorize @address_form.record, policy_class: AddressPolicy
+
     respond_to_form(@address_form.save)
   end
 
@@ -13,14 +14,9 @@ class AddressController < ApplicationController
           .merge(user_id: current_user.id)
   end
 
-  def authorize_resource
-    authorize Address
-  end
-
-  def respond_to_form(_success)
-    present AddressPresenter.new(user_id: current_user.id)
+  def respond_to_form(success)
     respond_to do |format|
-      if @address_form.save
+      if success
         format.html { redirect_to user_path, flash: { notice: t('.successful_message', type: @address_form.type) } }
       else
         format.js { render 'devise/user/edit', status: :unprocessable_entity }

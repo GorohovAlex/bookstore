@@ -19,7 +19,6 @@ class AddressForm < BaseForm
   attribute :zip, String
   attribute :country, String
   attribute :phone, String
-  attribute :type, String
 
   validates :first_name, :last_name, :country,
             presence: true,
@@ -45,12 +44,12 @@ class AddressForm < BaseForm
     attr.empty? ? super(address_params) : super(attr)
   end
 
-  private
-
   def record
     @record ||= self.class::MODEL_CLASS.classify.constantize
-                                       .find_or_initialize_by(user_id: user_id, type: type || self.class::MODEL_CLASS)
+                                       .find_or_initialize_by(user_id: user_id, type: type)
   end
+
+  private
 
   def persist!
     record.assign_attributes(params)
