@@ -2,10 +2,11 @@ class ReviewsController < InheritedResources::Base
 
   def create
     respond_to do |format|
-      if ReviewForm.new(review_params).save
-        format.html { redirect_to user_path, flash: { notice: t('.successful_message') } }
+      @review = ReviewForm.new(review_params)
+      if @review.save
+        format.html { redirect_to book_path(@review.book_id), flash: { notice: t('.successful_message') } }
       else
-        format.js { render :edit, status: :unprocessable_entity }
+        format.js { render 'books/show', status: :unprocessable_entity }
       end
     end
   end
@@ -13,7 +14,6 @@ class ReviewsController < InheritedResources::Base
   private
 
     def review_params
-      params_full = params.require(:review).permit(:title, :review, :rating, :book_id)
-      params_full[:user_id] = current_user.id
+      params.require(:review_form).permit(:title, :review, :rating, :book_id).merge(user_id: current_user.id)
     end
 end

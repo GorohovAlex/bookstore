@@ -116,9 +116,10 @@ ActiveRecord::Schema.define(version: 2020_03_04_085516) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.string "review"
-    t.integer "rating"
+    t.string "title", null: false
+    t.string "review", null: false
+    t.integer "rating", null: false
+    t.integer "status", default: 0, null: false
     t.bigint "book_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

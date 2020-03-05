@@ -1,0 +1,19 @@
+%h3
+  = t('.review_caption')
+.mb-15
+= simple_form_for review, url: reviews_path, remote: true, html: { class: 'row' }, method: :post do |f|
+  .col-md-8
+    = t('.score')
+    %p.general-info-text
+      = f.collection_radio_buttons :rating, ([[5], [4], [3], [2], [1]]), :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b|
+        = b.radio_button(class: 'hidden') + b.label do
+          %i.fa.fa-star.rate-empty
+  = f.input_field :book_id, as: :hidden
+  .col-md-8
+    .mb-40
+      .form-group
+        = f.input :title, label_html: { class: 'input-label in-grey-600' }
+      .form-group
+        = f.input :review, as: :text, label_html: { class: 'input-label in-grey-600' }
+    .text-right
+      = f.submit t('.post'), class: 'btn mb-20'
