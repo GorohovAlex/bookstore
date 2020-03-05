@@ -8,11 +8,8 @@ FactoryBot.define do
     country { FFaker::Address.country_code }
     phone { FFaker::PhoneNumber.short_phone_number.gsub(/\D/, '') }
     user
-    trait :billing_type do
-      type { 'BillingAddress' }
-    end
-    trait :shipping_type do
-      type { 'ShippingAddress' }
+    trait :type do
+      type { %w[BillingAddress ShippingAddress].simple }
     end
   end
 end
