@@ -11,7 +11,7 @@ class BaseForm
   def record
     return nil unless self.class::MODEL_CLASS
 
-    self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(id: @id)
+    @record ||= self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(id: @id)
   end
 
   private
