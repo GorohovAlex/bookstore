@@ -1,0 +1,11 @@
+en:
+  active_admin:
+    resource:
+      index:
+        authors: Authors
+        description: Description
+        price: Price
+      edit:
+        dimensions: Dimensions
+      show:
+        authors: Authors
