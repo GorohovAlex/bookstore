@@ -7,9 +7,13 @@ FactoryBot.define do
     zip { FFaker::AddressUS.zip_code }
     country { FFaker::Address.country_code }
     phone { FFaker::PhoneNumber.short_phone_number.gsub(/\D/, '') }
+    type { %w[BillingAddress ShippingAddress].sample }
     user
-    trait :type do
-      type { %w[BillingAddress ShippingAddress].simple }
+    trait :billing_type do
+      type { 'BillingAddress' }
+    end
+    trait :shipping_type do
+      type { 'ShippingAddress' }
     end
   end
 end
