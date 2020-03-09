@@ -14,6 +14,11 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
+  address:
+    create:
+      successful_message: '%{type} update successful.'
+      not_authorized: You are not authorized to perform this action.
+
   all: All
   view_more: View more
   add_to_cart: Add to Cart  
@@ -23,6 +28,8 @@ en:
   get_started:  Get Started
   best_sellers: Best Sellers
   home: Home
+  not_valid: Not valid
+  settings: Settings
   shop: Shop
   mobile_development: Mobile development
   photo: Photo

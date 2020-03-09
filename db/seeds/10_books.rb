@@ -1,8 +1,8 @@
-1_000.times do
+100.times do
   authors     = Author.order('RANDOM()').limit(rand(1..2))
   category    = Category.order('RANDOM()').first
   description = FFaker::Lorem.paragraph
-  title       = FFaker::Book.title.delete(/:/)
+  title       = FFaker::Book.title.delete(':')
   price       = FFaker::Random.rand(20..120)
   year        = FFaker::Random.rand(1981..2019)
   materials   = Material.order('RANDOM()').limit(rand(1..2))

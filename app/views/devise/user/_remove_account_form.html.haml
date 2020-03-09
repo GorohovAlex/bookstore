@@ -1,0 +1,11 @@
+= simple_form_for current_user, url: user_registration_path, method: :delete, html:{ id: 'remove_account_form' } do |f|
+  .general-settings-btn
+    = f.submit t('.remove_account_button'), id: 'remove_button', class: 'btn disabled mb-20', disabled: true
+  .form-group.checkbox.general-settings-checkbox
+    %label.checkbox-label
+      %input.checkbox-input{type: "checkbox", hidden: "true", id: "remove_checkbox"}
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text
+        = t('.remove_check_message')
+= javascript_pack_tag 'users/settings/update'

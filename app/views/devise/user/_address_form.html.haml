@@ -1,0 +1,10 @@
+= simple_form_for address, remote: true, url: user_address_forms_path, method: :patch, html:{ class: 'general-form', id: id }, input_html: {multipart: true}, defaults:{ wrapper_html: { class: 'form-group' }, label_html: { class: 'control-label input-label' } } do |f|
+  = f.input :type,       input_html: { name: "type" }, as: :hidden
+  = f.input :first_name, input_html: { name: "first_name" }, placeholder: t('.first_name_placeholder'), label: t('.first_name'), wrapper_html: { class: 'first-name-group' }
+  = f.input :last_name,  input_html: { name: "last_name" },  placeholder: t('.last_name_placeholder'),  label: t('.last_name'),  wrapper_html: { class: 'last-name-group' }
+  = f.input :address,    input_html: { name: "address" },    placeholder: t('.address_placeholder'),    label: t('.address'),    wrapper_html: { class: 'address-group' }
+  = f.input :city,       input_html: { name: "city" },       placeholder: t('.city_placeholder'),       label: t('.city'),       wrapper_html: { class: 'city-group' }
+  = f.input :zip,        input_html: { name: "zip" },        placeholder: t('.zip_placeholder'),        label: t('.zip'),        wrapper_html: { class: 'zip-group' }
+  = f.input :country,    input_html: { name: "country" },    placeholder: t('.country_placeholder'),    label: t('.country'),    wrapper_html: { class: 'country-group' }, as: :country, id: 'country'
+  = f.input :phone,      input_html: { name: "phone" },      placeholder: t('.phone_placeholder'),      label: t('.phone'),      wrapper_html: { class: 'phone-group' }
+  = f.button :submit, t('.save')

@@ -1,6 +1,6 @@
 .dropdown
   %a.dropdown-toggle.lead.small{ href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false" }
-    = params[:category_id].nil? ? t('all') : Category.find_by_id!(params[:category_id]).name
+    = presenter.selected_caption(params[:category_id])
     %i.fa.fa-angle-down.dropdown-icon.pull-right
   %ul.dropdown-menu
     %li

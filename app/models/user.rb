@@ -2,7 +2,8 @@ class User < ApplicationRecord
   PASSWORD_FORMAT_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}\z/.freeze
 
   validates :password,
-            format: { with: PASSWORD_FORMAT_REGEX }
+            format: { with: PASSWORD_FORMAT_REGEX },
+            on: :create
 
   devise :database_authenticatable,
          :registerable,
@@ -11,6 +12,9 @@ class User < ApplicationRecord
          :validatable,
          :omniauthable,
          omniauth_providers: [:facebook]
+
+  has_one :shipping_address, dependent: :destroy
+  has_one :billing_address, dependent: :destroy
 
   def self.new_with_session(params, session)
     super.tap do |user|

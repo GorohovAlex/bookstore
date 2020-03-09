@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'countries'
+gem 'country_select', '~> 4.0'
 gem 'devise'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'draper', '~> 3.1'
@@ -18,11 +20,14 @@ gem 'omniauth-facebook'
 gem 'pagy', '~> 3.7', '>= 3.7.2'
 gem 'pg', '~> 1.2', '>= 1.2.2'
 gem 'puma', '~> 4.1'
+gem 'pundit', '~> 2.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'rectify'
 gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
+gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
@@ -49,6 +54,7 @@ end
 group :development do
   gem 'bullet', '~> 6.1'
   gem 'fasterer', '~> 0.8.0'
+  gem 'haml_lint', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
