@@ -10,7 +10,7 @@ class AddressForm < BaseForm
   ZIP_REGEX = /\A[\d]+[-\d]*[\d]+\z/.freeze
   ZIP_MAX_LENGTH = 10
 
-  attribute :user_id
+  attribute :user_id, Integer
   attribute :type, String
   attribute :first_name, String
   attribute :last_name, String
