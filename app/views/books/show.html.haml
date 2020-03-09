@@ -62,5 +62,5 @@
   .mb-80
     = render partial: 'partials/review_write', locals: { review: @review }
   .mb-80
-    = render partial: 'partials/reviews_list'
+    = render partial: 'partials/reviews_list', object: @book.reviews_approved
 = javascript_pack_tag 'books/show'

@@ -20,4 +20,8 @@ class BookDecorator < ApplicationDecorator
   def description_end
     object.description[Book::DESCRIPTION_SHORT_LENGTH...object.description.size]
   end
+
+  def reviews_approved
+    object.reviews.includes(:user).filter(&:approved?)
+  end
 end

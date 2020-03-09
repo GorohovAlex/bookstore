@@ -55,6 +55,8 @@ en:
       buy_now: Buy Now
       previous: Previous
       next: Next
+    reviews_list:
+      reviews_count: Reviews (%{count})
     review_write:
       review_caption: Write a Review
       score: Score
