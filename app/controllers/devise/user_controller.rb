@@ -44,7 +44,7 @@ module Devise
     end
 
     def authorize_resource
-      authorize User.find_by(id: current_user.id)
+      authorize current_user
     end
   end
 end
