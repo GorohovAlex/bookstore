@@ -60,7 +60,8 @@
           %p.lead.small.pull-right
             = @book.materials_show
   .mb-80
-    = render partial: 'partials/review_write', locals: { review: @review }
+    - if policy(@book.reviews).create?
+      = render partial: 'partials/review_write', locals: { review: @review }
   .mb-80
     = render partial: 'partials/reviews_list', object: @book.reviews_approved
 = javascript_pack_tag 'books/show'
