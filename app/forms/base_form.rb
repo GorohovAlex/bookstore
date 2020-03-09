@@ -3,9 +3,7 @@ class BaseForm
   include ActiveModel::Model
 
   attribute :id, Integer
-  def persisted?
-    false
-  end
+  
   def save
     persist! if valid?
   end
