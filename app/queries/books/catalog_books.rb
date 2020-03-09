@@ -2,7 +2,7 @@ module Books
   class CatalogBooks
     def call(params)
       sorting = Sortings::SortCurrent.call(sort_selected: params[:sort])
-      scoped = filter_by_category(Book.all, params[:category_id])
+      scoped = filter_by_category(Book.includes(:authors), params[:category_id])
       scoped = sorting(scoped, sorting[:sort_field], sorting[:sort_direction])
       scoped
     end

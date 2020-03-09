@@ -10,14 +10,12 @@ executors:
           PG_HOST: 127.0.0.1
           PG_USER: bookstore_admin
           RAILS_ENV: test
-          RACK_ENV: test
-      - image: circleci/postgres:10
+      - image: circleci/postgres:9.6.5-alpine-ram
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_DB: bookstore_test
 caches: 
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
-
 commands:
   run_linters:
     description: command to start linters
@@ -35,7 +33,7 @@ commands:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
             bundle exec rspec --format progress \
                               --out /tmp/test-results/rspec.xml \
                               --format progress \
@@ -75,7 +73,7 @@ jobs:
       - defaults
       - run_specs
 workflows:
-  version: 2.
+  version: 2.0
   build:
     jobs:
       - lintering

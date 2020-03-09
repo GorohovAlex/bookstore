@@ -1,7 +1,6 @@
 en:
   books:
     show:
-      all: All
       back_to_results: Back to results
       description: Description
       dimensions: Dimensions
@@ -15,9 +14,9 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
+  all: All
   view_more: View more
   add_to_cart: Add to Cart  
-  buy_now: Buy Now
   site_name: Bookstore
   welcome_caption: Welcome to our amazing Bookstore!
   welcome_message: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -25,14 +24,15 @@ en:
   best_sellers: Best Sellers
   home: Home
   shop: Shop
-  my_account: My Account
   mobile_development: Mobile development
   photo: Photo
   web_design: Web design
+  sign_up: Sign up
+  log_in: Log in
   log_out: Log out
   settings: Settings
   previous: Previous
-  next: Next
+  orders: Orders
   sort_list:
     newest_first: Newest first
     popular_first: Popular first
@@ -40,3 +40,10 @@ en:
     price_desc: 'Price: Hight to low'
     title_asc: 'Title: A - Z'
     title_desc: 'Title: Z - A'
+  partials:
+    header:
+      my_account: My Account
+    slider:
+      buy_now: Buy Now
+      previous: Previous
+      next: Next
