@@ -2,7 +2,6 @@ module Devise
   class UserController < Devise::RegistrationsController
     include Rectify::ControllerHelpers
 
-    # before_action :authenticate_user!, only: %i[index update]
     before_action :authorize_resource, only: %i[index update]
 
     def edit
