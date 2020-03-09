@@ -2,13 +2,15 @@ module Devise
   class UserController < Devise::RegistrationsController
     include Rectify::ControllerHelpers
 
-    before_action :authorize_resource, only: %i[index password email]
+    before_action :authorize_resource, only: %i[index update]
 
     def edit
-      present AddressPresenter.new(user: current_user)
+      present AddressPresenter.new(user_id: current_user.id)
     end
 
     def update
+      present AddressPresenter.new(user_id: current_user.id)
+
       return password if params.key?(:password_form)
       return email if params.key?(:user)
     end
@@ -16,9 +18,7 @@ module Devise
     private
 
     def password
-      params_password = password_params
-      params_password[:user] = current_user
-      @password_form = PasswordForm.new(params_password)
+      @password_form = PasswordForm.new(password_params)
       respond_to_form(@password_form.save)
     end
 
@@ -27,23 +27,23 @@ module Devise
     end
 
     def password_params
-      params.require(:password_form).permit(:old_password, :password, :password_confirmation)
+      params.require(:password_form)
+            .permit(:old_password, :password, :password_confirmation)
+            .merge(id: current_user.id)
     end
 
     def respond_to_form(success)
-      present AddressPresenter.new(user: current_user)
       respond_to do |format|
         if success
           format.html { redirect_to user_path, flash: { notice: t('.successful_message') } }
         else
-          format.html { render :edit, status: :unprocessable_entity }
           format.js { render :edit, status: :unprocessable_entity }
         end
       end
     end
 
     def authorize_resource
-      authorize User
+      authorize current_user
     end
   end
 end

@@ -1,12 +1,7 @@
 class Author < ApplicationRecord
   NAME_MAX_LENGTH = 50
 
-  validates :first_name,
-            presence: true,
-            format: { with: Constants::REGEX_LETTER_ONLY },
-            length: { maximum: NAME_MAX_LENGTH }
-
-  validates :last_name,
+  validates :first_name, :last_name,
             presence: true,
             format: { with: Constants::REGEX_LETTER_ONLY },
             length: { maximum: NAME_MAX_LENGTH }

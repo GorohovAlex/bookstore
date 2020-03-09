@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit
+  include Rectify::ControllerHelpers
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

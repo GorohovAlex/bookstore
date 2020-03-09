@@ -1,11 +1,11 @@
 class AddressPresenter < Rectify::Presenter
-  attribute :user, User
+  attribute :user_id, Integer
 
   def billing_address_form
-    BillingAddressForm.new(user: user)
+    BillingAddress.find_or_initialize_by(user_id: user_id)
   end
 
   def shipping_address_form
-    ShippingAddressForm.new(user: user)
+    ShippingAddress.find_or_initialize_by(user_id: user_id)
   end
 end

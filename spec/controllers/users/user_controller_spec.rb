@@ -2,8 +2,6 @@ module Devise
   RSpec.describe UserController do
     let(:current_user) { create(:user) }
     let(:password_new) { FFaker::String.from_regexp(User::PASSWORD_FORMAT_REGEX) }
-    let(:billing_address) { build(:address) }
-    let(:shipping_address) { build(:address) }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
@@ -26,7 +24,7 @@ module Devise
 
     describe 'POST #email' do
       it 'send invalid values' do
-        post :update, params: { user: { email: '' } }
+        post :update, format: 'js', params: { user: { email: '' } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
@@ -38,7 +36,9 @@ module Devise
 
     describe 'POST #password' do
       it 'send invalid values' do
-        post :update, params: { password_form: { old_password: '', password: '', password_confirmation: '' } }
+        post :update, format: 'js', params: {
+          password_form: { old_password: '', password: '', password_confirmation: '' }
+        }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 

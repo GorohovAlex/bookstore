@@ -17,6 +17,8 @@ en:
   address:
     create:
       successful_message: '%{type} update successful.'
+      not_authorized: You are not authorized to perform this action.
+
   all: All
   view_more: View more
   add_to_cart: Add to Cart  
