@@ -5,7 +5,7 @@
   .col-md-8
     = t('.score')
     %p.general-info-text
-      = f.collection_radio_buttons :rating, ([[5], [4], [3], [2], [1]]), :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b|
+      = f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b|
         = b.radio_button(class: 'hidden') + b.label do
           %i.fa.fa-star.rate-empty
   = f.input_field :book_id, as: :hidden
@@ -17,3 +17,4 @@
         = f.input :review, as: :text, label_html: { class: 'input-label in-grey-600' }
     .text-right
       = f.submit t('.post'), class: 'btn mb-20'
+= javascript_pack_tag 'partials/review_write'
