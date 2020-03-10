@@ -10,6 +10,10 @@ FactoryBot.define do
       authors { create_list :author, FFaker::Random.rand(1..2) }
     end
 
+    trait :with_reviews do
+      reviews { create_list :review, FFaker::Random.rand(Review::RATING_INTERVAL) }
+    end
+
     after(:create) do |book|
       book.book_dimension ||= create(:book_dimension, book: book)
     end
