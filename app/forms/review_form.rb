@@ -1,4 +1,6 @@
 class ReviewForm < BaseForm
+  MODEL_CLASS = 'Review'.freeze
+
   attribute :title, String
   attribute :review, String
   attribute :rating, Integer
@@ -22,7 +24,8 @@ class ReviewForm < BaseForm
   private
 
   def persist!
-    Review.create(params)
+    record.assign_attributes(params)
+    record.save
   end
 
   def params

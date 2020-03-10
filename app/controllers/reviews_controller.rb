@@ -1,4 +1,4 @@
-class ReviewsController < InheritedResources::Base
+class ReviewsController < ApplicationController
   def create
     respond_to do |format|
       @review = ReviewForm.new(review_params)

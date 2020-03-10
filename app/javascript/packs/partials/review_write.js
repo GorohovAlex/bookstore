@@ -16,4 +16,6 @@ $(document).ready(function() {
     }
     
   })
+  
+  $(rating_input_item)[1].click()
 })

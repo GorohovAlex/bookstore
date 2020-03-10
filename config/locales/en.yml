@@ -9,6 +9,7 @@ en:
       year_of_publication: Year of publication
       read_more: Read more
       read_less: Read less
+      review_caption: Write a Review
   page:
     catalog:
       title: Catalog
@@ -41,6 +42,9 @@ en:
   settings: Settings
   previous: Previous
   orders: Orders
+  reviews:
+    create:
+      successful_message: Thanks for Review. It will be published as soon as Admin will approve it.
   sort_list:
     newest_first: Newest first
     popular_first: Popular first
@@ -58,7 +62,6 @@ en:
     reviews_list:
       reviews_count: Reviews (%{count})
     review_write:
-      review_caption: Write a Review
       score: Score
       title: Title
       post: Post

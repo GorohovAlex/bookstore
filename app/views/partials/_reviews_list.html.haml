@@ -1,44 +1,28 @@
-%h3.in-gold-500.mb-25
+%h3.in-gold-500.mb-25#reviews_count
   = t('.reviews_count', count: reviews_list.count)
-- reviews_list.each do |review|
-  .general-message-wrap.divider-lg
-    .clearfix
-      -if review.user.image.nil?
-        %span.img-circle.logo-size.inlide-block.pull-left.logo-empty
-          = review.user.decorate.name_first_letter
-      -else
-        %img.img-circle.logo-size.inlide-block.pull-left{src: review.user.image}
-      .ml-70
-        %div
-          .general-message-date.hidden-xs
-            = review.decorate.created_at
-          .max-240
-            .general-message-verified
-              = t(review.status)
-            .general-message-name
-              = review.user.name
-        .mb-15
-          - review.rating.times do |t|
-            %i.fa.fa-star.rate-star
+#reviews_list
+  - reviews_list.each do |review|
+    .general-message-wrap.divider-lg
+      .clearfix
+        -if review.user.image.nil?
+          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty
+            = review.user.decorate.name_first_letter
+        -else
+          %img.img-circle.logo-size.inlide-block.pull-left{src: review.user.image}
+        .ml-70
+          %div
+            .general-message-date.hidden-xs
+              = review.decorate.created_at
+            .max-240
+              .general-message-verified
+                = t(review.status)
+              .general-message-name
+                = review.user.name
+          .mb-15
+            - review.rating.times do |t|
+              %i.fa.fa-star.rate-star
+            %p
+          %h4
+            = review.title
           %p
-        %h4
-          = review.title
-        %p
-          = review.review
-
--# .general-message-wrap.divider-lg
--#   .clearfix
--#     %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
--#     .ml-70
--#       %div
--#         .general-message-date.hidden-xs 11/11/16
--#         .max-240
--#           .general-message-verified.pull-right Verified Reviewer
--#           .general-message-name May J. Novoa
--#       .mb-15
--#         %i.fa.fa-star.rate-star
--#         %i.fa.fa-star.rate-star
--#         %i.fa.fa-star.rate-star
--#         %i.fa.fa-star.rate-star
--#         %i.fa.fa-star.rate-star.rate-empty
--#       %p If ‘Get a better job’ had landed on my desk a year ago, I might have been dismissive of it. Instead I was prepared to be open-minded. There have been many occasions where I turned to career books with practical activities to look for some inspiration when developing education activities for learners or assessment.
+            = review.review
