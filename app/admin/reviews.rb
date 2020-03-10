@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Review do
   includes :book, :user
 
@@ -16,24 +17,22 @@ ActiveAdmin.register Review do
     selectable_column
     column :book
     column :title
-    column 'Date', :created_at
+    column t('.date'), :created_at
     column :user
     column :status
     actions
   end
 
   action_item :view, only: :show do
-    link_to 'Rejected', admin_review_path(review, review: { status: :rejected }), method: :patch unless review.rejected?
+    unless review.rejected?
+      link_to t('.rejected'), admin_review_path(review, review: { status: :rejected }), method: :patch
+    end
   end
 
   action_item :view, only: :show do
-    link_to 'Approved', admin_review_path(review, review: { status: :approved }), method: :patch unless review.approved?
+    unless review.approved?
+      link_to t('.approved'), admin_review_path(review, review: { status: :approved }), method: :patch
+    end
   end
-
-  # # if: proc { @current_scope.scope_method == :unprocessed }
-  # batch_action :approve do |ids|
-  #   reviews = Review.unprocessed.where(id: ids)
-  #   reviews.any? ? reviews.each(&:approved!) : flash[:error] = 'admin.error'
-  #   redirect_to(admin_reviews_path)
-  # end
 end
+# rubocop:enable Metrics/BlockLength
