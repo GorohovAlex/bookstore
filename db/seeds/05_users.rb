@@ -1,5 +1,4 @@
 100.times do
-
   email    = FFaker::Internet.email
   password = FFaker::Internet.password
   name     = FFaker::Name.name

@@ -1,5 +1,4 @@
 class ReviewsController < InheritedResources::Base
-
   def create
     respond_to do |format|
       @review = ReviewForm.new(review_params)
@@ -13,7 +12,7 @@ class ReviewsController < InheritedResources::Base
 
   private
 
-    def review_params
-      params.require(:review_form).permit(:title, :review, :rating, :book_id).merge(user_id: current_user.id)
-    end
+  def review_params
+    params.require(:review_form).permit(:title, :review, :rating, :book_id).merge(user_id: current_user.id)
+  end
 end

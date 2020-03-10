@@ -7,16 +7,16 @@ class ReviewForm < BaseForm
 
   TITLE_MAX_LENGTH = 80
   REVIEW_MAX_LENGTH = 500
-  REVIEW_TITLE_REGEX = /\A[-',a-zA-Z\d\s!#$%&'*+-\/=?^_`{|}~]+\z/
+  REVIEW_TITLE_REGEX = %r{\A[-',a-zA-Z\d\s!#$%&'*+-/=?^_`{|}~]+\z}.freeze
 
   validates :title, presence: true,
                     format: { with: REVIEW_TITLE_REGEX },
                     length: { maximum: TITLE_MAX_LENGTH }
-  
+
   validates :review, presence: true,
                      format: { with: REVIEW_TITLE_REGEX },
                      length: { maximum: REVIEW_MAX_LENGTH }
-  
+
   validates :rating, presence: true
 
   private

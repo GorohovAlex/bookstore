@@ -7,7 +7,7 @@ ActiveAdmin.register Review do
   before_filter :skip_sidebar!
 
   permit_params :status
-  
+
   scope :unprocessed, default: true
   scope :rejected
   scope :approved
@@ -23,11 +23,11 @@ ActiveAdmin.register Review do
   end
 
   action_item :view, only: :show do
-    link_to 'Rejected', admin_review_path(review, review:{status: :rejected}), method: :patch unless review.rejected?
+    link_to 'Rejected', admin_review_path(review, review: { status: :rejected }), method: :patch unless review.rejected?
   end
 
   action_item :view, only: :show do
-    link_to 'Approved', admin_review_path(review, review:{status: :approved}), method: :patch unless review.approved?
+    link_to 'Approved', admin_review_path(review, review: { status: :approved }), method: :patch unless review.approved?
   end
 
   # # if: proc { @current_scope.scope_method == :unprocessed }
