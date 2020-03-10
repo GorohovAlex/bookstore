@@ -1,7 +1,7 @@
 300.times do
   title  = FFaker::Lorem.phrase
   review = FFaker::Lorem.sentence
-  rating = rand(1..5)
+  rating = rand(Review::RATING_INTERVAL)
   status = rand(0..2)
   book   = Book.order('RANDOM()').first
   user   = User.order('RANDOM()').first
