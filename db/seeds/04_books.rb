@@ -1,4 +1,4 @@
-100.times do
+1.times do
   authors     = Author.order('RANDOM()').limit(rand(1..2))
   category    = Category.order('RANDOM()').first
   description = FFaker::Lorem.paragraph
@@ -7,6 +7,12 @@
   year        = FFaker::Random.rand(1981..2019)
   materials   = Material.order('RANDOM()').limit(rand(1..2))
   book_dimension = BookDimension.create(height: rand(5..10.0), width: rand(7..14.0), depth: rand(3..7.0))
+  
+  covers = []
+  4.times do
+    cover  = Cover.new
+    covers << cover.image_attacher.assign_remote_url(FFaker::Book.orly_cover(title))
+  end
 
   Book.create(name: title,
               authors: authors,
@@ -15,5 +21,7 @@
               year_of_publication: year,
               category: category,
               materials: materials,
-              book_dimension: book_dimension)
+              book_dimension: book_dimension,
+              covers: covers
+            )
 end

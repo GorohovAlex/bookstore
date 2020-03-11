@@ -20,4 +20,8 @@ class BookDecorator < ApplicationDecorator
   def description_end
     object.description[Book::DESCRIPTION_SHORT_LENGTH...object.description.size]
   end
+
+  def main_cover_url
+    object.covers.first.image_url(:thumbnail_small)
+  end
 end

@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'activeadmin'
 gem 'activeadmin_addons'
+gem "aws-sdk-s3", "~> 1.14"
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'countries'
@@ -27,10 +28,13 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'rectify'
 gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
+gem 'shrine', '~> 3.2', '>= 3.2.1'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
+gem 'image_processing'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -60,9 +64,9 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
-  gem 'rubocop-performance', '~> 1.5', '>= 1.5.2'
-  gem 'rubocop-rails', '~> 2.4', '>= 2.4.2'
-  gem 'rubocop-rspec'
+  gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
+  gem 'rubocop-rails', '~> 2.4', '>= 2.4.2', require: false
+  gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
