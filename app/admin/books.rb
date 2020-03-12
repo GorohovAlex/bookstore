@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Book do
   decorate_with BookDecorator
   includes :category, :book_authors, :authors
@@ -60,3 +61,4 @@ ActiveAdmin.register Book do
     f.actions
   end
 end
+# rubocop:enable Metrics/BlockLength
