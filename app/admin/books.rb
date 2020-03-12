@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Book do
   decorate_with BookDecorator
   includes :category, :book_authors, :authors
@@ -52,8 +51,8 @@ ActiveAdmin.register Book do
           c.input :image, as: :hidden, input_html: { value: c.object.cached_image_data }
           c.input(
             :image,
-            as: :file, 
-            hint: c.object.image.present? ? image_tag(c.object.image_url(:thumbnail_large)) : content_tag(:span, 'No cover')
+            as: :file,
+            hint: c.object.image.present? ? image_tag(c.object.image_url(:small)) : content_tag(:span, 'No cover')
           )
         end
       end
@@ -61,4 +60,3 @@ ActiveAdmin.register Book do
     f.actions
   end
 end
-# rubocop:enable Metrics/BlockLength
