@@ -1,4 +1,7 @@
 en:
+  time:
+    formats:
+      short: '%d/%m/%y'
   books:
     show:
       back_to_results: Back to results

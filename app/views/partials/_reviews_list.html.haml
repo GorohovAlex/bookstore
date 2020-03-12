@@ -12,7 +12,7 @@
         .ml-70
           %div
             .general-message-date.hidden-xs
-              = review.decorate.created_at
+              = l review.created_at, format: :short
             .max-240
               .general-message-verified
                 = t(review.status)
