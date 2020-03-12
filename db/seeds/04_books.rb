@@ -3,8 +3,8 @@
   category    = Category.order('RANDOM()').first
   description = FFaker::Lorem.paragraph
   title       = FFaker::Book.title.delete(':')
-  price       = FFaker::Random.rand(20..120)
-  year        = FFaker::Random.rand(1981..2019)
+  price       = rand(20..120)
+  year        = rand(1981..2019)
   materials   = Material.order('RANDOM()').limit(rand(1..2))
   book_dimension = BookDimension.create(height: rand(5..10.0), width: rand(7..14.0), depth: rand(3..7.0))
 
