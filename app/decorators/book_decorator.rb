@@ -22,6 +22,6 @@ class BookDecorator < ApplicationDecorator
   end
 
   def reviews_approved
-    object.reviews.includes(:user).filter(&:approved?)
+    object.reviews.approved.includes(:user)
   end
 end
