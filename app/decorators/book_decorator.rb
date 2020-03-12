@@ -22,6 +22,6 @@ class BookDecorator < ApplicationDecorator
   end
 
   def main_cover_url
-    object.covers&.first&.image_url(:medium)
+    object.covers.first.image_url(:thumbnail_small)
   end
 end

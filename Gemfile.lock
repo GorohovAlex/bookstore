@@ -393,8 +393,6 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-i18n (2.0.1)
-      rubocop (~> 0.51)
     rubocop-performance (1.5.2)
       rubocop (>= 0.71.0)
     rubocop-rails (2.4.2)
@@ -550,7 +548,6 @@ DEPENDENCIES
   rspec (~> 3.9.0)
   rspec-rails (~> 4.0.0.beta4)
   rubocop (~> 0.76.0)
-  rubocop-i18n
   rubocop-performance (~> 1.5, >= 1.5.2)
   rubocop-rails (~> 2.4, >= 2.4.2)
   rubocop-rspec
