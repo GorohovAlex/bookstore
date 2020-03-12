@@ -8,9 +8,9 @@
         .mb-20
           %img.img-responsive{src: @book.main_cover_url}
         .images.clearfix
-          - @book.covers.each do |cover|
+          - @book.covers.drop(1).each do |cover|
             %a.img-link{ href: '#' }
-              %img{ src: cover.image_url }
+              %img{ src: cover.image_url(:small) }
     .col-sm-6
       %h1.mt-res-0
         = @book.name

@@ -28,7 +28,7 @@ PreCommit:
     enabled: true
 
   RuboCop:
-    enabled: false
+    enabled: true
     
   YamlSyntax:
     enabled: true

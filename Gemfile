@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'activeadmin'
 gem 'activeadmin_addons'
-gem "aws-sdk-s3", "~> 1.14"
+gem 'aws-sdk-s3', '~> 1.14'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'countries'
@@ -16,8 +16,10 @@ gem 'draper', '~> 3.1'
 gem 'ffaker', '~> 2.13'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'haml', '~> 5.1', '>= 5.1.2'
+gem 'image_processing'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'mini_magick'
 gem 'money-rails', '~> 1.13', '>= 1.13.3'
 gem 'omniauth-facebook'
 gem 'pagy', '~> 3.7', '>= 3.7.2'
@@ -33,8 +35,6 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
-gem 'image_processing'
-gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -64,6 +64,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
+  gem 'rubocop-i18n', require: false
   gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
   gem 'rubocop-rails', '~> 2.4', '>= 2.4.2', require: false
   gem 'rubocop-rspec', require: false

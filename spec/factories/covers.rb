@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :cover do
-    image_data { "MyText" }
+    image_data { 'MyText' }
   end
 end
