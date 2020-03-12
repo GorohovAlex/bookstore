@@ -6,9 +6,9 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: @book.main_cover_url}
+          %img.img-responsive{ src: @book.main_cover_url, style:'margin:auto' }
         .images.clearfix
-          - @book.covers.drop(1).each do |cover|
+          - @book.secondary_covers.each do |cover|
             %a.img-link{ href: '#' }
               %img{ src: cover.image_url(:small) }
     .col-sm-6
@@ -22,10 +22,10 @@
             = @book.price_show
         .col-xs-5.col-md-3
           .input-group.general-position
-            %a.input-link{href: "#", id:"quantity-minus"}
+            %a.input-link{ href: '#', id: 'quantity-minus' }
               %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text", id:"quantity-value", value: "1"}
-            %a.input-link{href: "#", id:"quantity-plus"}
+            %input.form-control.quantity-input{ type: 'text', id: 'quantity-value', value: '1' }
+            %a.input-link{ href: '#', id: 'quantity-plus' }
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
           %button.btn.btn-default.pull-right.general-position
