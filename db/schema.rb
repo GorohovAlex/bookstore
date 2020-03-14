@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_141433) do
+ActiveRecord::Schema.define(version: 2020_03_12_123046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 2020_03_03_141433) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "type", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.string "city"
-    t.string "zip"
-    t.string "country"
-    t.string "phone"
+    t.string "first_name", limit: 50, null: false
+    t.string "last_name", limit: 50, null: false
+    t.string "address", limit: 50, null: false
+    t.string "city", limit: 50, null: false
+    t.string "zip", limit: 10, null: false
+    t.string "country", limit: 50, null: false
+    t.string "phone", limit: 15, null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(version: 2020_03_03_141433) do
     t.index ["material_id"], name: "index_books_materials_on_material_id"
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "session_id"
+    t.bigint "book_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_cart_items_on_book_id"
+    t.index ["user_id"], name: "index_cart_items_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -137,4 +148,6 @@ ActiveRecord::Schema.define(version: 2020_03_03_141433) do
   add_foreign_key "books", "categories", on_delete: :nullify
   add_foreign_key "books_materials", "books", on_delete: :cascade
   add_foreign_key "books_materials", "materials", on_delete: :cascade
+  add_foreign_key "cart_items", "books"
+  add_foreign_key "cart_items", "users"
 end
