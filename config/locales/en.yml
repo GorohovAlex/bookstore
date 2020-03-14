@@ -14,6 +14,20 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
+  cart_items:
+    show:
+      apply_coupon: Apply Coupon
+      caption: Cart
+      checkout: Checkout
+      coupon: Coupon
+      coupon_label: Enter Your Coupon Code
+      coupon_placeholder: Enter Your Coupon Code
+      sub_total: SubTotal
+      price: Price
+      product: Product
+      order_summary: Order Summary
+      order_total: Order Total
+      quantity: Quantity
   address:
     create:
       successful_message: '%{type} update successful.'
@@ -50,6 +64,7 @@ en:
   partials:
     header:
       my_account: My Account
+      close: Close
     slider:
       buy_now: Buy Now
       previous: Previous

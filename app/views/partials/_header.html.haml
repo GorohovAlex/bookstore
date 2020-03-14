@@ -1,45 +1,48 @@
 %header.navbar.navbar-default
   .container
     .navbar-header
-      %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
+      %button.navbar-toggle.pull-left{ type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbar' }
         %span.sr-only
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand
         = t('site_name')
-      %a.shop-link.pull-right.visible-xs{href: "#"}
+      %a.shop-link.pull-right.visible-xs{ href: cart_items_path }
         %span.shop-icon
-          %span.shop-quantity 3
-    %a.shop-link.pull-right.hidden-xs{href: "#"}
+          %span.shop-quantity
+            = CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id)
+    %a.shop-link.pull-right.hidden-xs{ href: cart_items_path }
       %span.shop-icon
-        %span.shop-quantity 3
-    #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
+        %span.shop-quantity
+          = CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id)
+    #navbar.navbar-collapse.collapse.pl-30{ 'aria-expanded': 'false' }
       .visible-xs
-        %button.close{type: "button", 'aria-label': "Close"}
-          %span{'aria-hidden': "true"} &times;
+        %button.close{ type: 'button', 'aria-label': t('.close') }
+          %span{ 'aria-hidden': 'true' } &times;
         %ul.nav.navbar-nav
           %li
             = link_to(t('home'), root_path)
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
+            %a{ type: 'button', 'data-toggle': 'collapse', href: '#menu', 'aria-expanded': 'false', 'aria-controls': 'menu' }
               = t('shop')
-            %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+            %ul#menu.collapse.list-unstyled.pl-30.mb-10{ 'aria-expanded': 'false' }
               = render partial: 'partials/header_menu_categories_item', collection: Category.all.order(name: :asc)
           %li
-            %a{href: "#"}= t('.my_account')
+            %a{ href: '#' }
+              = t('.my_account')
       .hidden-xs
         %ul.nav.navbar-nav
           %li
             = link_to(t('home'), root_path)
           %li.dropdown
-            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+            %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
               = t('shop')
             %ul.dropdown-menu
               = render partial: 'partials/header_menu_categories_item', collection: Category.all
           %li
             - if user_signed_in?
-              %a.dropdown-toggle#user-email{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+              %a.dropdown-toggle#user-email{ href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
                 = current_user.email
               %ul.dropdown-menu
                 %li
@@ -47,7 +50,7 @@
                 %li
                   = link_to(t('log_out'), destroy_user_session_path, method: :delete)
             - else
-              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+              %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
                 = t('.my_account')
               %ul.dropdown-menu
                 %li

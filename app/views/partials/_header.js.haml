@@ -1,0 +1,4 @@
+:plain
+  $(document).ready(function() {    
+    $(".shop-quantity").html("#{j(CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id))}");
+  });
