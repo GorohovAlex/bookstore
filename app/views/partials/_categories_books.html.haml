@@ -8,8 +8,9 @@
             .general-thumb-link-wrap
               = link_to(book_path(book), class: 'thumb-hover-link') do
                 %i.fa.fa-eye.thumb-icon{ 'aria-hidden': 'true' }
-              %a.thumb-hover-link{ href: '#' }
-                %i.fa.fa-shopping-cart.thumb-icon
+              %span{ style: 'float:right' }
+                = link_to cart_items_path( 'cart_item[book_id]': book.id ), remote: true, class: 'thumb-hover-link', method: 'post' do
+                  %i.fa.fa-shopping-cart.thumb-icon
       .general-thumb-info
         %p.title
           = book.name

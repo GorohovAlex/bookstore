@@ -18,7 +18,7 @@
               %p.lead.small
                 = book.authors.collect { |author| "#{author.last_name} #{author.first_name}" }.join(', ')
               .general-align
-                %button.disabled.btn= t('.buy_now')
+                = button_to t('.buy_now'), cart_items_path, params: { 'cart_item[book_id]': book.id }, remote: true, class: 'btn'
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
     %span.sr-only= t('.previous')
