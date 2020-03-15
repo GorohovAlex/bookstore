@@ -15,18 +15,25 @@ en:
       filter_by_category: Filter by category
       sort_by: Sort by
   cart_items:
-    show:
+    index:
       apply_coupon: Apply Coupon
       caption: Cart
       checkout: Checkout
-      coupon: Coupon
+      summary_coupon: Coupon
       coupon_label: Enter Your Coupon Code
       coupon_placeholder: Enter Your Coupon Code
       sub_total: SubTotal
-      price: Price
-      product: Product
       order_summary: Order Summary
       order_total: Order Total
+    cart_item_table:
+      price: Price
+      product: Product
+      sub_total: SubTotal
+      quantity: Quantity
+    cart_item_grid:
+      price: Price
+      product: Product
+      sub_total: SubTotal
       quantity: Quantity
   address:
     create:

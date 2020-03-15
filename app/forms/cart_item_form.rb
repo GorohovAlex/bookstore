@@ -19,7 +19,7 @@ class CartItemForm < BaseForm
 
   def persist!
     params = cart_item_params
-    params[:quantity] += record.attributes["quantity"] || 0
+    params[:quantity] += record.attributes['quantity'] || 0
     record.assign_attributes(params)
     record.save
   end
@@ -27,8 +27,8 @@ class CartItemForm < BaseForm
   def record_params
     params = {}
     params[:book_id] = book_id
-    
-    if user_id.nil? 
+
+    if user_id.nil?
       params[:session_id] = session_id
     else
       params[:user_id] = user_id
@@ -38,11 +38,11 @@ class CartItemForm < BaseForm
   end
 
   def cart_item_params
-  {
-    book_id: book_id,
-    user_id: user_id,
-    quantity: quantity,
-    session_id: session_id
-  }
+    {
+      book_id: book_id,
+      user_id: user_id,
+      quantity: quantity,
+      session_id: session_id
+    }
   end
 end
