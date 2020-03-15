@@ -4,33 +4,15 @@
   .visible-xs
     = render partial: 'cart_item_grid', collection: @cart_items
   .hidden-xs
-    %table.table.table-hover
-      %tr.no-hover
-        %th.col-pic.pl-0
-          %span.in-grey-600
-            = t('.product')
-        %th.col-title
-        %th.col-price
-          %span.in-grey-600
-            = t('.price')
-        %th.col-quantity
-          %span.in-grey-600
-            = t('.quantity')
-        %th.col-total
-          %span.in-grey-600
-            = t('.sub_total')
-        %th.col-close
-      = render partial: 'cart_item_line', collection: @cart_items
+    = render partial: 'cart_item_table', object: @cart_items
   .general-order-wrap
     .row
       .col-sm-4
-        .input-group.general-input-group
-          %label.input-label
-            = t('.coupon_label')
-          %input.form-control.mb-30{ type: 'text', placeholder: t('.coupon_placeholder') }
-          %div
-            %button.btn.btn-primary.mr-5.mb-15
-              = t('.apply_coupon')
+        = simple_form_for :coupon, url: cart_items_path, method: 'get', remote: true do |f|
+          .input-group.general-input-group
+            = f.input :coupon, label: t('.coupon_label'), label_html: { class: 'input-label' }, input_html: { class: 'mb-30' , placeholder: t('.coupon_placeholder'), name: 'coupon', value: @coupon}
+            %div
+              = f.button :submit, t('.apply_coupon'), class: 'btn btn-primary mr-5 mb-15', name: nil
       .col-sm-8
         .res-mr-200.text-center.general-text-right
           %p.in-gold-500.font-18
@@ -41,23 +23,24 @@
                 %p.font-16
                   = t('.sub_total') + ':'
               %td
-                %p.font-16
-                  €
+                %p.font-16#sub-total
                   = @cart_sub_total
             %tr
               %td
                 %p.font-16
-                  = t('.coupon') + ':'
+                  = t('.summary_coupon') + ':'
               %td
-                %p.font-16 €0.00
+                %p.font-16#coupon
+                  = @discount
             %tr
               %td
                 %strong.font-18
                   = t('.order_total') + ':'
               %td
-                %strong.font-18 €0.0
+                %strong.font-18#order-total
+                  = @order_total
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
   %button.btn.btn-default.mb-20.hidden-xs.center-block
     = t('.checkout')
-= console
+= javascript_pack_tag 'cart_items/index'

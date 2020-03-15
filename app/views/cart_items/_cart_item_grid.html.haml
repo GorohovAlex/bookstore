@@ -1,18 +1,22 @@
-.general-cart-item.divider-lg-bottom
+.general-cart-item.divider-lg-bottom#cart-items-grid
   %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
     %span{'aria-hidden': "true"} &times;
   .general-img-wrap-table
-    %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-  %p.title Android Programming for Beginners
+    = image_tag 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book', class: 'cart-img-shadow'
+  %p.title
+    = link_to cart_item_grid.book.name, url_for(cart_item_grid.book)
   %table.table
     %tr
       %td
-        %span.in-grey-600 Price
+        %span.in-grey-600
+          = t('.price')
       %td
-        %span.font-16.in-gold-500 €28.50
+        %span.font-16.in-gold-500
+          = cart_item_grid.book.decorate.price_show
     %tr
       %td.vertical-middle
-        %span.in-grey-600 Quantity
+        %span.in-grey-600
+          = t('.quantity')
       %td
         .input-group
           %a.input-link{href: "#"}
@@ -22,6 +26,8 @@
             %i.fa.fa-plus.line-heaght-40
     %tr
       %td
-        %span.in-grey-600 SubTotal
+        %span.in-grey-600
+          = t('.sub_total')
       %td
-        %span.font-16.in-gold-500 €32.90
+        %span.font-16.in-gold-500
+          = humanized_money_with_symbol cart_item_grid.quantity * cart_item_grid.book.price

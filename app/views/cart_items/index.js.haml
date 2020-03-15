@@ -1,0 +1,9 @@
+:plain
+  $(document).ready(function() {    
+    $(".shop-quantity").html("#{j(CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id))}");
+    $("#cart-items-table").html("#{j(render partial: 'cart_item_table', object: @cart_items)}");
+    $("#cart-items-table").html("#{j(render partial: 'cart_item_table', object: @cart_items)}");
+    $("#sub-total").html("#{j(@cart_sub_total)}");
+    $("#coupon").html("#{j(@discount)}");
+    $("#order-total").html("#{j(@order_total)}");
+  });

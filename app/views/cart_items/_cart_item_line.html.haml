@@ -2,7 +2,7 @@
   %td
     .general-img-wrap-table
       = link_to url_for(cart_item_line.book) do
-        %img.cart-img-shadow.pull-left{ src: 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book' }
+        = image_tag 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book', class: 'cart-img-shadow pull-left'
   %td
     %p.title
       = link_to cart_item_line.book.name, url_for(cart_item_line.book)
@@ -12,14 +12,18 @@
   %td
     -# = render partial: 'partials/counter', locals: { f: f, quantity: cart_item_line.quantity }
     .input-group
-      %a.input-link{ href: '#' }
-        %i.fa.fa-minus.line-heaght-40
-      %input.form-control.quantity-input{ type: 'text', value: cart_item_line.quantity }
-      %a.input-link{href: '#' }
-        %i.fa.fa-plus.line-heaght-40
+      = simple_form_for cart_item_line, method: 'PATCH', remote: true, authenticity_token: true do |f|
+        %a.input-link.quantity-minus{ href: '#' }
+          %i.fa.fa-minus.line-height-40
+        = f.input_field :quantity, class: 'form-control quantity-input', value: cart_item_line.quantity, as: :string, id: nil
+        %a.input-link.quantity-plus{ href: '#' }
+          %i.fa.fa-plus.line-height-40
   %td
     %span.font-16.in-gold-500
       = humanized_money_with_symbol cart_item_line.quantity * cart_item_line.book.price
   %td
-    %button.close.general-cart-close{ type: 'button', 'aria-label': 'Close' }
+    = button_to cart_item_path(cart_item_line.id), method: 'delete', remote: true, class: 'close general-cart-close' do
       %span{'aria-hidden': 'true'} &times;
+    -# %button.close.general-cart-close{ type: 'button', 'aria-label': 'Close' }
+      %span{'aria-hidden': 'true'} &times;
+
