@@ -1,7 +1,7 @@
 .col-sm-6.col-md-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      %img.img-shadow.general-thumbnail-img{ src: book_item.main_cover_url, alt: 'design-book' }
+      = image_tag book_item.main_cover_url, class: 'img img-shadow general-thumbnail-img', alt: 'design-book'
       .thumb-hover
         .general-thumb-link-wrap
           %a.thumb-hover-link{ href: '#' }
