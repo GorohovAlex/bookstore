@@ -1,7 +1,7 @@
 class BookDecorator < ApplicationDecorator
   delegate_all
 
-  DEFAULT_COVER_URL = 'https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg'
+  DEFAULT_COVER_URL = 'https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg'.freeze
 
   def authors_show
     object.authors.collect { |author| "#{author.last_name} #{author.first_name}" }.join(', ')
