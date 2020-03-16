@@ -64,7 +64,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', '~> 0.52.1'
   gem 'rubocop', '~> 0.76.0', require: false
-  gem 'rubocop-i18n', require: false
   gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
   gem 'rubocop-rails', '~> 2.4', '>= 2.4.2', require: false
   gem 'rubocop-rspec', require: false
