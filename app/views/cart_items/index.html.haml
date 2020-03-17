@@ -24,21 +24,21 @@
                   = t('.sub_total') + ':'
               %td
                 %p.font-16#sub-total
-                  = @cart_sub_total
+                  = humanized_money_with_symbol @cart_sub_total
             %tr
               %td
                 %p.font-16
                   = t('.summary_coupon') + ':'
               %td
                 %p.font-16#coupon
-                  = @discount
+                  = humanized_money_with_symbol @discount
             %tr
               %td
                 %strong.font-18
                   = t('.order_total') + ':'
               %td
                 %strong.font-18#order-total
-                  = @order_total
+                  = humanized_money_with_symbol @order_total
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
   %button.btn.btn-default.mb-20.hidden-xs.center-block

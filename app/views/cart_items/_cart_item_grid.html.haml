@@ -18,12 +18,7 @@
         %span.in-grey-600
           = t('.quantity')
       %td
-        .input-group
-          %a.input-link{href: "#"}
-            %i.fa.fa-minus.line-heaght-40
-          %input.form-control.quantity-input{type: "text"}
-          %a.input-link{href: "#"}
-            %i.fa.fa-plus.line-heaght-40
+        = render partial: 'counter', object: cart_item_grid
     %tr
       %td
         %span.in-grey-600

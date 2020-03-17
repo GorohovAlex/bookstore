@@ -10,20 +10,10 @@
     %span.font-16.in-gold-500
       = cart_item_line.book.decorate.price_show
   %td
-    -# = render partial: 'partials/counter', locals: { f: f, quantity: cart_item_line.quantity }
-    .input-group
-      = simple_form_for cart_item_line, method: 'PATCH', remote: true, authenticity_token: true do |f|
-        %a.input-link.quantity-minus{ href: '#' }
-          %i.fa.fa-minus.line-height-40
-        = f.input_field :quantity, class: 'form-control quantity-input', value: cart_item_line.quantity, as: :string, id: nil
-        %a.input-link.quantity-plus{ href: '#' }
-          %i.fa.fa-plus.line-height-40
+    = render partial: 'counter', object: cart_item_line
   %td
     %span.font-16.in-gold-500
       = humanized_money_with_symbol cart_item_line.quantity * cart_item_line.book.price
   %td
     = button_to cart_item_path(cart_item_line.id), method: 'delete', remote: true, class: 'close general-cart-close' do
-      %span{'aria-hidden': 'true'} &times;
-    -# %button.close.general-cart-close{ type: 'button', 'aria-label': 'Close' }
-      %span{'aria-hidden': 'true'} &times;
-
+      %span{ 'aria-hidden': 'true' } &times;
