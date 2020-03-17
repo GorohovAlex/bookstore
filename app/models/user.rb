@@ -34,4 +34,12 @@ class User < ApplicationRecord
       user.image = auth.info.image
     end
   end
+
+  # def active_for_authentication?
+  #   super && self.your_method_for_checking_active # i.e. super && self.is_active
+  # end
+  
+  # def inactive_message
+  #   "Sorry, this account has been deactivated."
+  # end
 end
