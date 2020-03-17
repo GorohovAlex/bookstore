@@ -15,5 +15,6 @@
     .dropdown
       = render partial:'partials/sorting_select', locals: { dropdown_style: '', sort_selected: params[:sort] }
   .mb-120
-    = render 'partials/categories_books'
-    = render 'partials/next_link'
+    .row{ id: 'records_table', style: 'display:-webkit-box; display:-ms-flexbox; display:flex; -ms-flex-wrap:wrap; flex-wrap:wrap' }
+      = render partial: 'partials/categories_books', collection: @books, as: :book
+    = render partial: 'partials/next_link'

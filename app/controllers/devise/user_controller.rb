@@ -17,7 +17,7 @@ module Devise
 
     def create
       super
-      CartItemService.new(user_id: current_user.id, session_id: session.id.to_s).join_cart_items
+      CartItemService.new(user_id: current_user&.id, session_id: session.id.to_s).join_cart_items
     end
 
     private

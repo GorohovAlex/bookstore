@@ -15,9 +15,9 @@
           %a.img-link{href: "#"}
             %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
     .col-sm-6
-      %h1.mt-res-0
+      %h1.mt-res-0#name
         = @book.name
-      %p.lead.small
+      %p.lead.small#authors
         = @book.authors_show
       .row
         = simple_form_for :cart_item, url: cart_items_path, remote:true do |f|
@@ -28,9 +28,9 @@
           .col-xs-5.col-md-3
             = render partial: 'partials/counter', locals: { f: f, quantity: 1 }
           .col-xs-7.col-md-5
-            = f.submit t('add_to_cart'), class: 'btn btn-default pull-right general-position'
+            = f.submit t('add_to_cart'), class: 'btn btn-default pull-right general-position', id: 'button_add_to_cart'
       .general-info-wrap.divider-lg
-        %p
+        %p#description
           = t('.description')
         %p.lead.small.line-height-2
           - if @book.description.size <= Book::DESCRIPTION_SHORT_LENGTH
@@ -41,7 +41,7 @@
         .clearfix
           %p.pull-left
             = t('.year_of_publication')
-          %p.lead.small.pull-right
+          %p.lead.small.pull-right#year_of_publication
             = @book.year_of_publication 
       .general-info-wrap.divider-lg
         .clearfix
@@ -53,7 +53,7 @@
         .clearfix
           %p.pull-left
             = t('.materials')
-          %p.lead.small.pull-right
+          %p.lead.small.pull-right#materials
             = @book.materials_show
   .mb-80
     = render partial: 'partials/reviews_write'

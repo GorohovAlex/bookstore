@@ -1,21 +1,19 @@
-.row{ id: 'records_table', style: 'display:-webkit-box; display:-ms-flexbox; display:flex; -ms-flex-wrap:wrap; flex-wrap:wrap' }
-  - @books.each do |book|
-    .col-xs-6.col-sm-3
-      .general-thumb-wrap
-        .thumbnail.general-thumbnail
-          %img.img-shadow.general-thumbnail-img{ src: 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book' }
-          .thumb-hover
-            .general-thumb-link-wrap
-              = link_to(book_path(book), class: 'thumb-hover-link') do
-                %i.fa.fa-eye.thumb-icon{ 'aria-hidden': 'true' }
-              %span{ style: 'float:right' }
-                = link_to cart_items_path( 'cart_item[book_id]': book.id ), remote: true, class: 'thumb-hover-link', method: 'post' do
-                  %i.fa.fa-shopping-cart.thumb-icon
-      .general-thumb-info
-        %p.title
-          = book.name
-        %p.font-16.in-gold-500
-          = book.price_show
-        %span.divider-sm
-        %p.lead.small
-          = book.authors_show
+.col-xs-6.col-sm-3.book-item
+  .general-thumb-wrap
+    .thumbnail.general-thumbnail
+      %img.img-shadow.general-thumbnail-img{ src: 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book' }
+      .thumb-hover
+        .general-thumb-link-wrap
+          = link_to(book_path(book), class: 'thumb-hover-link') do
+            %i.fa.fa-eye.thumb-icon{ 'aria-hidden': 'true' }
+          %span{ style: 'float:right' }
+            = link_to cart_items_path( 'cart_item[book_id]': book.id ), remote: true, class: 'thumb-hover-link', method: 'post' do
+              %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.title
+      = book.name
+    %p.font-16.in-gold-500
+      = book.price_show
+    %span.divider-sm
+    %p.lead.small
+      = book.authors_show
