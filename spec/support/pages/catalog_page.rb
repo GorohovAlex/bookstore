@@ -1,7 +1,8 @@
 require_relative 'base_page'
+require_relative 'sections/book_grid_section'
 
-class BookPage < BasePage
+class CatalogPage < BasePage
   set_url '/catalog'
-
-  section :books_items, BookItemSection, '#book-item'
+  sections :books_items, BookGridSection, '.book-item'
+  element  :button_more, '#next_link'
 end

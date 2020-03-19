@@ -28,7 +28,10 @@ describe 'Book page', type: :feature do
 
   describe 'Click to Add to cart' do
     it 'shoult increment the quantity items cart icon' do
-      expect { book_page.button_add_to_cart.click }.to change { book_page.cart_count_icon.text.to_i }.by(1)
+      expect do
+        book_page.button_add_to_cart.click
+        sleep 1
+      end.to change { book_page.cart_count_icon.text.to_i }.by(1)
     end
   end
 end

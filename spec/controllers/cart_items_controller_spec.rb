@@ -2,6 +2,11 @@ RSpec.describe CartItemsController do
   let(:cart_item_new) { build(:cart_item) }
   let(:cart_item) { create(:cart_item) }
 
+  before do
+    cart_item_new.session_id = session.id
+    cart_item.session_id = session.id
+  end
+
   describe 'GET #index' do
     it 'renders the index template' do
       get :index

@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include OmniAuthTestHelper, type: :controller
   config.include Warden::Test::Helpers, type: :feature
+  config.include MoneyRails::ActionViewExtension, type: :feature
   config.filter_rails_from_backtrace!
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
