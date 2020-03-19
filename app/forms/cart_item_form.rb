@@ -1,10 +1,12 @@
 class CartItemForm < BaseForm
+  DEFAULT_CART_ITEM_COUNT = 1
+
   MODEL_CLASS = 'CartItem'.freeze
 
   attribute :book_id,    Integer
   attribute :user_id,    Integer
   attribute :session_id, Integer
-  attribute :quantity,   Integer, default: 1
+  attribute :quantity,   Integer, default: DEFAULT_CART_ITEM_COUNT
 
   validates :book_id,    presence: true
   validates :session_id, presence: true

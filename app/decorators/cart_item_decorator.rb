@@ -5,4 +5,3 @@ class CartItemDecorator < ApplicationDecorator
     object.quantity * object.book.price
   end
 end
-

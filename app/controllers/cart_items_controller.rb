@@ -35,7 +35,7 @@ class CartItemsController < ApplicationController
   private
 
   def quantity
-    params[:cart_item][:quantity].to_i.positive? ? params[:cart_item][:quantity] : 1
+    params[:cart_item][:quantity].to_i.positive? ? params[:cart_item][:quantity] : CartItemForm::DEFAULT_CART_ITEM_COUNT
   end
 
   def cart_item_params
