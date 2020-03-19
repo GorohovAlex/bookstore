@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
   end
 
   create_table "coupons", force: :cascade do |t|
-    t.string "value"
+    t.string "name"
     t.integer "count"
     t.integer "discount"
     t.boolean "enabled"

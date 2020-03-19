@@ -3,7 +3,7 @@ module Coupons
     def self.call(coupon: nil)
       return 0 if coupon.nil?
 
-      (Coupon.find_by(value: coupon)&.discount || 0) * -1
+      (Coupon.find_by(name: coupon)&.discount || 0) * -1
     end
   end
 end
