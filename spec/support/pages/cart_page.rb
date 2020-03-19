@@ -6,7 +6,7 @@ class CartPage < BasePage
   set_url '/cart'
 
   sections :cart_items,          CartItemLineSection, '.cart-line-item'
-  section  :coupon,              CouponSection,      'form.coupon'
+  section  :coupon,              CouponSection, 'form.coupon'
   element  :summary_sub_total,   '#sub-total'
   element  :summary_coupon,      '#coupon'
   element  :summary_order_total, '#order-total'

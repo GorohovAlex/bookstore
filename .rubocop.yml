@@ -39,6 +39,9 @@ RSpec/DescribeClass:
 RSpec/MessageChain:
   Enabled: false
 
+RSpec/LetSetup:
+  Enabled: false
+
 RSpec/NestedGroups:
   Max: 5
 
