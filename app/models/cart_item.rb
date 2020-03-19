@@ -1,4 +1,4 @@
 class CartItem < ApplicationRecord
-  belongs_to :user
+  has_one :user
   belongs_to :book
 end

@@ -1,4 +1,4 @@
-%tr
+%tr.cart-line-item
   %td
     .general-img-wrap-table
       = link_to url_for(cart_item_line.book) do
@@ -7,12 +7,12 @@
     %p.title
       = link_to cart_item_line.book.name, url_for(cart_item_line.book)
   %td
-    %span.font-16.in-gold-500
+    %span.font-16.in-gold-500.cart-item-price
       = cart_item_line.book.decorate.price_show
   %td
     = render partial: 'counter', object: cart_item_line
   %td
-    %span.font-16.in-gold-500
+    %span.font-16.in-gold-500.cart-item-sub-total
       = humanized_money_with_symbol cart_item_line.quantity * cart_item_line.book.price
   %td
     = button_to cart_item_path(cart_item_line.id), method: 'delete', remote: true, class: 'close general-cart-close' do
