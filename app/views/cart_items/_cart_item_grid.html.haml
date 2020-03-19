@@ -25,4 +25,4 @@
           = t('.sub_total')
       %td
         %span.font-16.in-gold-500
-          = humanized_money_with_symbol cart_item_grid.quantity * cart_item_grid.book.price
+          = humanized_money_with_symbol cart_item_grid.decorate.sub_total
