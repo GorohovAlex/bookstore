@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   end
 
   get 'catalog', to: 'page#catalog'
+  get 'checkout_email_login', to: 'page#checkout_email_login'
   root 'page#home'
 end
