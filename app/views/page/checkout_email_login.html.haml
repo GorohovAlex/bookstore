@@ -2,32 +2,32 @@
   .row
     .col-md-5.mb-40
       .text-center
-        %h3.general-subtitle Returning Customer
-        %a.general-login-icon{href: "#"}
-          %i.fa.fa-facebook-official
-        %p.general-login-text or
-      %form.general-form
+        %h3.general-subtitle
+          = t('.returning_customer')
+        = render 'devise/partials/social_buttons'
+        %p.general-login-text
+          = t('.or')
+      = simple_form_for :user, html: { class: 'general-form' }, url: session_path(:user) do |f|
         .mb-40
-          %p.mb-15 Log In with Password
-          .form-group.mb-30
-            %label.control-label.input-label{for: "email"} Enter Email
-            %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
-          .form-group.mb-30
-            %label.control-label.input-label{for: "password"} Password
-            %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
-            %a.help-block.in-gold-500{href: "#"} Forgot password?
-        %button.btn.disabled.mb-20 Log In with Password
+          %p.mb-15
+            = t('.log_in_with_password')
+          = f.input :email, label_html: { class: 'control-label input-label' }, label: t('.email_label'), placeholder: t('.email_placeholder')
+          = f.input :password, label_html: { class: 'control-label input-label' }, label: t('.password_label'), placeholder: t('.password_placeholder')
+          = link_to(t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500', id: 'forgot_password')
+        = f.submit t('.log_in'), class: 'btn btn-default mb-20', id: 'user_submit'
     .col-md-5.col-md-offset-1.mb-60
       .text-center
-        %h3.general-subtitle New Customer
-        %a.general-login-icon{href: "#"}
-          %i.fa.fa-facebook-official
-        %p.general-login-text or
-      %form.general-form
+        %h3.general-subtitle
+          = t('.new_customer')
+        = render 'devise/partials/social_buttons'
+        %p.general-login-text
+          = t('.or')
+      = simple_form_for :quick_registrate, url: user_registration_path, html: { method: :post, class: 'general-form' } do |f|
         .mb-40
-          %p.mb-5 Quik Register
-          %p.general-info-text.font-12.mb-20 You’ll be able to create password later
+          %p.mb-5
+            = t('.quick_registrate')
+          %p.general-info-text.font-12.mb-20
+            = t('.quick_registrate_message')
           .form-group.mb-30
-            %label.control-label.input-label{for: "email"} Enter Email
-            %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
-        %button.btn.disabled.mb-20 Continue to Checkout
+            = f.input :email, class: 'control-label input-label', label: t('.email_label'), placeholder: t('.email_placeholder')
+        = f.submit t('.continue_to_checkout'), class: 'btn btn-default mb-20', id: 'quick_registrate_submit'
