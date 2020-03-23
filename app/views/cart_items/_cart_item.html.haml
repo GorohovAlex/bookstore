@@ -38,5 +38,5 @@
                   = humanized_money_with_symbol order_total
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
-  = button_to t('.checkout'), checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get', id: 'checkout'
+  = button_to t('.checkout'), new_checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get', id: 'checkout'
 = javascript_pack_tag 'cart_items/index'

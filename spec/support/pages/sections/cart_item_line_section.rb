@@ -1,3 +1,5 @@
+require_relative 'counter_section'
+
 class CartItemLineSection < SitePrism::Section
   element :image,     '.cart-img-shadow'
   element :name,      '.title > a'

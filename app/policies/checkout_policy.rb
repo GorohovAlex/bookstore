@@ -1,5 +1,5 @@
 class CheckoutPolicy < ApplicationPolicy
-  def show?
-    user.present? # && record.user_id.eql?(user.id)
+  def new?
+    user.present?
   end
 end

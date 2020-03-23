@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :books, only: [:show]
   resources :cart_items, path: 'cart'
-  resource  :checkout
+  resources :checkouts
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',

@@ -1,12 +1,12 @@
 class CheckoutsController < ApplicationController
-  before_action :authorize_resource, only: %i[show]
+  before_action :authorize_resource, only: %i[new]
 
-  def show; end
+  def new; end
 
   private
 
   def authorize_resource
-    authorize Checkout.new
+    authorize Checkout
   end
 
   def user_not_authorized

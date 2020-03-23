@@ -56,7 +56,7 @@ module Devise
     def quick_sing_in
       resource.send_reset_password_instructions
       sign_up(resource_name, resource)
-      redirect_to checkout_path
+      redirect_to new_checkout_path
     end
 
     def quick_registrate?
