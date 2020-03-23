@@ -12,6 +12,7 @@ class PageController < ApplicationController
   end
 
   def checkout_email_login
+    authorize :page
   end
 
   private
