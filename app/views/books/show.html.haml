@@ -63,8 +63,9 @@
     - if policy(@book.reviews).create?
       %h3
         = t('.review_caption')
-      .mb-15#review_form
-      = render partial: 'partials/review_write', locals: { review: @review }
+      .mb-15
+      #review_form
+        = render partial: 'partials/review_write', locals: { review: @review }
   .mb-80#reviews
     = render partial: 'partials/reviews_list', object: @book.reviews_approved
 = javascript_pack_tag 'books/show'

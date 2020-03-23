@@ -45,6 +45,9 @@ describe 'Book page', type: :feature do
     end
 
     it 'invalid data' do
+      book_page.review_form.submit.click
+      expect(book_page.review_form.title).to have_error
+      expect(book_page.review_form.review).to have_error
     end
   end
 end
