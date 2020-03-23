@@ -51,6 +51,6 @@ class CartItemsController < ApplicationController
     @coupon = cookies[:coupon]
     @discount = Coupons::Discount.call(coupon: @coupon).to_money
     @cart_sub_total = CartItems::SubTotal.call(user_id: current_user&.id, session_id: session.id.to_s)
-    @order_total = @cart_sub_total + @discount
+    @order_total = @cart_sub_total < @discount ? @cart_sub_total + @discount : 0
   end
 end
