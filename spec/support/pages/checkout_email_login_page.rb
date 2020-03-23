@@ -1,3 +1,5 @@
+require_relative 'sections/form_group_input_section'
+
 class CheckoutEmailLoginPage < BasePage
   set_url '/checkout_email_login'
 
