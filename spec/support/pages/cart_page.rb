@@ -10,4 +10,5 @@ class CartPage < BasePage
   element  :summary_sub_total,   '#sub-total'
   element  :summary_coupon,      '#coupon'
   element  :summary_order_total, '#order-total'
+  element  :checkout_button,     '#checkout'
 end

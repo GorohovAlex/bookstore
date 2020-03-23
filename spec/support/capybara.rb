@@ -2,6 +2,7 @@ require 'capybara/rspec'
 require 'selenium-webdriver'
 require 'site_prism'
 require 'site_prism/all_there'
+require 'rack_session_access/capybara'
 
 RSpec.configure do |_config|
   Capybara.register_driver :site_prism do |app|
