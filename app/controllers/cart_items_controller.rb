@@ -48,9 +48,24 @@ class CartItemsController < ApplicationController
   end
 
   def cart_total_values
-    @coupon = cookies[:coupon]
-    @discount = Coupons::Discount.call(coupon: @coupon).to_money
+    discount
+    cart_sub_total
+    order_total
+  end
+
+  def discount
+    @discount = Coupons::Discount.call(coupon: coupon).to_money
+  end
+
+  def cart_sub_total
     @cart_sub_total = CartItems::SubTotal.call(user_id: current_user&.id, session_id: session.id.to_s)
-    @order_total = CartItems::OrderTotal.call(user_id: current_user&.id, session_id: session.id.to_s, coupon: @coupon)
+  end
+
+  def order_total
+    @order_total = CartItems::OrderTotal.call(user_id: current_user&.id, session_id: session.id.to_s, coupon: coupon)
+  end
+
+  def coupon
+    @coupon ||= cookies[:coupon]
   end
 end
