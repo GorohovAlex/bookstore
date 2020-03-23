@@ -1,3 +1,4 @@
+require_relative 'base_page'
 require_relative 'sections/form_group_input_section'
 
 class CheckoutEmailLoginPage < BasePage
