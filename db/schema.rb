@@ -121,8 +121,10 @@ ActiveRecord::Schema.define(version: 2020_03_20_082421) do
   end
 
   create_table "checkouts", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_checkouts_on_user_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -164,4 +166,5 @@ ActiveRecord::Schema.define(version: 2020_03_20_082421) do
   add_foreign_key "books_materials", "materials", on_delete: :cascade
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
+  add_foreign_key "checkouts", "users"
 end
