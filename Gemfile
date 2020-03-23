@@ -48,6 +48,7 @@ group :test do
   gem 'capybara', '~> 3.30'
   gem 'capybara-screenshot'
   gem 'chromedriver-helper'
+  gem 'rack_session_access'
   gem 'selenium-webdriver'
   gem 'site_prism', '~> 3.4', '>= 3.4.2'
   gem 'webdrivers'
