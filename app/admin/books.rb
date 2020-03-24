@@ -30,7 +30,7 @@ ActiveAdmin.register Book do
   end
 
   permit_params :name, :price, :price_currency, :description, :year_of_publication, :category_id, :book_dimension,
-                :materials, :authors, author_ids: [], material_ids: []
+                :materials, :authors, author_ids: [], material_ids: [], covers_attributes: %i[id image _destroy]
 
   form do |f|
     f.semantic_errors
@@ -45,6 +45,17 @@ ActiveAdmin.register Book do
         t.input :height
         t.input :width
         t.input :depth
+      end
+
+      f.inputs multiple: true do
+        f.has_many :covers, allow_destroy: true do |c|
+          c.input :image, as: :hidden, input_html: { value: c.object.cached_image_data }
+          c.input(
+            :image,
+            as: :file,
+            hint: c.object.image.present? ? image_tag(c.object.image_url(:small)) : content_tag(:span, 'No cover')
+          )
+        end
       end
     end
     f.actions

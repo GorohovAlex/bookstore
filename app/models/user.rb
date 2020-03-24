@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :cart_item
   has_many :checkouts
 
+  has_many :reviews, dependent: :destroy
+
   def self.new_with_session(params, session)
     super.tap do |user|
       data = session['devise.facebook_data']

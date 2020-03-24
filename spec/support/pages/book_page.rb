@@ -1,5 +1,7 @@
 require_relative 'base_page'
 require_relative 'sections/counter_section'
+require_relative 'sections/review_form_section'
+require_relative 'sections/reviews_section'
 
 class BookPage < BasePage
   set_url '/books{/id}'
@@ -12,4 +14,6 @@ class BookPage < BasePage
   element :description,         '#description'
   element :year_of_publication, '#year_of_publication'
   element :materials,           '#materials'
+  section :review_form,          ReviewFormSection, '#new_review_form'
+  section :reviews,              ReviewsSection, '#reviews'
 end
