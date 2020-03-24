@@ -16,7 +16,6 @@ class User < ApplicationRecord
   has_one  :shipping_address, dependent: :destroy
   has_one  :billing_address,  dependent: :destroy
   has_many :cart_item
-  has_many :checkouts
 
   has_many :reviews, dependent: :destroy
 
