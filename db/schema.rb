@@ -129,10 +129,31 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "covers", force: :cascade do |t|
+    t.bigint "book_id"
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_covers_on_book_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "review", null: false
+    t.integer "rating", null: false
+    t.integer "status", default: 0, null: false
+    t.bigint "book_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -159,4 +180,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
   add_foreign_key "books_materials", "materials", on_delete: :cascade
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
+  add_foreign_key "covers", "books", on_delete: :cascade
+  add_foreign_key "reviews", "books", on_delete: :cascade
+  add_foreign_key "reviews", "users", on_delete: :cascade
 end

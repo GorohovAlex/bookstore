@@ -1,4 +1,7 @@
 en:
+  time:
+    formats:
+      short: '%d/%m/%y'
   books:
     show:
       back_to_results: Back to results
@@ -9,6 +12,7 @@ en:
       year_of_publication: Year of publication
       read_more: Read more
       read_less: Read less
+      review_caption: Write a Review
   page:
     catalog:
       title: Catalog
@@ -58,9 +62,15 @@ en:
   sign_up: Sign up
   log_in: Log in
   log_out: Log out
+  unprocessed: Unprocessed
+  approved: Approved
+  rejected: Rejected
   settings: Settings
   previous: Previous
   orders: Orders
+  reviews:
+    create:
+      successful_message: Thanks for Review. It will be published as soon as Admin will approve it.
   sort_list:
     newest_first: Newest first
     popular_first: Popular first
@@ -76,3 +86,10 @@ en:
       buy_now: Buy Now
       previous: Previous
       next: Next
+    reviews_list:
+      reviews_count: Reviews (%{count})
+    review_write:
+      score: Score
+      title: Title
+      post: Post
+      review: Review

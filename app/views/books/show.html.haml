@@ -6,14 +6,11 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+          = image_tag @book.main_cover_url, class: 'img-responsive', style: 'margin:auto'
         .images.clearfix
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+          - @book.secondary_covers.each do |cover|
+            %a.img-link{ href: '#' }
+              = image_tag cover.image_url(:small), class: 'img'
     .col-sm-6
       %h1.mt-res-0#name
         = @book.name
@@ -56,7 +53,12 @@
           %p.lead.small.pull-right#materials
             = @book.materials_show
   .mb-80
-    = render partial: 'partials/reviews_write'
-  .mb-80
-    = render partial: 'partials/reviews_list'
+    - if policy(@book.reviews).create?
+      %h3
+        = t('.review_caption')
+      .mb-15
+      #review_form
+        = render partial: 'partials/review_write', locals: { review: @review }
+  .mb-80#reviews
+    = render partial: 'partials/reviews_list', object: @book.reviews_approved
 = javascript_pack_tag 'books/show'

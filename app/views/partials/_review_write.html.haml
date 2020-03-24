@@ -1,0 +1,16 @@
+= simple_form_for review, url: book_reviews_path(review.book_id), remote: true, html: { class: 'row' }, input_html: {multipart: true}, method: :post do |f|
+  .col-md-8
+    = t('.score')
+    %p.general-info-text#rating
+      = f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline, checked: 1 do |b|
+        = b.radio_button(class: 'hidden') + b.label do
+          %i.fa.fa-star.rate-empty
+  .col-md-8
+    .mb-40
+      .form-group
+        = f.input :title, label_html: { class: 'input-label in-grey-600' }, wrapper_html: { class: 'title-group' }
+      .form-group.review_form_review
+        = f.input :review, as: :text, label_html: { class: 'input-label in-grey-600' }, wrapper_html: { class: 'review-group' }
+    .text-right
+      = f.submit t('.post'), class: 'btn mb-20'
+= javascript_pack_tag 'partials/review_write'

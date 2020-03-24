@@ -1,0 +1,7 @@
+:plain
+  $(document).ready(function() {    
+    var flash_notice = $("#notice");
+    flash_notice.html("#{j(notice)}");
+    flash_notice.css('display', flash_notice.text().length == 0 ? 'none' : 'block')
+    $("#review_form").html("#{j(render partial: 'partials/review_write', locals: { review: @review }) }");
+  });
