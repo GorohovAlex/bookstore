@@ -19,9 +19,9 @@
       .row
         = simple_form_for :cart_item, url: cart_items_path, remote:true do |f|
           .col-xs-12.col-md-4
-            %p.h1.in-gold-500.mt-10
+            %p.h1.in-gold-500.mt-10#price
               = @book.price_show
-              = f.input_field :book_id, as: :hidden, value: @book.id
+            = f.input_field :book_id, as: :hidden, value: @book.id
           .col-xs-5.col-md-3
             = render partial: 'partials/counter', locals: { f: f, quantity: CartItemForm::DEFAULT_CART_ITEM_COUNT }
           .col-xs-7.col-md-5
