@@ -30,4 +30,8 @@ class BookDecorator < ApplicationDecorator
   def secondary_covers
     object.covers&.drop(1)
   end
+
+  def reviews_approved
+    object.reviews.approved.includes(:user)
+  end
 end
