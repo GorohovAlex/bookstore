@@ -15,26 +15,26 @@
           %a.img-link{href: "#"}
             %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
     .col-sm-6
-      %h1.mt-res-0
+      %h1.mt-res-0#name
         = @book.name
-      %p.lead.small
+      %p.lead.small#authors
         = @book.authors_show
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10
+          %p.h1.in-gold-500.mt-10#price
             = @book.price_show
         .col-xs-5.col-md-3
-          .input-group.general-position
+          .input-group.general-position#counter
             %a.input-link{href: "#", id:"quantity-minus"}
               %i.fa.fa-minus.line-height-40
             %input.form-control.quantity-input{type: "text", id:"quantity-value", value: "1"}
             %a.input-link{href: "#", id:"quantity-plus"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position
+          %button.btn.btn-default.pull-right.general-position#button_add_to_cart
             = t('add_to_cart')
       .general-info-wrap.divider-lg
-        %p
+        %p#description
           = t('.description')
         %p.lead.small.line-height-2
           - if @book.description.size <= Book::DESCRIPTION_SHORT_LENGTH
@@ -45,7 +45,7 @@
         .clearfix
           %p.pull-left
             = t('.year_of_publication')
-          %p.lead.small.pull-right
+          %p.lead.small.pull-right#year_of_publication
             = @book.year_of_publication 
       .general-info-wrap.divider-lg
         .clearfix
@@ -57,10 +57,15 @@
         .clearfix
           %p.pull-left
             = t('.materials')
-          %p.lead.small.pull-right
+          %p.lead.small.pull-right#materials
             = @book.materials_show
   .mb-80
-    = render partial: 'partials/reviews_write'
-  .mb-80
-    = render partial: 'partials/reviews_list'
+    - if policy(@book.reviews).create?
+      %h3
+        = t('.review_caption')
+      .mb-15
+      #review_form
+        = render partial: 'partials/review_write', locals: { review: @review }
+  .mb-80#reviews
+    = render partial: 'partials/reviews_list', object: @book.reviews_approved
 = javascript_pack_tag 'books/show'

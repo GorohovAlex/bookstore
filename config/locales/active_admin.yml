@@ -5,7 +5,10 @@ en:
         authors: Authors
         description: Description
         price: Price
+        date: Date
       edit:
         dimensions: Dimensions
       show:
         authors: Authors
+        rejected: Rejected
+        approved: Approved
