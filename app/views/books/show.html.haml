@@ -6,14 +6,11 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+          = image_tag @book.main_cover_url, class: 'img-responsive', style: 'margin:auto'
         .images.clearfix
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+          - @book.secondary_covers.each do |cover|
+            %a.img-link{ href: '#' }
+              = image_tag cover.image_url(:small), class: 'img'
     .col-sm-6
       %h1.mt-res-0#name
         = @book.name
@@ -25,10 +22,10 @@
             = @book.price_show
         .col-xs-5.col-md-3
           .input-group.general-position#counter
-            %a.input-link{href: "#", id:"quantity-minus"}
+            %a.input-link{ href: '#', id: 'quantity-minus' }
               %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text", id:"quantity-value", value: "1"}
-            %a.input-link{href: "#", id:"quantity-plus"}
+            %input.form-control.quantity-input{ type: 'text', id: 'quantity-value', value: '1' }
+            %a.input-link{ href: '#', id: 'quantity-plus' }
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
           %button.btn.btn-default.pull-right.general-position#button_add_to_cart

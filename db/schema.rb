@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_085516) do
+ActiveRecord::Schema.define(version: 2020_03_10_194327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 2020_03_04_085516) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "type", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.string "city"
-    t.string "zip"
-    t.string "country"
-    t.string "phone"
+    t.string "first_name", limit: 50, null: false
+    t.string "last_name", limit: 50, null: false
+    t.string "address", limit: 50, null: false
+    t.string "city", limit: 50, null: false
+    t.string "zip", limit: 10, null: false
+    t.string "country", limit: 50, null: false
+    t.string "phone", limit: 15, null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -109,6 +109,14 @@ ActiveRecord::Schema.define(version: 2020_03_04_085516) do
     t.integer "books_count"
   end
 
+  create_table "covers", force: :cascade do |t|
+    t.bigint "book_id"
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_covers_on_book_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -150,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_085516) do
   add_foreign_key "books", "categories", on_delete: :nullify
   add_foreign_key "books_materials", "books", on_delete: :cascade
   add_foreign_key "books_materials", "materials", on_delete: :cascade
+  add_foreign_key "covers", "books", on_delete: :cascade
   add_foreign_key "reviews", "books", on_delete: :cascade
   add_foreign_key "reviews", "users", on_delete: :cascade
 end

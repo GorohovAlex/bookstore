@@ -36,15 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 coverage
 .env
-public/uploads/cache/7dec6117e1cfbee2bde8eb8350f507f9
-public/uploads/cache/00911e9e594529b241f1ccf5d1a7c0a7
-public/uploads/cache/c27e2cab96dfdc684bb8669bf6270861
-public/uploads/cache/ee30a291a02da4ab13adb0210dc7b748
-public/uploads/store/1a02dddfe68d73bc41926bc7d8c84183
-public/uploads/store/3a2f20c057904a0545a2f856d9e07cdd.jpg
-public/uploads/store/8ea4dcbbbd36246b3883a75e8ccb09b4
-public/uploads/store/85e0bb7b4ca30e5dfd96cb02c952c285
-public/uploads/store/093fe38ee36c138311f68687723cfa26.jpg
-public/uploads/store/a51653e7673bccb16e9c88ff1842e2b8
-public/uploads/store/e91ee84ee0dabadfe7e764d131ef274b.jpg
-public/uploads/store/f673470e00939e815a9982fdc7f0549d.jpg
+public/uploads
