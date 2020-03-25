@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'aasm', '~> 5.0', '>= 5.0.8'
 gem 'activeadmin'
 gem 'activeadmin_addons'
 gem 'aws-sdk-s3', '~> 1.14'
@@ -35,6 +36,7 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
+gem 'wicked'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

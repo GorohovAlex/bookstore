@@ -1,7 +1,16 @@
 class CheckoutsController < ApplicationController
-  before_action :authorize_resource, only: %i[new]
+  include Wicked::Wizard
 
-  def new; end
+  before_action :authorize_resource, only: %i[new]
+  steps(*Order.aasm.states.map(&:name))
+
+  def show
+    render_wizard
+  end
+
+  def create
+    byebug
+  end
 
   private
 

@@ -38,15 +38,16 @@ en:
       caption: Cart
       your_cart_is_empty: Your cart is empty
       back_to_home: Back to Home
+    order_summary_table:
+      sub_total: SubTotal
+      order_total: Order Total
+      summary_coupon: Coupon
     cart_item:
       apply_coupon: Apply Coupon
       checkout: Checkout
-      summary_coupon: Coupon
+      order_summary: Order Summary
       coupon_label: Enter Your Coupon Code
       coupon_placeholder: Enter Your Coupon Code
-      sub_total: SubTotal
-      order_summary: Order Summary
-      order_total: Order Total
     cart_item_table:
       price: Price
       product: Product
@@ -57,6 +58,10 @@ en:
       product: Product
       sub_total: SubTotal
       quantity: Quantity
+  checkouts:
+    addresses: 
+      billing_address: Billing Address
+      shipping_address: Shipping Address
   address:
     create:
       successful_message: '%{type} update successful.'
@@ -111,3 +116,19 @@ en:
       title: Title
       post: Post
       review: Review
+    address_form_fields:
+        first_name: First name
+        first_name_placeholder: First name
+        last_name: Last name
+        last_name_placeholder: Last name
+        address: Address
+        address_placeholder: Address
+        city: City
+        city_placeholder: City
+        zip: Zip
+        zip_placeholder: Zip
+        country: Country
+        country_placeholder: Country
+        phone: Phone
+        phone_placeholder: Example +355 66 123 4567
+

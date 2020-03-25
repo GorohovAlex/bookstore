@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :cart_items, path: 'cart'
-  resource :checkout
+  resources :checkouts
 
   resources :books, only: [:show] do
     resources :reviews, only: [:create]
