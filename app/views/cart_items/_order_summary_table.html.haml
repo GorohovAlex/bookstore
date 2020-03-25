@@ -1,0 +1,22 @@
+%table.general-summary-table.general-summary-table-right.general-text-right
+  %tr
+    %td
+      %p.font-16
+        = t('.sub_total') + ':'
+    %td
+      %p.font-16#sub-total
+        = humanized_money_with_symbol cart_sub_total
+  %tr
+    %td
+      %p.font-16
+        = t('.summary_coupon') + ':'
+    %td
+      %p.font-16#coupon
+        = humanized_money_with_symbol discount
+  %tr
+    %td
+      %strong.font-18
+        = t('.order_total') + ':'
+    %td
+      %strong.font-18#order-total
+        = humanized_money_with_symbol order_total

@@ -14,29 +14,8 @@
         .res-mr-200.text-center.general-text-right
           %p.in-gold-500.font-18
             = t('.order_summary')
-          %table.general-summary-table.general-summary-table-right.general-text-right
-            %tr
-              %td
-                %p.font-16
-                  = t('.sub_total') + ':'
-              %td
-                %p.font-16#sub-total
-                  = humanized_money_with_symbol cart_sub_total
-            %tr
-              %td
-                %p.font-16
-                  = t('.summary_coupon') + ':'
-              %td
-                %p.font-16#coupon
-                  = humanized_money_with_symbol discount
-            %tr
-              %td
-                %strong.font-18
-                  = t('.order_total') + ':'
-              %td
-                %strong.font-18#order-total
-                  = humanized_money_with_symbol order_total
+          = render partial: 'order_summary_table', locals: { cart_sub_total: cart_sub_total, discount: discount, order_total: order_total }
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
-  = button_to t('.checkout'), new_checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get', id: 'checkout'
+  = button_to t('.checkout'), checkouts_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get', id: 'checkout'
 = javascript_pack_tag 'cart_items/index'
