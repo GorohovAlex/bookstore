@@ -14,8 +14,8 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    CartItem.find_by(id: params[:id]).update(quantity: quantity)
-
+    authorize_resource
+    @cart_item.update(quantity: quantity)
     page_values
 
     respond_to do |format|
@@ -24,7 +24,8 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    CartItem.delete_by(id: params[:id])
+    authorize_resource
+    CartItem.delete(@cart_item)
     page_values
 
     respond_to do |format|
@@ -33,6 +34,12 @@ class CartItemsController < ApplicationController
   end
 
   private
+
+  def authorize_resource
+    @cart_item = CartItem.where(CartItems::CartBase.cart_items_params(current_user, session.id.to_s)
+                                                   .merge(id: params[:id]))
+    authorize @cart_item
+  end
 
   def quantity
     params[:cart_item][:quantity].to_i.positive? ? params[:cart_item][:quantity] : CartItemForm::DEFAULT_CART_ITEM_COUNT
