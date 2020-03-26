@@ -11,11 +11,11 @@
       %a.shop-link.pull-right.visible-xs{ href: cart_items_path }
         %span.shop-icon
           %span.shop-quantity
-            = CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id)
+            = cart_item_count
     %a.shop-link.pull-right.hidden-xs{ href: cart_items_path }
       %span.shop-icon
         %span.shop-quantity
-          = CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id)
+          = cart_item_count
     #navbar.navbar-collapse.collapse.pl-30{ 'aria-expanded': 'false' }
       .visible-xs
         %button.close{ type: 'button', 'aria-label': t('.close') }
