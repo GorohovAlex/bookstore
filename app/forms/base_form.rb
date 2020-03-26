@@ -11,10 +11,18 @@ class BaseForm
   def record
     return nil unless self.class::MODEL_CLASS
 
-    @record ||= self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(id: @id)
+    @record ||= self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(record_params)
   end
 
   private
+
+  def record_params
+    params = {}
+
+    params[:id] = @id
+
+    params
+  end
 
   def persist!
     raise NoMethodError
