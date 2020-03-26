@@ -39,6 +39,10 @@ en:
       product: Product
       sub_total: SubTotal
       quantity: Quantity
+    update:
+      not_authorized: User not authorized for update
+    destroy:
+      not_authorized: User not authorized for destroy
   address:
     create:
       successful_message: '%{type} update successful.'
