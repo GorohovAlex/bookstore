@@ -10,7 +10,7 @@ class AddressForm < BaseForm
   ZIP_REGEX = /\A[\d]+[-\d]*[\d]+\z/.freeze
   ZIP_MAX_LENGTH = 10
 
-  attribute :user_id, Integer
+  attribute :owner, Object
   attribute :type, String
   attribute :first_name, String
   attribute :last_name, String
@@ -46,7 +46,7 @@ class AddressForm < BaseForm
 
   def record
     @record ||= self.class::MODEL_CLASS.classify.constantize
-                                       .find_or_initialize_by(user_id: user_id, type: type)
+                                       .find_or_initialize_by(owner: owner, type: type)
   end
 
   private
@@ -57,7 +57,8 @@ class AddressForm < BaseForm
   end
 
   def params
-    { user_id: user_id,
+    { 
+      owner: owner,
       first_name: first_name,
       last_name: last_name,
       address: address,
@@ -65,11 +66,12 @@ class AddressForm < BaseForm
       zip: zip,
       country: country,
       phone: phone,
-      type: type }
+      type: type 
+    }
   end
 
   def address_params
     ActionController::Parameters.new(record.attributes).permit(:first_name, :last_name, :address, :zip, :city,
-                                                               :country, :phone, :type, :user_id)
+                                                               :country, :phone, :type, :owner)
   end
 end

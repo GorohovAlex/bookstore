@@ -3,11 +3,11 @@ module Devise
     before_action :authorize_resource, only: %i[index update]
 
     def edit
-      present AddressPresenter.new(user_id: current_user.id)
+      present AddressPresenter.new(owner: current_user)
     end
 
     def update
-      present AddressPresenter.new(user_id: current_user.id)
+      present AddressPresenter.new(owner: current_user)
 
       return password if params.key?(:password_form)
       return email if params.key?(:user)
@@ -56,7 +56,7 @@ module Devise
     def quick_sing_in
       resource.send_reset_password_instructions
       sign_up(resource_name, resource)
-      redirect_to new_checkout_path
+      redirect_to checkout_path
     end
 
     def quick_registrate?

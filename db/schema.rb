@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_134343) do
+ActiveRecord::Schema.define(version: 2020_03_26_113932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 2020_03_24_134343) do
     t.string "zip", limit: 10, null: false
     t.string "country", limit: 50, null: false
     t.string "phone", limit: 15, null: false
-    t.bigint "user_id"
+    t.bigint "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "type"], name: "index_addresses_on_user_id_and_type", unique: true
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.string "owner_type"
+    t.index ["owner_id", "type"], name: "index_addresses_on_owner_id_and_type", unique: true
+    t.index ["owner_id"], name: "index_addresses_on_owner_id"
   end
 
   create_table "admin_users", force: :cascade do |t|

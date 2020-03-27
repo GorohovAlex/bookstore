@@ -15,8 +15,9 @@ class User < ApplicationRecord
 
   has_one  :shipping_address, dependent: :destroy
   has_one  :billing_address,  dependent: :destroy
+  
   has_many :cart_item
-
+  has_many :address, as: :owner
   has_many :reviews, dependent: :destroy
 
   def self.new_with_session(params, session)
