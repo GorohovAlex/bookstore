@@ -81,7 +81,7 @@ describe 'Cart page', type: :feature do
     describe 'Click `checkout` button' do
       it 'Open checkout page' do
         cart_page.checkout_button.click
-        expect(page).to have_current_path(new_checkout_path, ignore_query: true)
+        expect(page).to have_current_path(checkout_path, ignore_query: true)
       end
     end
   end
