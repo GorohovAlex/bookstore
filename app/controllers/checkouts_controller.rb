@@ -1,18 +1,22 @@
 class CheckoutsController < ApplicationController
-  include Wicked::Wizard
-
   before_action :authorize_resource, only: %i[new]
-  steps(*Order.aasm.states.map(&:name))
+  
+  # include Wicked::Wizard
+  # steps(*Order.aasm.states.map(&:name))
 
   def show
-    render_wizard
+    render CheckoutShowService.new(current_order: current_order).call
   end
 
-  def create
-    byebug
+  def update
+    CheckoutUpdateService.new(current_order: current_order, params: params).call
   end
 
   private
+
+  def current_order
+    cookies[:current_order] || Order.new
+  end
 
   def authorize_resource
     authorize Checkout
