@@ -17,11 +17,7 @@ class BaseForm
   private
 
   def record_params
-    params = {}
-
-    params[:id] = @id
-
-    params
+    { id: @id }
   end
 
   def persist!
