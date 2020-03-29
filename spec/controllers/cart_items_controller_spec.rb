@@ -19,9 +19,18 @@ RSpec.describe CartItemsController do
   end
 
   describe 'POST #create' do
-    it 'returns a 200 OK status' do
-      post :create, format: 'js', params: { cart_item: cart_item_new.attributes }
-      expect(response).to have_http_status(:ok)
+    context 'Success create CartItem' do
+      it 'returns a 200 OK status' do
+        post :create, format: 'js', params: { cart_item: cart_item_new.attributes }
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'Failes create CartItem' do
+      it 'returns a 302 Redirect status' do
+        post :create, format: 'js', params: { cart_item: nil }
+        expect(response).to have_http_status(:found)
+      end
     end
   end
 
