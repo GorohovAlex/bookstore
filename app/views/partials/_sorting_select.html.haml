@@ -1,4 +1,4 @@
-.dropdown{ class: dropdown_style }
+.dropdown.dropdown_style
   %a.dropdown-toggle.lead.small{ href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false" }
     = t(Sortings::SortCurrent.call(sort_selected: params[:sort])[:value])
     %i.fa.fa-angle-down.dropdown-icon.pull-right

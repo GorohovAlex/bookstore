@@ -57,6 +57,10 @@ en:
       product: Product
       sub_total: SubTotal
       quantity: Quantity
+    update:
+      not_authorized: User not authorized for update
+    destroy:
+      not_authorized: User not authorized for destroy
   address:
     create:
       successful_message: '%{type} update successful.'
@@ -81,6 +85,7 @@ en:
   log_in: Log in
   log_out: Log out
   unprocessed: Unprocessed
+  unprocessable_entity: Unprocessable entity
   approved: Approved
   rejected: Rejected
   settings: Settings

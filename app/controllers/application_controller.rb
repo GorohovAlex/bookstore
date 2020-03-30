@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Rectify::ControllerHelpers
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActionController::ParameterMissing, with: :parameter_missing
 
   private
 
@@ -19,5 +20,10 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+  end
+
+  def parameter_missing
+    flash[:alert] = t('.parameter_missin')
+    redirect_to(request.referrer || root_path)
   end
 end

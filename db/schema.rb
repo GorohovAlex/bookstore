@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_082421) do
     t.boolean "enabled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_coupons_on_name", unique: true
   end
 
   create_table "covers", force: :cascade do |t|

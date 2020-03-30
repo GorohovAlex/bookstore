@@ -1,5 +1,9 @@
 module CartItems
   class CartBase
+    def self.call(user_id: nil, session_id: nil)
+      CartItem.where(cart_items_params(user_id, session_id))
+    end
+
     def self.cart_items_params(user_id, session_id)
       params = {}
 

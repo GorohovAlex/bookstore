@@ -43,7 +43,7 @@ describe 'Cart page', type: :feature do
         cart_page.coupon.name_input.set coupon_enable.name
         cart_page.coupon.submit.click
         sleep 1
-        expect(cart_page.summary_coupon.text).to eq(humanized_money_with_symbol(coupon_enable.discount * -1))
+        expect(cart_page.summary_coupon.text).to eq(humanized_money_with_symbol(-coupon_enable.discount))
       end
     end
 
