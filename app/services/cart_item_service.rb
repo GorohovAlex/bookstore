@@ -9,12 +9,12 @@ class CartItemService
     CartItemForm.new(cart_item_params).save
   end
 
-  def update_quantity(cart_item_id, quantity)
-    CartItem.find_by!(id: cart_item_id).update(quantity: quantity)
+  def update_quantity(cart_item, quantity)
+    cart_item.update(quantity: quantity)
   end
 
-  def delete(cart_item_id)
-    CartItem.delete_by(id: cart_item_id)
+  def delete(cart_item)
+    CartItem.delete(cart_item)
   end
 
   def cart_sub_total

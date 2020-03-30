@@ -21,7 +21,7 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    cart_item_service.update_quantity(@cart_item&.id, quantity)
+    cart_item_service.update_quantity(@cart_item, quantity)
 
     respond_to do |format|
       format.js { redirect_to cart_items_path, turbolink: true }
@@ -30,7 +30,7 @@ class CartItemsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if cart_item_service.delete(@cart_item&.id)
+      if cart_item_service.delete(@cart_item)
         format.js { redirect_to cart_items_path, turbolink: true }
       else
         format.js { render :destroy, status: :unprocessable_entity, notice: t('unprocessable_entity') }
@@ -42,12 +42,11 @@ class CartItemsController < ApplicationController
 
   def authorize_resource
     @cart_item = policy_scope(CartItem)
-    @cart_item = @cart_item.find_by!(id: params[:id]) unless params[:id].nil?
     authorize @cart_item
   end
 
   def pundit_user
-    { user: current_user, session_id: session.id.to_s }
+    { user: current_user, session_id: session.id.to_s, cart_item_id: params[:id] }
   end
 
   def cart_item_params
