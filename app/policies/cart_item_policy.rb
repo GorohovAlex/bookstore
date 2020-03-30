@@ -8,7 +8,7 @@ class CartItemPolicy < ApplicationPolicy
   end
 
   def update?
-    record.any?
+    record.present?
   end
 
   def destroy?

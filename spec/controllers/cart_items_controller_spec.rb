@@ -1,6 +1,6 @@
 RSpec.describe CartItemsController do
   let(:cart_item_new) { build(:cart_item) }
-  let(:cart_item) { create(:cart_item) }
+  let(:cart_item) { create(:cart_item, session_id: session.id) }
 
   before do
     cart_item_new.session_id = session.id
@@ -35,16 +35,34 @@ RSpec.describe CartItemsController do
   end
 
   describe 'PATCH #update' do
-    it 'returns a 302 status' do
-      patch :update, format: 'js', params: { id: cart_item.id, cart_item: cart_item.attributes }
-      expect(response).to have_http_status(:found)
+    context 'when input correct value' do
+      it 'returns a 302 status' do
+        patch :update, format: 'js', params: { id: cart_item.id, cart_item: cart_item.attributes }
+        expect(response).to have_http_status(:found)
+      end
+    end
+
+    context 'when input empty value' do
+      it 'returns a 302 status' do
+        patch :update, format: 'js', params: { id: cart_item.id, cart_item: nil }
+        expect(response).to have_http_status(:found)
+      end
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'returns a 302 status' do
-      delete :destroy, format: 'js', params: { id: cart_item.id }
-      expect(response).to have_http_status(:found)
+    context 'when input correct value' do
+      it 'returns a 302 status' do
+        delete :destroy, format: 'js', params: { id: cart_item.id }
+        expect(response).to have_http_status(:found)
+      end
     end
+
+    # context 'when input empty value' do
+    #   it 'returns a 302 status' do
+    #     delete :destroy, format: 'js', params: { id: nil }
+    #     expect(response).to have_http_status(:ok)
+    #   end
+    # end
   end
 end

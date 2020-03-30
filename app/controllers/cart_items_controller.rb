@@ -8,15 +8,17 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    cart_item_form = CartItemForm.new(cart_item_params)
-    cart_item_form.save
     respond_to do |format|
-      format.js { render partial: 'partials/header', status: :ok }
+      if cart_item_service.create(cart_item_params)
+        format.js { render partial: 'partials/header', status: :ok }
+      else
+        format.js { render partial: 'partials/header', status: :unprocessable_entity, notice: 'Error' }
+      end
     end
   end
 
   def update
-    @cart_item.update(quantity: quantity)
+    cart_item_service.update_quantity(@cart_item&.id, quantity)
 
     respond_to do |format|
       format.js { redirect_to cart_items_path, turbolink: true }
@@ -24,10 +26,12 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    CartItem.delete(@cart_item)
-
     respond_to do |format|
-      format.js { redirect_to cart_items_path, turbolink: true }
+      if cart_item_service.delete(@cart_item&.id)
+        format.js { redirect_to cart_items_path, turbolink: true }
+      else
+        format.js { render :destroy, status: :unprocessable_entity, notice: 'Error' }
+      end
     end
   end
 
@@ -35,7 +39,7 @@ class CartItemsController < ApplicationController
 
   def authorize_resource
     @cart_item = policy_scope(CartItem)
-    @cart_item = @cart_item.where(id: params[:id]) unless params[:id].nil?
+    @cart_item = @cart_item.find_by!(id: params[:id]) unless params[:id].nil?
     authorize @cart_item
   end
 
@@ -43,19 +47,24 @@ class CartItemsController < ApplicationController
     { user: current_user, session_id: session.id.to_s }
   end
 
-  def quantity
-    params[:cart_item][:quantity].to_i.positive? ? params[:cart_item][:quantity] : CartItemForm::DEFAULT_CART_ITEM_COUNT
-  end
-
   def cart_item_params
     params.require(:cart_item).permit(:book_id, :quantity)
           .merge(session_id: session.id.to_s, user_id: current_user&.id)
   end
 
-  def cart_total_values
-    cart_item_service = CartItemService.new(user_id: current_user&.id, session_id: session.id.to_s,
-                                            coupon: cookies[:coupon])
+  def cart_item_service
+    @cart_item_service ||= CartItemService.new(user_id: current_user&.id, session_id: session.id.to_s,
+                                               coupon: cookies[:coupon])
+  end
 
+  def quantity
+    item = params[:cart_item]
+    return CartItemForm::DEFAULT_CART_ITEM_COUNT unless item.present? && item[:quantity].to_i.positive?
+
+    params[:cart_item][:quantity]
+  end
+
+  def cart_total_values
     @cart_sub_total = cart_item_service.cart_sub_total
     @discount = cart_item_service.discount.to_money
     @order_total = cart_item_service.order_total

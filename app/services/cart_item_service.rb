@@ -5,6 +5,18 @@ class CartItemService
     @coupon = coupon
   end
 
+  def create(cart_item_params)
+    CartItemForm.new(cart_item_params).save
+  end
+
+  def update_quantity(cart_item_id, quantity)
+    CartItem.find_by!(id: cart_item_id).update(quantity: quantity)
+  end
+
+  def delete(cart_item_id)
+    CartItem.delete_by(id: cart_item_id)
+  end
+
   def cart_sub_total
     @cart_sub_total ||= CartItems::SubTotal.call(user_id: @current_user_id, session_id: @session_id)
   end
