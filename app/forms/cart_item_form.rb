@@ -13,12 +13,6 @@ class CartItemForm < BaseForm
 
   private
 
-  def record
-    return nil unless self.class::MODEL_CLASS
-
-    @record ||= self.class::MODEL_CLASS.classify.constantize.find_or_initialize_by(record_params)
-  end
-
   def persist!
     params = cart_item_params
     params[:quantity] += record.attributes['quantity'] || 0

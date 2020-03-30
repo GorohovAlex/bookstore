@@ -62,11 +62,14 @@ en:
     addresses: 
       billing_address: Billing Address
       shipping_address: Shipping Address
+    update:
+      not_authorized: User not authorized for update
+    destroy:
+      not_authorized: User not authorized for destroy
   address:
     create:
       successful_message: '%{type} update successful.'
       not_authorized: You are not authorized to perform this action.
-
   all: All
   view_more: View more
   add_to_cart: Add to Cart  
@@ -86,6 +89,7 @@ en:
   log_in: Log in
   log_out: Log out
   unprocessed: Unprocessed
+  unprocessable_entity: Unprocessable entity
   approved: Approved
   rejected: Rejected
   settings: Settings

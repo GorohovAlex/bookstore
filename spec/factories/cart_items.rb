@@ -3,5 +3,6 @@ FactoryBot.define do
     book { create(:book) }
     quantity { rand(1..5) }
     user { nil }
+    session_id { nil }
   end
 end

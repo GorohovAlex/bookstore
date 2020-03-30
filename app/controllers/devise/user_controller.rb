@@ -48,9 +48,12 @@ module Devise
     end
 
     def build_user_params
-      params[:user] = {}
-      params[:user][:email]    = params[:quick_registrate][:email]
-      params[:user][:password] = params[:user][:password_confirmation] = ('A'..'Z').to_a.sample + SecureRandom.hex(8)
+      password = ('A'..'Z').to_a.sample + SecureRandom.hex(8)
+      params[:user] = {
+        email: params[:quick_registrate][:email],
+        password: password,
+        password_confirmation: password
+      }
     end
 
     def quick_sing_in
