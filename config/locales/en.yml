@@ -67,6 +67,7 @@ en:
   log_in: Log in
   log_out: Log out
   unprocessed: Unprocessed
+  unprocessable_entity: Unprocessable entity
   approved: Approved
   rejected: Rejected
   settings: Settings

@@ -12,7 +12,10 @@ class CartItemsController < ApplicationController
       if cart_item_service.create(cart_item_params)
         format.js { render partial: 'partials/header', status: :ok }
       else
-        format.js { render partial: 'partials/header', status: :unprocessable_entity, notice: 'Error' }
+        format.js do
+          render partial: 'partials/header', status: :unprocessable_entity,
+                 notice: t('unprocessable_entity')
+        end
       end
     end
   end
@@ -30,7 +33,7 @@ class CartItemsController < ApplicationController
       if cart_item_service.delete(@cart_item&.id)
         format.js { redirect_to cart_items_path, turbolink: true }
       else
-        format.js { render :destroy, status: :unprocessable_entity, notice: 'Error' }
+        format.js { render :destroy, status: :unprocessable_entity, notice: t('unprocessable_entity') }
       end
     end
   end
