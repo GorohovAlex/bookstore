@@ -57,12 +57,5 @@ RSpec.describe CartItemsController do
         expect(response).to have_http_status(:found)
       end
     end
-
-    # context 'when input empty value' do
-    #   it 'returns a 302 status' do
-    #     delete :destroy, format: 'js', params: { id: nil }
-    #     expect(response).to have_http_status(:ok)
-    #   end
-    # end
   end
 end
