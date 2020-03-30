@@ -1,6 +1,6 @@
 %main.container
   = render partial: 'checkout_header'
-  = simple_form_for :address do |f|
+  = simple_form_for @current_order, url: checkout_path, method: 'PATCH' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -16,13 +16,13 @@
           %h3.general-subtitle
             = t('.billing_address')
           %p.general-info-text all fields are required
-        = f.simple_fields_for :billing_address do |a|
+        = f.simple_fields_for @presenter.billing_address_form do |a|
           = render partial: 'partials/address_form_fields', locals: { f: a }
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle
             = t('.shipping_address')
-        = f.simple_fields_for :shipping_address do |a|
+        = f.simple_fields_for @presenter.shipping_address_form, defaults: { input_html: { class: 'default_class' } } do |a|
           = render partial: 'partials/address_form_fields', locals: { f: a }
         .form-group.checkbox
           %label.checkbox-label
@@ -44,3 +44,4 @@
           %td
             %p.font-16 €117.69
       = f.submit 'Save and Continue', class: 'btn center-block mb-20'
+=console
