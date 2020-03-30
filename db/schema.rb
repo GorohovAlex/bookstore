@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_082421) do
+ActiveRecord::Schema.define(version: 2020_03_15_161551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,13 +120,6 @@ ActiveRecord::Schema.define(version: 2020_03_20_082421) do
     t.integer "books_count"
   end
 
-  create_table "checkouts", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_checkouts_on_user_id"
-  end
-
   create_table "coupons", force: :cascade do |t|
     t.string "name"
     t.integer "count"
@@ -188,7 +181,6 @@ ActiveRecord::Schema.define(version: 2020_03_20_082421) do
   add_foreign_key "books_materials", "materials", on_delete: :cascade
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
-  add_foreign_key "checkouts", "users"
   add_foreign_key "covers", "books", on_delete: :cascade
   add_foreign_key "reviews", "books", on_delete: :cascade
   add_foreign_key "reviews", "users", on_delete: :cascade
