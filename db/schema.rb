@@ -145,9 +145,11 @@ ActiveRecord::Schema.define(version: 2020_03_26_113932) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "aasm_state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -188,6 +190,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_113932) do
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
   add_foreign_key "covers", "books", on_delete: :cascade
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books", on_delete: :cascade
   add_foreign_key "reviews", "users", on_delete: :cascade
 end
