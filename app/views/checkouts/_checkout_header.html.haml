@@ -1,8 +1,4 @@
 %h1.general-title-margin
   = t('.checkout')
 %ul.steps.list-inline
-  = render partial: 'step', collection: Order.aasm.states.map(&:name), spacer_template: 'step_line'
-  -# %li.step.active
-  -#   %span.step-number 1
-  -#   %span.step-text.hidden-xs Address
-  -# %li.step-divider
+  = render partial: 'step', collection: Order.aasm.states.map(&:name), spacer_template: 'step_line', locals: { state: Order.aasm.states.map(&:name).find_index(state.to_sym) }
