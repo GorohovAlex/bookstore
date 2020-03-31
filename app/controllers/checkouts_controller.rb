@@ -1,14 +1,14 @@
 class CheckoutsController < ApplicationController
-  before_action :authorize_resource, only: %i[new]
+  before_action :authorize_resource, only: %i[show]
 
   def show
     @presenter = AddressPresenter.new(owner: current_order)
     render CheckoutShowService.new(current_order: current_order).call
   end
-  
+
   def update
     service = CheckoutUpdateService.new(current_order: current_order, params: params).call
-    
+
     if service.call
       redirect_to checkout_path
     else

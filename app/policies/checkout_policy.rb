@@ -1,5 +1,5 @@
 class CheckoutPolicy < ApplicationPolicy
-  def new?
+  def show?
     user.present?
   end
 end
