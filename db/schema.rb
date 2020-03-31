@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_113932) do
+ActiveRecord::Schema.define(version: 2020_03_31_135004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,10 +139,28 @@ ActiveRecord::Schema.define(version: 2020_03_26_113932) do
     t.index ["book_id"], name: "index_covers_on_book_id"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.string "name"
+    t.text "days"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_deliveries", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "delivery_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_order_deliveries_on_delivery_id"
+    t.index ["order_id"], name: "index_order_deliveries_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
