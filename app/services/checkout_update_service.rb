@@ -1,5 +1,5 @@
 class CheckoutUpdateService
-  SERVICE_SUFFIX = 'Service'
+  SERVICE_SUFFIX = 'Service'.freeze
 
   def initialize(current_order:, params: [])
     @current_order = current_order

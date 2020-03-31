@@ -22,14 +22,16 @@
         .visible-xs.visible-sm
           %h3.general-subtitle
             = t('.shipping_address')
-        = f.simple_fields_for @presenter.shipping_address_form, defaults: { input_html: { class: 'default_class' } } do |a|
-          = render partial: 'partials/address_form_fields', locals: { f: a }
+        #shipping_address_box
+          = f.simple_fields_for @presenter.shipping_address_form, defaults: { input_html: { class: 'default_class' } } do |a|
+            = render partial: 'partials/address_form_fields', locals: { f: a }
         .form-group.checkbox
           %label.checkbox-label
-            %input.checkbox-input{ type: "checkbox", hidden: "true "}
+            = f.input_field :use_billing_address, as: :boolean, class: 'checkbox-input', style: 'display: none'
             %span.checkbox-icon
               %i.fa.fa-check
-            %span.checkbox-text Use Billing Adress
+            %span.checkbox-text
+              = t('.use_billing_address')
     .general-text-align.mb-60
       %p.in-gold-500.font-18 Order Summary
       %table.general-summary-table
@@ -44,4 +46,4 @@
           %td
             %p.font-16 €117.69
       = f.submit 'Save and Continue', class: 'btn center-block mb-20'
-=console
+= javascript_pack_tag 'checkouts/address'

@@ -3,18 +3,18 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
-  has_one  :shipping_address,  as: :owner, dependent: :destroy
-  has_one  :billing_address,  as: :owner, dependent: :destroy
+  has_one  :shipping_address, as: :owner, dependent: :destroy
+  has_one  :billing_address, as: :owner, dependent: :destroy
 
   aasm do
-    state :addresses, initial: true
+    state :address, initial: true
     state :delivery
     state :payment
     state :confirm
     state :complete
 
-    event :addresses do
-      transitions from: :addresses, to: :delivery
+    event :address do
+      transitions from: :address, to: :delivery
     end
   end
 end

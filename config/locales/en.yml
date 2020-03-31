@@ -59,9 +59,12 @@ en:
       sub_total: SubTotal
       quantity: Quantity
   checkouts:
-    addresses: 
+    address: 
       billing_address: Billing Address
       shipping_address: Shipping Address
+      use_billing_address: Use Billing Address
+    checkout_header:
+      checkout: Checkout
     update:
       not_authorized: User not authorized for update
     destroy:

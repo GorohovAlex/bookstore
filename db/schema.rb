@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_113932) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "aasm_state"
+    t.boolean "use_billing_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
