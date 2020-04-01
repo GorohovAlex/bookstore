@@ -59,12 +59,22 @@ en:
       sub_total: SubTotal
       quantity: Quantity
   checkouts:
-    address: 
+    address:
+      all_fields_are_required: all fields are required
       billing_address: Billing Address
       shipping_address: Shipping Address
       use_billing_address: Use Billing Address
+      save_and_continue: Save and Continue
     checkout_header:
       checkout: Checkout
+    payment:
+      credit_card: Credit card
+    order_summary_item:
+      coupon: Discount
+      item_total: 'Item Total:'
+      order_total: 'Order Total:'
+    order_summary:
+      order_summary: Order Summary
     update:
       not_authorized: User not authorized for update
     destroy:

@@ -1,12 +1,4 @@
-%p.in-gold-500.font-18 Order Summary
+%p.in-gold-500.font-18
+  = t('.order_summary')
 %table.general-summary-table
-  %tr
-    %td
-      %p.font-16 Item Total:
-    %td
-      %p.font-16 €117.69
-  %tr
-    %td
-      %p.font-16 Order Total:
-    %td
-      %p.font-16 €117.69
+  = render partial: 'order_summary_item', collection: order_summary_items

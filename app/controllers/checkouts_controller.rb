@@ -3,6 +3,7 @@ class CheckoutsController < ApplicationController
 
   def show
     @presenter = AddressPresenter.new(owner: current_order)
+    @summary_presenter = OrderSummaryPresenter.new(user_id: current_user.id)
     render CheckoutShowService.new(current_order: current_order).call
   end
 
