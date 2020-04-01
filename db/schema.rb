@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_135004) do
+ActiveRecord::Schema.define(version: 2020_04_01_131210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(version: 2020_03_31_135004) do
     t.bigint "material_id"
     t.index ["book_id"], name: "index_books_materials_on_book_id"
     t.index ["material_id"], name: "index_books_materials_on_material_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "number"
+    t.string "name"
+    t.date "date_expiry"
+    t.string "cvv"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_cards_on_order_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -207,6 +218,7 @@ ActiveRecord::Schema.define(version: 2020_03_31_135004) do
   add_foreign_key "books", "categories", on_delete: :nullify
   add_foreign_key "books_materials", "books", on_delete: :cascade
   add_foreign_key "books_materials", "materials", on_delete: :cascade
+  add_foreign_key "cards", "orders"
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
   add_foreign_key "covers", "books", on_delete: :cascade
