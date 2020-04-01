@@ -1,31 +1,35 @@
 %main.container.general-main-wrap
   = render partial: 'checkout_header', locals: { state: @current_order.aasm_state }
   %h3.general-subtitle Delivery
-  -# .visible-xs.mb-30
+  .visible-xs.mb-30
     = simple_form_for @current_order, url: checkout_path, method: 'PATCH' do |f|
       .general-cart-item.divider-lg-bottom
         %table.table
-          %tr
-            %td.col-half
-              %span.in-grey-600 Method
-            %td.col-half
-              .form-group.radio.mt-0.mb-0
-                %label.radio-label
-                  %input.radio-input{type: "radio", hidden: "true"}
-                  %span.radio-icon
-                  %span.radio-text Delivery Next Day!
-          %tr
-            %td
-              %span.in-grey-600 Days
-            %td
-              %span.font-16.fw-300 3 to 7 days
-          %tr
-            %td
-              %span.in-grey-600 Price
-            %td
-              %span.font-16.in-gold-500 €5.00
+          = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :attributes do |delivery|
+            %tr
+              %td.col-half
+                %span.in-grey-600 Method
+              %td.col-half
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = f.radio_button :order_delivery, delivery.value, class: 'radio-input', hidden: "true", checked: (@current_order.order_delivery&.delivery_id == delivery.value)
+                    %span.radio-icon
+                    %span.radio-text
+                      = delivery.text['name']
+            %tr
+              %td
+                %span.in-grey-600 Days
+              %td
+                %span.font-16.fw-300
+                  = delivery.text['days']
+            %tr
+              %td
+                %span.in-grey-600 Price
+              %td
+                %span.font-16.in-gold-500
+                  = humanized_money_with_symbol delivery.text['price_cents'] / 100
       .general-text-align
-        = render partial: 'order_summary'
+        = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary }
       .text-center
         = f.submit 'Save and Continue', class: 'btn btn-default mb-20'
   .hidden-xs.mb-res-50
@@ -40,22 +44,22 @@
             %th
               %span.in-grey-600 Price
         %tbody
-          - Delivery.all.each do |delivery|
+          = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :attributes do |delivery|
             %tr
               %td
                 .form-group.radio.mt-0.mb-0
                   %label.radio-label
-                    = f.radio_button :order_delivery, delivery.id, class: 'radio-input', hidden: "true", checked: (@current_order.order_delivery.delivery_id == delivery.id)
+                    = f.radio_button :order_delivery, delivery.value, class: 'radio-input', hidden: "true", checked: (@current_order.order_delivery&.delivery_id == delivery.value)
                     %span.radio-icon
                     %span.radio-text
-                      = delivery.name
+                      = delivery.text['name']
               %td
                 %span
-                  = delivery.days
+                  = delivery.text['days']
               %td
                 %span.font-16.in-gold-500
-                  = humanized_money_with_symbol delivery.price
+                  = humanized_money_with_symbol delivery.text['price_cents'] / 100
       .general-text-align
-        = render partial: 'order_summary'
+        = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary }
       .text-center
         = f.submit 'Save and Continue', class: 'btn btn-default mb-20'

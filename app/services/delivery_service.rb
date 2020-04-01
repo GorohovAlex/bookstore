@@ -9,7 +9,7 @@ class DeliveryService
     order_delivery = OrderDelivery.find_or_initialize_by(order: @current_order)
     order_delivery.delivery_id = delivery.id
 
-    @current_order.update(order_delivery: order_delivery)
+    @current_order.delivery! if @current_order.update(order_delivery: order_delivery)
   end
 
   def presenter
