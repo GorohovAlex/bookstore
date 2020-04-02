@@ -1,6 +1,6 @@
-class OrderSummaryPresenter < Rectify::Presenter  
+class OrderSummaryPresenter < Rectify::Presenter
   def initialize(user_id: nil, session_id: nil, coupon: nil)
-    @cart_item_service = CartItemService.new(user_id: user_id, session_id: session_id, coupon: coupon) 
+    @cart_item_service = CartItemService.new(user_id: user_id, session_id: session_id, coupon: coupon)
   end
 
   def order_summary

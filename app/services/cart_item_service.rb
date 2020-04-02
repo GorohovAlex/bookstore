@@ -18,7 +18,7 @@ class CartItemService
   end
 
   def cart_sub_total
-    @cart_sub_total ||= CartItems::SubTotal.call(user_id: @current_user_id, session_id: @session_id)
+    @cart_sub_total ||= CartItems::SubTotal.call(user_id: @user_id, session_id: @session_id)
   end
 
   def discount

@@ -12,7 +12,5 @@ class DeliveryService
     @current_order.delivery! if @current_order.update(order_delivery: order_delivery)
   end
 
-  def presenter
-    
-  end
+  def presenter; end
 end
