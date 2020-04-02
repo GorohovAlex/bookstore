@@ -44,21 +44,21 @@
             %th
               %span.in-grey-600 Price
         %tbody
-          = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :attributes do |delivery|
+          = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :attributes do |d|
             %tr
               %td
                 .form-group.radio.mt-0.mb-0
                   %label.radio-label
-                    = f.radio_button :order_delivery, delivery.value, class: 'radio-input', hidden: "true", checked: (@current_order.order_delivery&.delivery_id == delivery.value)
+                    = f.radio_button :order_delivery, d.value, class: 'radio-input', hidden: "true", checked: (@current_order.order_delivery&.delivery_id == d.value)
                     %span.radio-icon
                     %span.radio-text
-                      = delivery.text['name']
+                      = d.object.name
               %td
                 %span
-                  = delivery.text['days']
+                  = d.object.days
               %td
                 %span.font-16.in-gold-500
-                  = humanized_money_with_symbol delivery.text['price_cents'] / 100
+                  = humanized_money_with_symbol d.object.price
       .general-text-align
         = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary }
       .text-center
