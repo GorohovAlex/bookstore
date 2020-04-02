@@ -1,27 +1,29 @@
 class CartItemsController < ApplicationController
-  before_action :authorize_resource
-
   def index
+    authorize cart_items
+
     cookies[:coupon] = params[:coupon] if params[:coupon]
-    @cart_items = policy_scope(CartItem)
     cart_total_values
   end
 
   def create
+    authorize CartItem
+
     respond_to do |format|
       if cart_item_service.create(cart_item_params)
         format.js { render partial: 'partials/header', status: :ok }
       else
         format.js do
-          render partial: 'partials/header', status: :unprocessable_entity,
-                 notice: t('unprocessable_entity')
+          render partial: 'partials/header', status: :unprocessable_entity, notice: t('unprocessable_entity')
         end
       end
     end
   end
 
   def update
-    cart_item_service.update_quantity(@cart_item, quantity)
+    authorize cart_item
+
+    cart_item_service.update_quantity(cart_item, quantity)
 
     respond_to do |format|
       format.js { redirect_to cart_items_path, turbolink: true }
@@ -29,8 +31,10 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
+    authorize cart_item
+
     respond_to do |format|
-      if cart_item_service.delete(@cart_item)
+      if cart_item_service.delete(cart_item)
         format.js { redirect_to cart_items_path, turbolink: true }
       else
         format.js { render :destroy, status: :unprocessable_entity, notice: t('unprocessable_entity') }
@@ -40,13 +44,16 @@ class CartItemsController < ApplicationController
 
   private
 
-  def authorize_resource
-    @cart_item = policy_scope(CartItem)
-    authorize @cart_item
+  def cart_items
+    @cart_items ||= policy_scope(CartItem)
+  end
+
+  def cart_item
+    @cart_item ||= CartItem.find_by!(id: params[:id]) if params[:id].present?
   end
 
   def pundit_user
-    { user: current_user, session_id: session.id.to_s, cart_item_id: params[:id] }
+    { user: current_user, session_id: session.id.to_s }
   end
 
   def cart_item_params

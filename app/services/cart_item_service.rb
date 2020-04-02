@@ -14,7 +14,7 @@ class CartItemService
   end
 
   def delete(cart_item)
-    CartItem.delete(cart_item)
+    CartItem.destroy(cart_item.id)
   end
 
   def cart_sub_total
