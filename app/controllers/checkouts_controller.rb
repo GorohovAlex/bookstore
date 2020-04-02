@@ -2,7 +2,7 @@ class CheckoutsController < ApplicationController
   before_action :authorize_resource, only: %i[show]
 
   def show
-    @presenter = AddressPresenter.new(owner: current_order)
+    @presenter = (current_order.aasm_state + 'Presenter').singularize.camelize.constantize.new(owner: current_order)
     @summary_presenter = OrderSummaryPresenter.new(user_id: current_user.id)
     render CheckoutShowService.new(current_order: current_order).call
   end
@@ -14,6 +14,7 @@ class CheckoutsController < ApplicationController
       redirect_to checkout_path
     else
       @presenter = service.presenter
+      @summary_presenter = OrderSummaryPresenter.new(user_id: current_user.id)
       render CheckoutShowService.new(current_order: current_order).call
     end
   end
