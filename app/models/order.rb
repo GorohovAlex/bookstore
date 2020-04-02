@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   has_one  :shipping_address, as: :owner, dependent: :destroy
   has_one  :billing_address, as: :owner, dependent: :destroy
   has_one  :order_delivery, dependent: :destroy
+  has_one  :card, dependent: :destroy
 
   aasm do
     state :address, initial: true
@@ -16,6 +17,9 @@ class Order < ApplicationRecord
 
     event :address do
       transitions from: :address, to: :delivery
+    end
+    event :delivery do
+      transitions from: :delivery, to: :payment
     end
   end
 end
