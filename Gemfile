@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'countries'
 gem 'country_select', '~> 4.0'
+gem 'credit_card_validations'
 gem 'devise'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'draper', '~> 3.1'
