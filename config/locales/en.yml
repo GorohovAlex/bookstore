@@ -69,6 +69,14 @@ en:
       checkout: Checkout
     payment:
       credit_card: Credit card
+      name_on_card_label: Name on Card
+      name_on_card_placeholder: Name on Card
+      number_label: Card Number
+      number_placeholder: Card Number
+      date_expiry_label: MM / YY
+      date_expiry_placeholder: MM / YY
+      cvv_label: CVV
+      cvv_placeholder: CVV
     order_summary_item:
       coupon: Discount
       item_total: 'Item Total:'
