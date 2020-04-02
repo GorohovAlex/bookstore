@@ -48,6 +48,14 @@ RSpec.describe CartItemsController do
         expect(response).to have_http_status(:found)
       end
     end
+
+    context 'when edit invalid cart_item' do
+      it 'returns a 404 status' do
+        expect do
+          patch :update, format: 'js', params: { id: 0, cart_item: nil }
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -55,6 +63,14 @@ RSpec.describe CartItemsController do
       it 'returns a 302 status' do
         delete :destroy, format: 'js', params: { id: cart_item.id }
         expect(response).to have_http_status(:found)
+      end
+    end
+
+    context 'when delete invalid cart_item' do
+      it 'returns a 404 status' do
+        expect do
+          delete :destroy, format: 'js', params: { id: 0 }
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
