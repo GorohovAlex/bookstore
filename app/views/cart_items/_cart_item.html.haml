@@ -1,7 +1,7 @@
 .visible-xs
-  = render partial: 'cart_item_grid', collection: cart_items
+  = render partial: 'cart_item_grid', collection: cart_items, locals: { editable: true }
 .hidden-xs
-  = render partial: 'cart_item_table', object: cart_items
+  = render partial: 'cart_item_table', object: cart_items, locals: { editable: true }
   .general-order-wrap
     .row
       .col-sm-4

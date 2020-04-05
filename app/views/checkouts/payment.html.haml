@@ -1,25 +1,24 @@
-%main.container.mb-res-50
-  = render partial: 'checkout_header', locals: { state: @current_order.aasm_state }
-  %h3.general-subtitle
-    = t('.credit_card')
-  = simple_form_for @current_order, url: checkout_path, method: 'PATCH', defaults: { required: false } do |f|
-    = f.simple_fields_for @presenter.card_form do |c|
-      .max-600.mb-80
-        .form-group
-          = c.input :number, label: t('.number_label'), placeholder: t('.number_placeholder'), input_html: { maxlength: 16 }
-        .row
-          .col-sm-6
-            .form-group
-              = c.input :name, label: t('.name_on_card_label'), placeholder: t('.name_on_card_placeholder')
-          .col-sm-3
-            .form-group
-              = c.input :date_expiry, as: :string, label: t('.date_expiry_label'), placeholder: t('.date_expiry_placeholder')
-          .col-sm-3
-            .form-group.relative
-              = c.input :cvv, label: t('.cvv_label'), placeholder: t('.cvv_placeholder')
-              %i.fa.fa-question-circle.general-form-help
-    .general-text-align
-      = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary }
-    .text-center
-      = f.submit 'Save and Continue', class: 'btn btn-default mb-80'
-  = console
+%h3.general-subtitle
+  = t('.credit_card')
+= simple_form_for @current_order, url: checkout_path, method: 'PATCH', defaults: { required: false } do |f|
+  = f.simple_fields_for @presenter.card_form do |c|
+    .max-600.mb-80
+      .form-group
+        = c.input :number, label: t('.number_label'), placeholder: t('.number_placeholder'), input_html: { maxlength: 16 }, wrapper_html: { class: 'mb-5' }
+        .general-info-text.font-12
+          = t('.example_number')
+      .row
+        .col-sm-6
+          .form-group
+            = c.input :name, label: t('.name_on_card_label'), placeholder: t('.name_on_card_placeholder')
+        .col-sm-3
+          .form-group
+            = c.input :date_expiry, as: :string, label: t('.date_expiry_label'), placeholder: t('.date_expiry_placeholder')
+        .col-sm-3
+          .form-group.relative
+            = c.input :cvv, as: :password, label: t('.cvv_label'), placeholder: t('.cvv_placeholder')
+            %i.fa.fa-question-circle.general-form-help{ title: t('.cvv_hint') }
+  .general-text-align
+    = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary, html: {} }
+  .text-center
+    = f.submit t('.save_and_continue'), class: 'btn btn-default mb-80'
