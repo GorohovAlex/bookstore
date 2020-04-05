@@ -1,5 +1,4 @@
-class PaymentPresenter < Rectify::Presenter
-  attribute :owner, Object
+class PaymentPresenter < BasePresenter
   attribute :card_form, CardForm
 
   def card_form

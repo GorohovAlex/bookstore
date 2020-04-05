@@ -1,5 +1,4 @@
-class AddressPresenter < Rectify::Presenter
-  attribute :owner, Object
+class AddressPresenter < BasePresenter
   attribute :billing_address_form, BillingAddressForm
   attribute :shipping_address_form, ShippingAddressForm
 
