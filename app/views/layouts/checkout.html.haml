@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{name: "viewport", content: "width=device-width"}
+    %title= t('site_name')
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans', type: 'text/css'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render partial: "partials/header"
+    .container
+      .alert.alert-danger#alert{ role: "alert", style: "display: #{alert && !alert.empty? ? 'block' : 'none'}" }
+        = alert
+      .alert.alert-info#notice{ role: "alert", style: "display: #{notice && !notice.empty? ? 'block' : 'none'}" }
+        = notice
+    %main.container.general-main-wrap
+      = render partial: 'checkout_header', locals: { state: @current_order.aasm_state }
+      = yield
+    = render partial: "partials/footer"
