@@ -1,11 +1,6 @@
-class PaymentService
-  def initialize(current_order:, params: [])
-    @current_order = current_order
-    @params = params
-  end
-
+class PaymentService < CheckoutBaseService
   def call
-    card_form.save
+    @current_order.to_confirm! if card_form.save
   end
 
   def presenter

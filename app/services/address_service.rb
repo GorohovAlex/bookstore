@@ -1,12 +1,7 @@
-class AddressService
-  def initialize(current_order:, params: [])
-    @current_order = current_order
-    @params = params
-  end
-
+class AddressService < CheckoutBaseService
   def call
     if use_billing_address
-      billing_address.save ? @current_order.address! : nil
+      billing_address.save ? @current_order.to_delivery! : nil
     else
       valid_all_address? ? save_all_address : nil
     end
@@ -28,7 +23,7 @@ class AddressService
     billing_valid = billing_address.save
     shipping_valid = shipping_address.save
 
-    @current_order.address! if billing_valid && shipping_valid
+    @current_order.to_delivery! if billing_valid && shipping_valid
   end
 
   def valid_all_address?

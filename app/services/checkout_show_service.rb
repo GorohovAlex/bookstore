@@ -1,10 +1,5 @@
-class CheckoutShowService
-  def initialize(current_order:, params: [])
-    @current_order = current_order
-    @params = params
+  class CheckoutShowService < CheckoutBaseService
+    def call
+      @current_order.aasm_state
+    end
   end
-
-  def call
-    @current_order.aasm_state
-  end
-end
