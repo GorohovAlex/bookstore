@@ -6,8 +6,9 @@ class Order < ApplicationRecord
   has_one  :shipping_address, as: :owner, dependent: :destroy
   has_one  :billing_address, as: :owner, dependent: :destroy
   has_one  :order_delivery, dependent: :destroy
-  has_one  :card, dependent: :destroy
+  has_one  :order_card, dependent: :destroy
   has_many :order_items, dependent: :destroy
+  has_many :order_summary, dependent: :destroy
 
   aasm do
     state :address, initial: true
@@ -50,6 +51,6 @@ class Order < ApplicationRecord
   end
 
   def card_completed?
-    card.present?
+    order_card.present?
   end
 end

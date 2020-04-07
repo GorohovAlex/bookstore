@@ -3,6 +3,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
     create_table :orders do |t|
       t.references :user, null: false, foreign_key: true
       t.string :aasm_state
+      t.string :number
       t.boolean :use_billing_address
 
       t.timestamps
