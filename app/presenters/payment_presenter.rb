@@ -1,7 +1,7 @@
 class PaymentPresenter < BasePresenter
-  attribute :card_form, CardForm
+  attribute :order_card_form, OrderCardForm
 
-  def card_form
-    @card_form || Card.find_or_initialize_by(order: owner)
+  def order_card_form
+    @order_card_form || OrderCard.find_or_initialize_by(order: owner)
   end
 end
