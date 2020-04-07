@@ -2,6 +2,7 @@ en:
   time:
     formats:
       short: '%d/%m/%y'
+      checkout: '%B %d, %Y'
   books:
     show:
       back_to_results: Back to results
@@ -59,6 +60,12 @@ en:
       sub_total: SubTotal
       quantity: Quantity
   checkouts:
+    delivery:
+      days: Days
+      delivery: Delivery
+      method: Method
+      price: Price
+      save_and_continue: Save and Continue
     address:
       all_fields_are_required: all fields are required
       billing_address: Billing Address
@@ -67,20 +74,42 @@ en:
       save_and_continue: Save and Continue
     checkout_header:
       checkout: Checkout
+    confirm:
+      place_order: Place Order
+      shipping_address: Shipping Address
+      billing_address: Billing Address
+      shipments: Shipments
+      payment_information: Payment Information
+    confirm_info_box:
+      edit: edit
+    complete:
+      back_to_store: Back to Store
+      thank_message: Thank You for your Order!
+      thank_description: An order confirmation has been has been sent to %{user} %{email}
+      order_number: "Order #%{number}"
     payment:
       credit_card: Credit card
+      example_number: ' Example: 6798823404354258'
       name_on_card_label: Name on Card
       name_on_card_placeholder: Name on Card
+      name_on_card_error: only allows letters and space
       number_label: Card Number
       number_placeholder: Card Number
       date_expiry_label: MM / YY
       date_expiry_placeholder: MM / YY
+      date_expiry_error: 'example: 12/22'
       cvv_label: CVV
       cvv_placeholder: CVV
+      cvv_hint: |
+        3-digit security code, usually found on the back of your card.
+        American Express cards has 4-digit code, located on the front.
+      cvv_error: only allows numbers
+      save_and_continue: Save and Continue
     order_summary_item:
       coupon: Discount
       item_total: 'Item Total:'
       order_total: 'Order Total:'
+      delivery: Delivery
     order_summary:
       order_summary: Order Summary
     update:
@@ -103,6 +132,8 @@ en:
   not_valid: Not valid
   settings: Settings
   shop: Shop
+  phone: Phone +%{number}
+  no_item_selected: No item selected
   mobile_development: Mobile development
   photo: Photo
   web_design: Web design
