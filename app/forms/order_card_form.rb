@@ -1,7 +1,9 @@
 require 'credit_card_validations/string'
 
-class CardForm < BaseForm
-  MODEL_CLASS = 'Card'.freeze
+class OrderCardForm < BaseForm
+  MODEL_CLASS = 'OrderCard'.freeze
+  CVV_COUNT = 3
+  CVV_AMEX_COUNT = 4
 
   DATE_EXPIRY_REGEX = %r{\A(0[1-9]|10|11|12)/[0-9]{2}\z}.freeze
   NAME_REGEX = /\A[a-zA-Z\s]+\z/.freeze
@@ -14,11 +16,12 @@ class CardForm < BaseForm
   attribute :cvv, String
 
   validates :number, presence: true, credit_card_number: true
-  validates :name, presence: true, format: { with: NAME_REGEX, message: 'only allows letters and space' }
-  validates :date_expiry, presence: true, format: { with: DATE_EXPIRY_REGEX, message: 'example: 12/22' }
-  validates :cvv, presence: true, format: { with: CVV_REGEX, message: 'only allows numbers' }
-  validates :cvv, length: { is: 3 }, unless: :card_american_express?
-  validates :cvv, length: { is: 4 }, if: :card_american_express?
+  validates :name, presence: true, format: { with: NAME_REGEX, message: I18n.t('checkouts.payment.name_on_card_error') }
+  validates :date_expiry, presence: true, format: { with: DATE_EXPIRY_REGEX,
+                                                    message: I18n.t('checkouts.payment.date_expiry_error') }
+  validates :cvv, presence: true, format: { with: CVV_REGEX, message: I18n.t('checkouts.payment.cvv_error') }
+  validates :cvv, length: { is: CVV_COUNT }, unless: :card_american_express?
+  validates :cvv, length: { is: CVV_AMEX_COUNT }, if: :card_american_express?
 
   private
 
@@ -42,6 +45,6 @@ class CardForm < BaseForm
   end
 
   def card_american_express?
-    number.credit_card_brand == :amex
+    number.valid_credit_card_brand?(:amex)
   end
 end
