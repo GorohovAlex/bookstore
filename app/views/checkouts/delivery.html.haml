@@ -31,7 +31,7 @@
               %span.font-16.in-gold-500
                 = humanized_money_with_symbol d.object.price
     .general-text-align
-      = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary, html: { class: nil } }
+      = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: nil } }
     .text-center
       = f.submit t('.save_and_continue'), class: 'btn btn-default mb-20'
 .hidden-xs.mb-res-50
@@ -65,6 +65,6 @@
               %span.font-16.in-gold-500
                 = humanized_money_with_symbol d.object.price
     .general-text-align
-      = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary, html: { class: nil } }
+      = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: nil } }
     .text-center
       = f.submit t('.save_and_continue'), class: 'btn btn-default mb-20'
