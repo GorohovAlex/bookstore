@@ -1,23 +1,16 @@
 class CompletePresenter < BasePresenter
+  def initialize(owner: nil, coupon: nil)
+    super
+    @summary_items = OrderItemSummaryPresenter.new(order: owner, coupon: coupon)
+  end
+
   def cart_items
-    @cart_items ||= CartItems::AllItems.call(user_id: @owner.user.id)
+    @cart_items ||= OrderItem.where(order: @owner)
   end
 
   def shipping_address_info_items
-    return billing_address_info_items if owner.use_billing_address
+    return owner.billing_address.decorate.address_info_items if owner.use_billing_address
 
-    address_info_items(owner.shipping_address)
-  end
-
-  private
-
-  def address_info_items(address)
-    [
-      "#{address.first_name} #{address.last_name}",
-      address.address,
-      address.city,
-      address.country,
-      I18n.t('.phone', number: address.phone)
-    ]
+    owner.shipping_address.decorate.address_info_items
   end
 end

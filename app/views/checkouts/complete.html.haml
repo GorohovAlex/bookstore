@@ -7,13 +7,13 @@
   .col-sm-6
     .visible-xs
       %p.general-order-number.mb-0
-        = t('.order_number', number: 'R25314582')
+        = t('.order_number', number: @current_order.number)
       %p.general-address.mb-30
         = l @current_order.created_at, format: :checkout
     = render partial: 'confirm_info_box', locals: { label: nil, items: @presenter.shipping_address_info_items, state: nil }
   .col-sm-6.hidden-xs.text-right
     %p.general-order-number.mb-0
-      = t('.order_number', number: 'R25314582')
+      = t('.order_number', number: @current_order.number)
     %p.general-address.mb-30
       = l @current_order.created_at, format: :checkout
 .visible-xs
@@ -21,7 +21,7 @@
 .hidden-xs
   = render partial: 'cart_items/cart_item_table', object: @presenter.cart_items, locals: { editable: false }  
 .text-center.general-text-right
-  = render partial: 'order_summary', locals: { order_summary_items: @summary_presenter.order_summary, html: { class: 'general-summary-table-right general-text-right' } }
+  = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: 'general-summary-table-right general-text-right' } }
 .text-center
   %button.btn.btn-default.mb-20
     = t('.back_to_store')

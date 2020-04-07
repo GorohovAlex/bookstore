@@ -1,0 +1,2 @@
+class OrderItemDecorator < CartItemDecorator
+end
