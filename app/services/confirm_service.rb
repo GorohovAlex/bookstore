@@ -6,6 +6,8 @@ class ConfirmService < CheckoutBaseService
       create_order_items
       delete_cart_items
       create_summary
+      create_number
+      change_coupon if @coupon.present?
     end
 
     @current_order.to_complete!
@@ -30,11 +32,19 @@ class ConfirmService < CheckoutBaseService
   end
 
   def create_summary
-    cart_sumamry_items = OrderSummaryPresenter.new(user_id: nil, order: @current_order, coupon: @params[:coupon]).items
-    
-    cart_sumamry_items.each do |item|
-      OrderSummary.create(order: @current_order, item_name: item[0], value: item[1])
+    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon: @params[:coupon]).summary
+
+    cart_summary_items.each do |item|
+      OrderSummary.create(order: @current_order, item_name: item[0], price: item[1])
     end
+  end
+
+  def create_number
+    Order.update(number: @current_order.decorate.order_number)
+  end
+
+  def change_coupon
+    @coupon.update(count: @coupon.count - 1)
   end
 
   def edit_action
