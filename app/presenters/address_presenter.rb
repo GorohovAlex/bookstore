@@ -2,6 +2,12 @@ class AddressPresenter < BasePresenter
   attribute :billing_address_form, BillingAddressForm
   attribute :shipping_address_form, ShippingAddressForm
 
+  def initialize(owner: nil, billing_address_form: nil, shipping_address_form: nil)
+    @billing_address_form = billing_address_form
+    @shipping_address_form = shipping_address_form
+    super(owner: owner)
+  end
+
   def billing_address_form
     params = (owner.is_a? Order) && !owner.billing_address.present? ? owner.user : owner
     @billing_address_form || BillingAddress.find_or_initialize_by(owner: params)
