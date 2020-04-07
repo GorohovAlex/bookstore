@@ -1,5 +1,4 @@
 class OrderSummary < ApplicationRecord
   belongs_to :order
-  monetize :value_cents
-
+  monetize :price_cents
 end
