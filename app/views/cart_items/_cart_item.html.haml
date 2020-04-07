@@ -12,10 +12,9 @@
               = f.button :submit, t('.apply_coupon'), class: 'btn btn-primary mr-5 mb-15', name: nil
       .col-sm-8
         .res-mr-200.text-center.general-text-right
-          %p.in-gold-500.font-18
-            = t('.order_summary')
-          = render partial: 'order_summary_table', locals: { cart_sub_total: cart_sub_total, discount: discount, order_total: order_total }
+          = render partial: 'checkouts/order_summary', locals: { order_summary_items: @summary_presenter.summary, html: { class: 'general-summary-table-right general-text-right' } }
+
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
-  = button_to t('.checkout'), checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get', id: 'checkout'
+  = button_to t('.checkout'), checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', id: 'checkout'
 = javascript_pack_tag 'cart_items/index'

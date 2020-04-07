@@ -3,8 +3,10 @@ class CartItemsController < ApplicationController
 
   def index
     cookies[:coupon] = params[:coupon] if params[:coupon]
+    @coupon = cookies[:coupon]
     @cart_items = policy_scope(CartItem)
-    cart_total_values
+    @summary_presenter = CartItemSummaryPresenter.new(user_id: current_user.id, session_id: session.id.to_s,
+                                                      coupon: @coupon)
   end
 
   def create

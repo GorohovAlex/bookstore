@@ -18,7 +18,10 @@
         %span.in-grey-600
           = t('.quantity')
       %td
-        = render partial: 'cart_items/counter', object: cart_item_grid
+        - if editable
+          = render partial: 'cart_items/counter', object: cart_item_grid
+        - else
+          = cart_item_grid.quantity
     %tr
       %td
         %span.in-grey-600
