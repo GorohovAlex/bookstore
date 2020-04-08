@@ -1,5 +1,5 @@
 module Checkouts
-  class AddressPresenter < BasePresenter
+  class AddressPresenter < CheckoutBasePresenter
     attribute :billing_address_form, BillingAddressForm
     attribute :shipping_address_form, ShippingAddressForm
 

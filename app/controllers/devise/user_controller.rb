@@ -3,7 +3,7 @@ module Devise
     before_action :authorize_resource, only: %i[index update]
 
     def edit
-      present AddressPresenter.new(owner: current_user)
+      present Users::AddressPresenter.new(owner: current_user)
     end
 
     def update

@@ -1,5 +1,5 @@
 module Checkouts
-  class PaymentPresenter < BasePresenter
+  class PaymentPresenter < CheckoutBasePresenter
     attribute :order_card_form, OrderCardForm
 
     def order_card_form

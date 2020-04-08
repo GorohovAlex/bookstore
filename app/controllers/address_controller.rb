@@ -1,6 +1,6 @@
 class AddressController < ApplicationController
   def create
-    present AddressPresenter.new(owner: current_user)
+    present Users::AddressPresenter.new(owner: current_user)
     @address_form = AddressForm.new(address_params)
     authorize @address_form.record, policy_class: AddressPolicy
 

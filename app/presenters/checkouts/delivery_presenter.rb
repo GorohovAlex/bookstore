@@ -1,4 +1,4 @@
 module Checkouts
-  class DeliveryPresenter < BasePresenter
+  class DeliveryPresenter < CheckoutBasePresenter
   end
 end
