@@ -3,6 +3,7 @@ class CheckoutsController < ApplicationController
   before_action :authorize_resource, only: %i[show]
 
   PRESENTER_SUFIX = 'Presenter'.freeze
+  PRESENTER_PREFIX = 'Checkouts::'.freeze
 
   def show
     @presenter = presenter_name.constantize.new(owner: current_order, coupon: cookies[:coupon])
@@ -36,7 +37,7 @@ class CheckoutsController < ApplicationController
   end
 
   def presenter_name
-    (current_order.aasm_state + PRESENTER_SUFIX).singularize.camelize
+    PRESENTER_PREFIX + (current_order.aasm_state + PRESENTER_SUFIX).singularize.camelize
   end
 
   def current_order
