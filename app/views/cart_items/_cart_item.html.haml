@@ -11,10 +11,11 @@
             %div
               = f.button :submit, t('.apply_coupon'), class: 'btn btn-primary mr-5 mb-15', name: nil
       .col-sm-8
-        .res-mr-200.text-center.general-text-right
+        .res-mr-200.text-center.general-text-right#order_summary
           = render partial: 'checkouts/order_summary', locals: { order_summary_items: @summary_presenter.summary, html: { class: 'general-summary-table-right general-text-right' } }
 
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
-  = button_to t('.checkout'), checkout_path, class: 'btn btn-default mb-20 hidden-xs center-block', id: 'checkout'
+  .center-block{ style: 'text-align: center'}
+    = link_to t('.checkout'), checkout_path, method: 'get', class: 'btn btn-default mb-20 hidden-xs', id: 'checkout'
 = javascript_pack_tag 'cart_items/index'

@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
     cookies[:coupon] = params[:coupon] if params[:coupon]
     @coupon = cookies[:coupon]
     @cart_items = policy_scope(CartItem)
-    @summary_presenter = CartItemSummaryPresenter.new(user_id: current_user.id, session_id: session.id.to_s,
+    @summary_presenter = CartItemSummaryPresenter.new(user_id: current_user&.id, session_id: session.id.to_s,
                                                       coupon: @coupon)
   end
 
@@ -68,9 +68,10 @@ class CartItemsController < ApplicationController
     params[:cart_item][:quantity]
   end
 
-  def cart_total_values
-    @cart_sub_total = cart_item_service.cart_sub_total
-    @discount = cart_item_service.discount.to_money
-    @order_total = cart_item_service.order_total
-  end
+  # def cart_total_values
+  #   @cart_sub_total = cart_item_service.cart_sub_total
+  #   @discount = cart_item_service.discount.to_money
+  #   byebug
+  #   @order_total = cart_item_service.order_total
+  # end
 end
