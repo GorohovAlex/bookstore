@@ -7,7 +7,7 @@ module Devise
     end
 
     def update
-      present AddressPresenter.new(owner: current_user)
+      present Users::AddressPresenter.new(owner: current_user)
 
       return password if params.key?(:password_form)
       return email if params.key?(:user)
