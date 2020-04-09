@@ -10,13 +10,6 @@ class CheckoutsController < ApplicationController
     render CheckoutShowService.new(current_order: current_order).call
   end
 
-  def create
-    order = order_policy.where(id: cookies[:current_order]).where.not(aasm_state: :complete).first
-    @current_order = order || Order.create(user: current_user)
-    cookies[:current_order] = @current_order.id
-    redirect_to checkout_path
-  end
-
   def update
     return redirect_to checkout_path if update_service.call
 
@@ -41,7 +34,9 @@ class CheckoutsController < ApplicationController
   end
 
   def current_order
-    @current_order ||= order_policy.find_by!(id: cookies[:current_order])
+    order = order_policy.where(id: cookies[:current_order]).where.not(aasm_state: :complete).first
+    @current_order = order || Order.create(user: current_user)
+
     cookies[:current_order] ||= @current_order.id
     @current_order
   end

@@ -1,5 +1,5 @@
 class CheckoutPolicy < ApplicationPolicy
   def show?
-    user.present?
+    user[:user].present?
   end
 end
