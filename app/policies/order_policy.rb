@@ -1,4 +1,7 @@
 class OrderPolicy < ApplicationPolicy
+  def show?
+    user[:user].present?
+  end
   class Scope < Scope
     attr_reader :user, :scope
 
