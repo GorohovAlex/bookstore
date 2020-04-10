@@ -2,6 +2,7 @@ require 'simplecov'
 SimpleCov.minimum_coverage 90
 SimpleCov.start 'rails' do
   add_group 'Forms', 'app/forms'
+  add_group 'Services', 'app/services'
 end
 
 ENV['RAILS_ENV'] ||= 'test'
