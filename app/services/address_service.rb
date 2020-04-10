@@ -8,7 +8,7 @@ class AddressService < CheckoutBaseService
   end
 
   def presenter
-    AddressPresenter.new(owner: @current_order, billing_address_form: billing_address,
+    Checkouts::AddressPresenter.new(owner: @current_order, billing_address_form: billing_address,
                          shipping_address_form: shipping_address)
   end
 
