@@ -42,7 +42,7 @@ class CheckoutsController < ApplicationController
   end
 
   def authorize_resource
-    authorize Checkout
+    authorize Order
   end
 
   def user_not_authorized
