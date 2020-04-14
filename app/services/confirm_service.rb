@@ -40,7 +40,7 @@ class ConfirmService < CheckoutBaseService
   end
 
   def create_number
-    Order.update(number: @current_order.decorate.order_number)
+    Order.update(id: @current_order.id, number: @current_order.decorate.order_number)
   end
 
   def change_coupon
