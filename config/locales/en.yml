@@ -116,6 +116,12 @@ en:
       not_authorized: User not authorized for update
     destroy:
       not_authorized: User not authorized for destroy
+    step:
+      address: Address
+      delivery: Delivery
+      payment: Payment
+      confirm: Confirm
+      complete: Complete
   address:
     create:
       successful_message: '%{type} update successful.'

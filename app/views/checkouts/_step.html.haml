@@ -2,4 +2,4 @@
   %span.step-number{ class: ('fa fa-check' if step_iteration.index < state_index) }
     = step_iteration.index + 1 unless step_iteration.index < state_index
   %span.step-text.hidden-xs
-    = step.capitalize
+    = t(".#{step}")
