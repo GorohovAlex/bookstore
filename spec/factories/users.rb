@@ -8,5 +8,9 @@ FactoryBot.define do
       name { FFaker::Name.name }
       image { FFaker::Avatar.image }
     end
+
+    trait :with_cart_items do
+      cart_item { create_list :cart_item, rand(1..10) }
+    end
   end
 end
