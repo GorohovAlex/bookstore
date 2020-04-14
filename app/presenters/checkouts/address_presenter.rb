@@ -10,12 +10,12 @@ module Checkouts
     end
 
     def billing_address_form
-      params = (owner.is_a? Order) && !owner.billing_address.present? ? owner.user : owner
+      params = (owner.is_a? Order) && owner.billing_address.blank? ? owner.user : owner
       @billing_address_form || BillingAddress.find_or_initialize_by(owner: params)
     end
 
     def shipping_address_form
-      params = (owner.is_a? Order) && !owner.shipping_address.present? ? owner.user : owner
+      params = (owner.is_a? Order) && owner.shipping_address.blank? ? owner.user : owner
       @shipping_address_form || ShippingAddress.find_or_initialize_by(owner: params)
     end
   end
