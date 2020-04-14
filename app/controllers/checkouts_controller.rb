@@ -4,6 +4,7 @@ class CheckoutsController < ApplicationController
 
   PRESENTER_SUFIX = 'Presenter'.freeze
   PRESENTER_PREFIX = 'Checkouts::'.freeze
+  CHECKOUT_STATUSES = %w[address delivery payment confirm].freeze
 
   def show
     @presenter = presenter_name.constantize.new(owner: current_order, coupon: cookies[:coupon])
@@ -34,7 +35,7 @@ class CheckoutsController < ApplicationController
   end
 
   def current_order
-    order = order_policy.where(id: cookies[:current_order]).where.not(aasm_state: :complete).first
+    order = order_policy.where(id: cookies[:current_order], aasm_state: CHECKOUT_STATUSES).first
     @current_order = order || Order.create(user: current_user)
 
     cookies[:current_order] ||= @current_order.id
