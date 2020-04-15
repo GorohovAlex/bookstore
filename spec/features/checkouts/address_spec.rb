@@ -1,5 +1,5 @@
-describe 'Checkout page', type: :feature do
-  let(:checkout) { CheckoutPage.new }
+describe 'Checkout page (address)', type: :feature do
+  let(:checkout) { CheckoutAddressPage.new }
   let(:current_user) { create(:user, :with_cart_items) }
   let(:address) { build(:address) }
   let(:address_forms) { [checkout.billing_address_form, checkout.shipping_address_form] }
@@ -35,7 +35,22 @@ describe 'Checkout page', type: :feature do
       end
 
       it 'Show button `save`' do
-        expect(checkout).to have_save_button
+        expect(checkout).to have_button
+      end
+    end
+
+    describe 'Enter invalid/empty values' do
+      it 'Send form' do
+        checkout.button.click
+        address_forms.each do |form|
+          expect(form.first_name).to have_error
+          expect(form.last_name).to have_error
+          expect(form.address).to have_error
+          expect(form.city).to have_error
+          expect(form.zip).to have_error
+          expect(form.country).to have_error
+          expect(form.phone).to have_error
+        end    
       end
     end
 
@@ -53,7 +68,7 @@ describe 'Checkout page', type: :feature do
       end
 
       it 'Send form with valid values' do
-        checkout.save_button.click
+        checkout.button.click
         expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.delivery'))
       end
     end
