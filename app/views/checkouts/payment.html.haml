@@ -1,6 +1,6 @@
 %h3.general-subtitle
   = t('.credit_card')
-= simple_form_for @current_order, url: checkout_path, method: 'PATCH', defaults: { required: false } do |f|
+= simple_form_for @presenter.owner, url: checkout_path, method: 'PATCH', defaults: { required: false } do |f|
   = f.simple_fields_for @presenter.order_card_form do |c|
     .max-600.mb-80
       .form-group

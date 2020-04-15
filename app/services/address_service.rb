@@ -1,14 +1,14 @@
 class AddressService < CheckoutBaseService
   def call
     if use_billing_address
-      billing_address.save ? @current_order.to_delivery! : nil
+      billing_address.save ? current_order.to_delivery! : nil
     else
       valid_all_address? ? save_all_address : nil
     end
   end
 
   def presenter
-    Checkouts::AddressPresenter.new(owner: @current_order, billing_address_form: billing_address,
+    Checkouts::AddressPresenter.new(owner: current_order, billing_address_form: billing_address,
                                     shipping_address_form: shipping_address)
   end
 
@@ -16,14 +16,14 @@ class AddressService < CheckoutBaseService
 
   def address_params(params)
     params.permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type, :owner)
-          .merge(owner: @current_order)
+          .merge(owner: current_order)
   end
 
   def save_all_address
     billing_valid = billing_address.save
     shipping_valid = shipping_address.save
 
-    @current_order.to_delivery! if billing_valid && shipping_valid
+    current_order.to_delivery! if billing_valid && shipping_valid
   end
 
   def valid_all_address?
@@ -45,7 +45,7 @@ class AddressService < CheckoutBaseService
 
   def use_billing_address
     use_billing_address = ActiveModel::Type::Boolean.new.cast(@params[:order][:use_billing_address])
-    @current_order.update(use_billing_address: use_billing_address)
+    current_order.update(use_billing_address: use_billing_address)
     use_billing_address
   end
 end

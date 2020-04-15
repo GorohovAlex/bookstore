@@ -20,7 +20,7 @@ class OrderItemSummaryPresenter < SummaryPresenter
   end
 
   def discount
-    @discount ||= Coupons::Discount.call(coupon: @coupon).to_money
+    @discount ||= Coupons::Discount.call(coupon: @coupon.name).to_money
   end
 
   def delivery

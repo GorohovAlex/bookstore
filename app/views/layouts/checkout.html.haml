@@ -17,6 +17,6 @@
       .alert.alert-info#notice{ role: "alert", style: "display: #{notice && !notice.empty? ? 'block' : 'none'}" }
         = notice
     %main.container.general-main-wrap
-      = render partial: 'checkout_header', locals: { state: @current_order.aasm_state }
+      = render partial: 'checkout_header', locals: { state: @presenter.owner.aasm_state }
       = yield
     = render partial: "partials/footer"

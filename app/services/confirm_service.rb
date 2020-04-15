@@ -10,24 +10,24 @@ class ConfirmService < CheckoutBaseService
       change_coupon if @coupon.present?
     end
 
-    @current_order.to_complete!
+    current_order.to_complete!
   end
 
   def presenter
-    ConfirmPresenter.new(owner: @current_order)
+    ConfirmPresenter.new(owner: current_order)
   end
 
   private
 
   def create_order_items
-    cart_items = CartItems::AllItems.call(user_id: @current_order.user.id)
+    cart_items = CartItems::AllItems.call(user_id: current_order.user.id)
     cart_items.each do |item|
-      OrderItem.create(order: @current_order, book: item.book, quantity: item.quantity, price: item.book.price)
+      OrderItem.create(order: current_order, book: item.book, quantity: item.quantity, price: item.book.price)
     end
   end
 
   def delete_cart_items
-    cart_items = CartItems::AllItems.call(user_id: @current_order.user.id)
+    cart_items = CartItems::AllItems.call(user_id: current_order.user.id)
     CartItem.destroy(cart_items.map(&:id))
   end
 
@@ -35,12 +35,12 @@ class ConfirmService < CheckoutBaseService
     cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon: @params[:coupon]).summary
 
     cart_summary_items.each do |item|
-      OrderSummary.create(order: @current_order, item_name: item[0], price: item[1])
+      OrderSummary.create(order: current_order, item_name: item[0], price: item[1])
     end
   end
 
   def create_number
-    Order.update(id: @current_order.id, number: @current_order.decorate.order_number)
+    current_order.update(number: current_order.decorate.order_number)
   end
 
   def change_coupon
@@ -49,9 +49,9 @@ class ConfirmService < CheckoutBaseService
 
   def edit_action
     case edit_params[:state].to_sym
-    when :address then @current_order.to_address!
-    when :delivery then @current_order.to_delivery!
-    when :payment then @current_order.to_payment!
+    when :address then current_order.to_address!
+    when :delivery then current_order.to_delivery!
+    when :payment then current_order.to_payment!
     end
   end
 

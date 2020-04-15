@@ -7,15 +7,15 @@
   .col-sm-6
     .visible-xs
       %p.general-order-number.mb-0
-        = t('.order_number', number: @current_order.number)
+        = t('.order_number', number: @presenter.owner.number)
       %p.general-address.mb-30
-        = l @current_order.created_at, format: :checkout
+        = l @presenter.owner.created_at, format: :checkout
     = render partial: 'confirm_info_box', locals: { label: nil, items: @presenter.shipping_address_info_items, state: nil }
   .col-sm-6.hidden-xs.text-right
     %p.general-order-number.mb-0
-      = t('.order_number', number: @current_order.number)
+      = t('.order_number', number: @presenter.owner.number)
     %p.general-address.mb-30
-      = l @current_order.created_at, format: :checkout
+      = l @presenter.owner.created_at, format: :checkout
 .visible-xs
   = render partial: 'cart_items/cart_item_grid', collection: @presenter.order_items, locals: { editable: false }
 .hidden-xs
