@@ -12,5 +12,9 @@ FactoryBot.define do
     trait :with_cart_items do
       cart_item { create_list :cart_item, rand(1..10) }
     end
+
+    trait :with_order_delivery do
+      orders { create_list :order, 1 }
+    end
   end
 end

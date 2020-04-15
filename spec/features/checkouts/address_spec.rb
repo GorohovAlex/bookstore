@@ -50,7 +50,7 @@ describe 'Checkout page (address)', type: :feature do
           expect(form.zip).to have_error
           expect(form.country).to have_error
           expect(form.phone).to have_error
-        end    
+        end
       end
     end
 
