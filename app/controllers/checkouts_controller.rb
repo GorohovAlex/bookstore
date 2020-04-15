@@ -9,7 +9,9 @@ class CheckoutsController < ApplicationController
   end
 
   def create
-    current_user.orders.create if CheckoutShowService.new.current_order.complete?
+    if CheckoutShowService.new(current_user: current_user, params: checkout_params).current_order.complete?
+      current_user.orders.create
+    end
     show
   end
 
