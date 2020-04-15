@@ -18,6 +18,31 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
+  cart_items:
+    index:
+      apply_coupon: Apply Coupon
+      caption: Cart
+      checkout: Checkout
+      summary_coupon: Coupon
+      coupon_label: Enter Your Coupon Code
+      coupon_placeholder: Enter Your Coupon Code
+      sub_total: SubTotal
+      order_summary: Order Summary
+      order_total: Order Total
+    cart_item_table:
+      price: Price
+      product: Product
+      sub_total: SubTotal
+      quantity: Quantity
+    cart_item_grid:
+      price: Price
+      product: Product
+      sub_total: SubTotal
+      quantity: Quantity
+    update:
+      not_authorized: User not authorized for update
+    destroy:
+      not_authorized: User not authorized for destroy
   address:
     create:
       successful_message: '%{type} update successful.'
@@ -42,6 +67,7 @@ en:
   log_in: Log in
   log_out: Log out
   unprocessed: Unprocessed
+  unprocessable_entity: Unprocessable entity
   approved: Approved
   rejected: Rejected
   settings: Settings
@@ -60,6 +86,7 @@ en:
   partials:
     header:
       my_account: My Account
+      close: Close
     slider:
       buy_now: Buy Now
       previous: Previous

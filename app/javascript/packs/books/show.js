@@ -1,17 +1,19 @@
 $(document).ready(function() {
-  $('#quantity-plus').on('click', function(){
+  $('a.quantity-plus').on('click', function(){
     event.preventDefault()
-    var value = $("#quantity-value").val()
-    value = isNaN(value) || value == '' ? BOOK_ORDER_COUNT_DEFAULT : parseInt(value) + 1
-    $('#quantity-value').val(value)
+    change_quantity(this.parentElement, 1)
   });
-
-  $("#quantity-minus").on('click', function(){
+  
+  $("a.quantity-minus").on('click', function(){
     event.preventDefault()
-    var value = $("#quantity-value").val()
-    value = isNaN(value) || value == '' || value == '1' ? 1 : parseInt(value) - 1
-    $("#quantity-value").val(value)
+    change_quantity(this.parentElement, -1)
   });
+  
+  function change_quantity(form, value){
+    var quantity_input = form.getElementsByClassName('quantity-input')[0]
+    value = parseInt(quantity_input.value) + value
+    quantity_input.value = isNaN(value) || value == '' || value < 1 ? 1 : value
+  }
 
   $("#read_more").on('click', function(){
     event.preventDefault()

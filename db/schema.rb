@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_194327) do
+ActiveRecord::Schema.define(version: 2020_03_15_161551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,11 +102,32 @@ ActiveRecord::Schema.define(version: 2020_03_10_194327) do
     t.index ["material_id"], name: "index_books_materials_on_material_id"
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "session_id"
+    t.bigint "book_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_cart_items_on_book_id"
+    t.index ["user_id"], name: "index_cart_items_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "books_count"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.integer "count"
+    t.integer "discount"
+    t.boolean "enabled"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_coupons_on_name", unique: true
   end
 
   create_table "covers", force: :cascade do |t|
@@ -158,6 +179,8 @@ ActiveRecord::Schema.define(version: 2020_03_10_194327) do
   add_foreign_key "books", "categories", on_delete: :nullify
   add_foreign_key "books_materials", "books", on_delete: :cascade
   add_foreign_key "books_materials", "materials", on_delete: :cascade
+  add_foreign_key "cart_items", "books"
+  add_foreign_key "cart_items", "users"
   add_foreign_key "covers", "books", on_delete: :cascade
   add_foreign_key "reviews", "books", on_delete: :cascade
   add_foreign_key "reviews", "users", on_delete: :cascade

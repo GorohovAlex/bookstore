@@ -1,14 +1,16 @@
+require_relative 'base_page'
+require_relative 'sections/counter_section'
 require_relative 'sections/review_form_section'
 require_relative 'sections/reviews_section'
 
-class BookPage < SitePrism::Page
+class BookPage < BasePage
   set_url '/books{/id}'
-  element :notice,              '#notice'
 
   element :name,                '#name'
   element :authors,             '#authors'
   element :price,               '#price'
-  element :counter,             '#counter'
+  section :counter,             CounterSection, '#counter'
+  element :button_add_to_cart,  '#button_add_to_cart'
   element :description,         '#description'
   element :year_of_publication, '#year_of_publication'
   element :materials,           '#materials'
