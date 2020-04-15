@@ -12,9 +12,9 @@
   %body
     = render partial: "partials/header"
     .container
-      .alert.alert-info#alert{ role: "alert", style: "display: #{alert ? 'block' : 'none'}" }
+      .alert.alert-danger#alert{ role: "alert", style: "display: #{alert && !alert.empty? ? 'block' : 'none'}" }
         = alert
-      .alert.alert-info#notice{ role: "alert", style: "display: #{notice ? 'block' : 'none'}" }
+      .alert.alert-info#notice{ role: "alert", style: "display: #{notice && !notice.empty? ? 'block' : 'none'}" }
         = notice
     = yield
     = render partial: "partials/footer"

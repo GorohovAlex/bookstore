@@ -18,10 +18,28 @@ en:
       title: Catalog
       filter_by_category: Filter by category
       sort_by: Sort by
+    checkout_email_login:
+      not_authorized: ''
+      returning_customer: Returning Customer
+      or: or
+      new_customer: New Customer
+      log_in_with_password: Log In with Password
+      email_label: Enter Email
+      email_placeholder: Enter Email
+      password_label: Password
+      password_placeholder: Password
+      forgot_password: Forgot password?
+      log_in: Log In with Password
+      continue_to_checkout: Continue to Checkout
+      quick_registrate: Quick Register
+      quick_registrate_message: You’ll be able to create password later
   cart_items:
     index:
-      apply_coupon: Apply Coupon
       caption: Cart
+      your_cart_is_empty: Your cart is empty
+      back_to_home: Back to Home
+    cart_item:
+      apply_coupon: Apply Coupon
       checkout: Checkout
       summary_coupon: Coupon
       coupon_label: Enter Your Coupon Code

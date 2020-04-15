@@ -1,46 +1,9 @@
 %main.container.general-main-wrap
   %h1.general-title-margin
     = t('.caption')
-  .visible-xs
-    = render partial: 'cart_item_grid', collection: @cart_items
-  .hidden-xs
-    = render partial: 'cart_item_table', object: @cart_items
-  .general-order-wrap
-    .row
-      .col-sm-4
-        = simple_form_for :coupon, url: cart_items_path, method: 'get', remote: true do |f|
-          .input-group.general-input-group
-            = f.input :coupon, label: t('.coupon_label'), label_html: { class: 'input-label' }, input_html: { class: 'mb-30' , placeholder: t('.coupon_placeholder'), name: 'coupon', value: @coupon}
-            %div
-              = f.button :submit, t('.apply_coupon'), class: 'btn btn-primary mr-5 mb-15', name: nil
-      .col-sm-8
-        .res-mr-200.text-center.general-text-right
-          %p.in-gold-500.font-18
-            = t('.order_summary')
-          %table.general-summary-table.general-summary-table-right.general-text-right
-            %tr
-              %td
-                %p.font-16
-                  = t('.sub_total') + ':'
-              %td
-                %p.font-16#sub-total
-                  = humanized_money_with_symbol @cart_sub_total
-            %tr
-              %td
-                %p.font-16
-                  = t('.summary_coupon') + ':'
-              %td
-                %p.font-16#coupon
-                  = humanized_money_with_symbol @discount
-            %tr
-              %td
-                %strong.font-18
-                  = t('.order_total') + ':'
-              %td
-                %strong.font-18#order-total
-                  = humanized_money_with_symbol @order_total
-          %button.btn.btn-default.mb-20.visible-xs-inline-block
-            = t('.checkout')
-  %button.btn.btn-default.mb-20.hidden-xs.center-block
-    = t('.checkout')
-= javascript_pack_tag 'cart_items/index'
+  - if @cart_items.empty?
+    .h1.text-center.mb-20
+      = t('.your_cart_is_empty')
+    = button_to t('.back_to_home'), root_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get'
+  - else
+    = render partial: 'cart_item', locals: { cart_items: @cart_items, coupon: @coupon, cart_sub_total: @cart_sub_total, discount: @discount, order_total: @order_total }

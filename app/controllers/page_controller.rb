@@ -11,6 +11,10 @@ class PageController < ApplicationController
     present CategoryPresenter.new
   end
 
+  def checkout_email_login
+    authorize :page
+  end
+
   private
 
   def permitted_params

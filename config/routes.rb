@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :cart_items, path: 'cart'
+  resource :checkout
 
   resources :books, only: [:show] do
     resources :reviews, only: [:create]
@@ -20,5 +21,6 @@ Rails.application.routes.draw do
   end
 
   get 'catalog', to: 'page#catalog'
+  get 'checkout_email_login', to: 'page#checkout_email_login'
   root 'page#home'
 end

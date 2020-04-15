@@ -21,8 +21,7 @@
     .text-center
       %p#alert-message
         = alert
-      %button#log_in.btn.btn-default.mb-20
-        = t('.log_in')
+      = f.submit t('.log_in'), class: 'btn btn-default mb-20', id: 'log_in'
   %p.general-sign-text.text-center
     = t('.dont_have_account')
     = link_to(t('.sign_up'), new_user_registration_path, class: 'in-gold-500', id: 'sign_up')

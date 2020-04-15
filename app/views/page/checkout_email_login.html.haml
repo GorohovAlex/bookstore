@@ -1,0 +1,33 @@
+%main.container
+  .row
+    .col-md-5.mb-40
+      .text-center
+        %h3.general-subtitle
+          = t('.returning_customer')
+        = render 'devise/partials/social_buttons'
+        %p.general-login-text
+          = t('.or')
+      = simple_form_for :user, html: { class: 'general-form' }, url: session_path(:user) do |f|
+        .mb-40
+          %p.mb-15
+            = t('.log_in_with_password')
+          = f.input :email, label_html: { class: 'control-label input-label' }, label: t('.email_label'), placeholder: t('.email_placeholder')
+          = f.input :password, label_html: { class: 'control-label input-label' }, label: t('.password_label'), placeholder: t('.password_placeholder')
+          = link_to(t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500', id: 'forgot_password')
+        = f.submit t('.log_in'), class: 'btn btn-default mb-20', id: 'user_submit'
+    .col-md-5.col-md-offset-1.mb-60
+      .text-center
+        %h3.general-subtitle
+          = t('.new_customer')
+        = render 'devise/partials/social_buttons'
+        %p.general-login-text
+          = t('.or')
+      = simple_form_for :quick_registrate, url: user_registration_path, html: { method: :post, class: 'general-form' } do |f|
+        .mb-40
+          %p.mb-5
+            = t('.quick_registrate')
+          %p.general-info-text.font-12.mb-20
+            = t('.quick_registrate_message')
+          .form-group.mb-30
+            = f.input :email, class: 'control-label input-label', label: t('.email_label'), placeholder: t('.email_placeholder')
+        = f.submit t('.continue_to_checkout'), class: 'btn btn-default mb-20', id: 'quick_registrate_submit'
