@@ -17,5 +17,5 @@
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = t('.checkout')
   .center-block{ style: 'text-align: center'}
-    = link_to t('.checkout'), checkout_path, method: 'get', class: 'btn btn-default mb-20 hidden-xs', id: 'checkout'
+    = button_to t('.checkout'), checkout_path, method: :post, class: 'btn btn-default mb-20 hidden-xs', id: 'checkout'
 = javascript_pack_tag 'cart_items/index'

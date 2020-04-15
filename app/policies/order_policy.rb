@@ -1,6 +1,14 @@
 class OrderPolicy < ApplicationPolicy
   def show?
-    user[:user].present?
+    user.present?
+  end
+
+  def create?
+    show?
+  end
+
+  def update?
+    show?
   end
 
   class Scope < Scope
