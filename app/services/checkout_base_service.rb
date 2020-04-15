@@ -4,7 +4,7 @@ class CheckoutBaseService
   def initialize(current_user: nil, params: {})
     @current_user = current_user
     @params = params
-    @coupon = Coupon.find_by(name: params[:coupon])
+    @coupon = Coupon.find_by(name: params[:coupon]).name
   end
 
   def call
