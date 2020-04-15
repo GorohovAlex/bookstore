@@ -19,8 +19,6 @@ class CartItemPolicy < ApplicationPolicy
     attr_reader :user, :scope
 
     def resolve
-      return scope.find_by!(id: user[:cart_item_id]) if user[:cart_item_id].present?
-
       user_or_session_scope
     end
 
