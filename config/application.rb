@@ -41,6 +41,5 @@ module Bookstore
       g.helper = false
       g.stylesheets = false
     end
-
   end
 end
