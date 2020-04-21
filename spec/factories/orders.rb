@@ -22,16 +22,5 @@ FactoryBot.define do
     trait :with_state_complete do
       aasm_state { :complete }
     end
-
-    # trait :with_addresses do
-    # end
-
-    # trait :with_delivery do
-    # delivery { create :delivery }
-    # end
-
-    # trait :with_payment do
-    # payment {  }
-    # end
   end
 end
