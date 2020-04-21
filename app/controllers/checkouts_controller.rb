@@ -3,6 +3,8 @@ class CheckoutsController < ApplicationController
   before_action :authorize_resource, only: %i[show create update]
 
   def show
+    return redirect_to root_path unless exist_cart_items?
+
     checkout_show_service = CheckoutShowService.new(current_user: current_user, params: checkout_params)
     @presenter = checkout_show_service.presenter
     render checkout_show_service.call
@@ -43,5 +45,9 @@ class CheckoutsController < ApplicationController
 
   def user_not_authorized
     redirect_to(checkout_email_login_path)
+  end
+
+  def exist_cart_items?
+    current_user.cart_item.present?
   end
 end
