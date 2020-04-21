@@ -1,6 +1,5 @@
 class AddressPolicy < ApplicationPolicy
   def create?
-    # user.present? && record.user_id.eql?(user.id)
-    true
+    user.present? && record.owner_id.eql?(user.id)
   end
 end
