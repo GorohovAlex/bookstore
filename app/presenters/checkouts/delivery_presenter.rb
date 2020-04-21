@@ -4,5 +4,9 @@ module Checkouts
       super(owner: owner, coupon: coupon)
       @notice = notice
     end
+
+    def delivery_all
+      Delivery.all
+    end
   end
 end
