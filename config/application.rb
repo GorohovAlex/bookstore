@@ -41,5 +41,7 @@ module Bookstore
       g.helper = false
       g.stylesheets = false
     end
+
+    config.assets.initialize_on_precompile = false
   end
 end
