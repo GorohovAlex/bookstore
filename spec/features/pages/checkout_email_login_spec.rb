@@ -1,6 +1,6 @@
 describe 'CheckoutEmailLogin page', type: :feature do
   let(:checkout_email_login_page) { CheckoutEmailLoginPage.new }
-  let(:user)                      { create(:user) }
+  let(:user)                      { create(:user, :with_cart_items) }
   let(:new_user)                  { build(:user) }
 
   before { visit checkout_email_login_path }
@@ -27,7 +27,7 @@ describe 'CheckoutEmailLogin page', type: :feature do
     it 'Redirect to checkout' do
       checkout_email_login_page.quick_registrate_email.input.set new_user.email
       checkout_email_login_page.quick_registrate_submit.click
-      expect(page).to have_current_path(checkout_path, ignore_query: true)
+      expect(page).to have_current_path(root_path, ignore_query: true)
     end
   end
 end

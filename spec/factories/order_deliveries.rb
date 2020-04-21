@@ -1,9 +1,5 @@
 FactoryBot.define do
   factory :order_delivery do
-    order { '' }
-    delivery { '' }
-    name { 'MyString' }
-    days { 'MyText' }
-    price { '' }
+    delivery { Delivery.first }
   end
 end

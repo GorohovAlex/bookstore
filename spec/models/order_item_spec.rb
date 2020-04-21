@@ -1,2 +1,2 @@
-RSpec.describe OrderItem, type: :model do
-end
+# RSpec.describe OrderItem, type: :model do
+# end

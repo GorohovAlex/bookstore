@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :card do
-    number { 'MyString' }
-    name { 'MyString' }
-    date_expiry { '2020-04-01' }
-    cvv { 'MyString' }
+  factory :order_card do
+    number { CreditCardValidations::Factory.random }
+    name { FFaker::Name.name }
+    date_expiry { rand(1..12).to_s.rjust(2, '0') + '/' + rand(1..99).to_s.rjust(2, '0') }
+    cvv { rand(1..99).to_s.rjust(3, '0') }
   end
 end

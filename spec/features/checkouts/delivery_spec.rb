@@ -1,18 +1,26 @@
 describe 'Checkout page (delivery)', type: :feature do
-  let(:checkout) { CheckoutAddressPage.new }
-  let(:current_user) { create(:user, :with_cart_items, :with_order_delivery) }
+  let(:checkout) { CheckoutDeliveryPage.new }
+  let!(:delivery) { create_list :delivery, rand(2..6) }
+  let(:order) { create_list :order, 1, :with_state_delivery }
+  let(:current_user) { create(:user, :with_cart_items, orders: order) }
 
   describe 'With authorizated user' do
     before do
       login_as(current_user, scope: :user)
-      current_user.orders.last.to_delivery!
       visit checkout_path
     end
 
-    describe 'Visit to checkout' do
+    describe 'Visit to page' do
       it 'Show block `steps`' do
         expect(checkout).to have_steps
         expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.delivery'))
+      end
+
+      it 'Show table `delivery`' do
+        expect(checkout).to have_delivery_items
+        expect(checkout.delivery_items).to all(have_name)
+        expect(checkout.delivery_items).to all(have_days)
+        expect(checkout.delivery_items).to all(have_price)
       end
 
       it 'Show block `order summary`' do
@@ -24,38 +32,19 @@ describe 'Checkout page (delivery)', type: :feature do
       end
     end
 
-    # describe 'Enter invalid/empty values' do
-    #   it 'Send form' do
-    #     checkout.button.click
-    #     address_forms.each do |form|
-    #       expect(form.first_name).to have_error
-    #       expect(form.last_name).to have_error
-    #       expect(form.address).to have_error
-    #       expect(form.city).to have_error
-    #       expect(form.zip).to have_error
-    #       expect(form.country).to have_error
-    #       expect(form.phone).to have_error
-    #     end
-    #   end
-    # end
+    describe 'Not selecting nodes' do
+      it 'Send form' do
+        checkout.button.click
+        expect(checkout).to have_alert
+      end
+    end
 
-    # describe 'Enter valid values' do
-    #   before do
-    #     address_forms.each do |form|
-    #       form.first_name.input.set address.first_name
-    #       form.last_name.input.set address.last_name
-    #       form.address.input.set address.address
-    #       form.city.input.set address.city
-    #       form.zip.input.set address.zip
-    #       form.country.select.find("option[value='#{address.country}']").select_option
-    #       form.phone.input.set address.phone
-    #     end
-    #   end
-
-    #   it 'Send form with valid values' do
-    #     checkout.button.click
-    #     expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.delivery'))
-    #   end
-    # end
+    describe 'Select delivery' do
+      it 'Send form with valid values' do
+        checkout.delivery_items.first.name.click
+        checkout.button.click
+        expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.payment'))
+      end
+    end
   end
 end

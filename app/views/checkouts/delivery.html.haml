@@ -30,7 +30,7 @@
             %td
               %span.font-16.in-gold-500
                 = humanized_money_with_symbol d.object.price
-    .general-text-align
+    .general-text-align.order-summary
       = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: nil } }
     .text-center
       = f.submit t('.save_and_continue'), class: 'btn btn-default mb-20'
@@ -49,20 +49,20 @@
             %span.in-grey-600
               = t('.price')
       %tbody
-        = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :name, { checked: @presenter.owner.order_delivery&.delivery_id } do |d|
-          %tr
+        = f.collection_radio_buttons :order_delivery, @presenter.delivery_all, :id, :name, { checked: @presenter.owner.order_delivery&.delivery_id } do |d|
+          %tr.delivery-items
             %td
               .form-group.radio.mt-0.mb-0
                 %label.radio-label
                   = d.radio_button(class: 'radio-input', hidden: 'true')
                   %span.radio-icon
-                  %span.radio-text
+                  %span.radio-text.delivery-name
                     = d.text
             %td
-              %span
+              %span.delivery-days
                 = d.object.days
             %td
-              %span.font-16.in-gold-500
+              %span.font-16.in-gold-500.delivery-price
                 = humanized_money_with_symbol d.object.price
     .general-text-align
       = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: nil } }
