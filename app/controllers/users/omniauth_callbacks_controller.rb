@@ -13,8 +13,11 @@ module Users
 
     def authentication_and_redirect(path_default: '')
       sign_in(@user, event: :authentication)
+      CartItemService.new(user_id: current_user&.id, session_id: session.id.to_s).join_cart_items
       redirect_to redirect_path || path_default
     end
+
+    private
 
     def redirect_path
       case request.env['omniauth.origin']
