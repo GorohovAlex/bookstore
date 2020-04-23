@@ -23,5 +23,4 @@
 .text-center.general-text-right
   = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: 'general-summary-table-right general-text-right' } }
 .text-center
-  %button.btn.btn-default.mb-20
-    = t('.back_to_store')
+  = link_to t('.back_to_store'), root_path, class: 'btn btn-default mb-20'
