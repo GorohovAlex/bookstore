@@ -1,10 +1,8 @@
 class CheckoutBaseService
-  CHECKOUT_STATUSES = %w[address delivery payment confirm complete].freeze
-
   def initialize(current_user: nil, params: {})
     @current_user = current_user
     @params = params
-    @coupon = Coupon.find_by(name: params[:coupon])&.name
+    @coupon = Coupon.find_by(name: params[:coupon])
   end
 
   def call
@@ -12,7 +10,7 @@ class CheckoutBaseService
   end
 
   def current_order
-    @current_order ||= @params[:orders].where(aasm_state: CHECKOUT_STATUSES).last || Order.create(user: @current_user)
+    @current_order ||= @current_user.decorate.not_finish_orders.last || Order.create(user: @current_user)
   end
 
   def presenter

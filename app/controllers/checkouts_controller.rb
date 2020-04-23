@@ -1,9 +1,10 @@
 class CheckoutsController < ApplicationController
   layout 'checkout'
   before_action :authorize_resource, only: %i[show create update]
+  # ALLOW_ORDER_STATUSES = [:address, :delivery, :payment, :confirm]
 
   def show
-    return redirect_to root_path unless exist_cart_items?
+    return redirect_to root_path unless show_allow?
 
     checkout_show_service = CheckoutShowService.new(current_user: current_user, params: checkout_params)
     @presenter = checkout_show_service.presenter
@@ -32,11 +33,7 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_params
-    @checkout_params ||= params.merge(coupon: cookies[:coupon], orders: order_policy)
-  end
-
-  def order_policy
-    @order_policy = OrderPolicy::Scope.new(current_user, Order).resolve
+    @checkout_params ||= params.merge(coupon: cookies[:coupon])
   end
 
   def authorize_resource
@@ -49,5 +46,12 @@ class CheckoutsController < ApplicationController
 
   def exist_cart_items?
     current_user.cart_item.present?
+  end
+
+  def show_allow?
+    exist_cart = exist_cart_items?
+    return !exist_cart if current_user.decorate.not_finish_orders.last&.complete?
+
+    exist_cart
   end
 end
