@@ -62,7 +62,7 @@ class CartItemsController < ApplicationController
 
   def cart_item_service
     @cart_item_service ||= CartItemService.new(user_id: current_user&.id, session_id: session.id.to_s,
-                                               coupon: cookies[:coupon])
+                                               coupon_name: cookies[:coupon])
   end
 
   def quantity
@@ -77,6 +77,6 @@ class CartItemsController < ApplicationController
     @coupon = cookies[:coupon]
     @cart_items = policy_scope(CartItem)
     @summary_presenter = CartItemSummaryPresenter.new(user_id: current_user&.id, session_id: session.id.to_s,
-                                                      coupon: @coupon)
+                                                      coupon_name: @coupon)
   end
 end

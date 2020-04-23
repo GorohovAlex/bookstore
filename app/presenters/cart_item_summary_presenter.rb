@@ -1,6 +1,6 @@
 class CartItemSummaryPresenter < SummaryPresenter
-  def initialize(user_id: nil, session_id: nil, coupon: nil)
-    @service = CartItemService.new(user_id: user_id, session_id: session_id, coupon: coupon)
+  def initialize(user_id: nil, session_id: nil, coupon_name: nil)
+    @service = CartItemService.new(user_id: user_id, session_id: session_id, coupon_name: coupon_name)
   end
 
   def summary

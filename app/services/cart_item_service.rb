@@ -1,8 +1,8 @@
 class CartItemService
-  def initialize(user_id: nil, session_id: nil, coupon: nil)
+  def initialize(user_id: nil, session_id: nil, coupon_name: nil)
     @user_id = user_id
     @session_id = session_id
-    @coupon = coupon
+    @coupon_name = coupon_name
   end
 
   def create(cart_item_params)
@@ -22,7 +22,7 @@ class CartItemService
   end
 
   def discount
-    @discount ||= Coupons::Discount.call(coupon: @coupon).to_money
+    @discount ||= Coupons::Discount.call(coupon: @coupon_name).to_money
   end
 
   def order_total

@@ -3,10 +3,10 @@ module Checkouts
     attribute :billing_address_form, BillingAddressForm
     attribute :shipping_address_form, ShippingAddressForm
 
-    def initialize(owner: nil, billing_address_form: nil, shipping_address_form: nil, coupon: nil)
+    def initialize(owner: nil, billing_address_form: nil, shipping_address_form: nil, coupon_name: nil)
       @billing_address_form = billing_address_form
       @shipping_address_form = shipping_address_form
-      super(owner: owner, coupon: coupon)
+      super(owner: owner, coupon_name: coupon_name)
     end
 
     def billing_address_form

@@ -32,7 +32,7 @@ class ConfirmService < CheckoutBaseService
   end
 
   def create_summary
-    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon: @params[:coupon]).summary
+    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon_name: @coupon.name).summary
 
     cart_summary_items.each do |item|
       OrderSummary.create(order: current_order, item_name: item[0], price: item[1])

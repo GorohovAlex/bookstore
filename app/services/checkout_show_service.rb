@@ -7,7 +7,7 @@ class CheckoutShowService < CheckoutBaseService
   end
 
   def presenter
-    presenter_name.constantize.new(owner: current_order, coupon: @coupon)
+    presenter_name.constantize.new(owner: current_order, coupon_name: @coupon&.name)
   end
 
   private

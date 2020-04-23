@@ -1,8 +1,8 @@
 module Checkouts
   class CompletePresenter < CheckoutBasePresenter
-    def initialize(owner: nil, coupon: nil)
+    def initialize(owner: nil, coupon_name: nil)
       super
-      @summary_items = OrderItemSummaryPresenter.new(order: owner, coupon: coupon)
+      @summary_items = OrderItemSummaryPresenter.new(order: owner, coupon: coupon_name)
     end
 
     def cart_items
