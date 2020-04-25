@@ -10,7 +10,7 @@ class CheckoutBaseService
   end
 
   def current_order
-    @current_order ||= @current_user.decorate.not_finish_orders.last || Order.create(user: @current_user)
+    @current_order ||= Order.not_finish_orders(@current_user.id).last || Order.create(user: @current_user)
   end
 
   def presenter
