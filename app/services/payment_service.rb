@@ -1,6 +1,6 @@
 class PaymentService < CheckoutBaseService
   def call
-    current_order.to_confirm! if order_card_form.save
+    current_order.confirm! if order_card_form.save
   end
 
   def presenter
@@ -14,7 +14,10 @@ class PaymentService < CheckoutBaseService
   end
 
   def order_card_form
-    order_card = @params[:order][:order_card] || @params[:order][:order_card_form]
-    @order_card_form ||= OrderCardForm.new(card_params(order_card))
+    @order_card_form ||= OrderCardForm.new(card_params(order_card_params))
+  end
+
+  def order_card_params
+    @params[:order][:order_card] || @params[:order][:order_card_form]
   end
 end
