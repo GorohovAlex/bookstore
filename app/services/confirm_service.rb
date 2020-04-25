@@ -10,7 +10,7 @@ class ConfirmService < CheckoutBaseService
       change_coupon if @coupon.present?
     end
 
-    current_order.to_complete!
+    current_order.complete!
   end
 
   def presenter
@@ -32,7 +32,7 @@ class ConfirmService < CheckoutBaseService
   end
 
   def create_summary
-    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon_name: @coupon.name).summary
+    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon_name: @coupon&.name).summary
 
     cart_summary_items.each do |item|
       OrderSummary.create(order: current_order, item_name: item[0], price: item[1])
@@ -49,9 +49,9 @@ class ConfirmService < CheckoutBaseService
 
   def edit_action
     case edit_params[:state].to_sym
-    when :address then current_order.to_address!
-    when :delivery then current_order.to_delivery!
-    when :payment then current_order.to_payment!
+    when :address then current_order.sending!
+    when :delivery then current_order.deliver!
+    when :payment then current_order.pay!
     end
   end
 
