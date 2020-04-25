@@ -1,15 +1,15 @@
 class AddressService < CheckoutBaseService
   def call
     if use_billing_address
-      billing_address.save ? current_order.to_delivery! : nil
+      billing_address.save ? current_order.deliver! : nil
     else
       valid_all_address? ? save_all_address : nil
     end
   end
 
   def presenter
-    Checkouts::AddressPresenter.new(owner: current_order, billing_address_form: billing_address,
-                                    shipping_address_form: shipping_address)
+    Checkouts::AddressPresenter.new(owner: current_order, billing_address_form: billing_address_form,
+                                    shipping_address_form: shipping_address_form)
   end
 
   private
@@ -20,27 +20,33 @@ class AddressService < CheckoutBaseService
   end
 
   def save_all_address
-    billing_valid = billing_address.save
-    shipping_valid = shipping_address.save
+    billing_valid = billing_address_form.save
+    shipping_valid = shipping_address_form.save
 
-    current_order.to_delivery! if billing_valid && shipping_valid
+    current_order.deliver! if billing_valid && shipping_valid
   end
 
   def valid_all_address?
-    billing_valid = billing_address.valid?
-    shipping_valid = shipping_address.valid?
+    billing_valid = billing_address_form.valid?
+    shipping_valid = shipping_address_form.valid?
 
     billing_valid && shipping_valid
   end
 
-  def billing_address
-    params = @params[:order][:billing_address] || @params[:order][:billing_address_form]
-    @billing_address ||= BillingAddressForm.new(address_params(params))
+  def billing_address_form
+    @billing_address_form ||= BillingAddressForm.new(address_params(billing_address_params))
   end
 
-  def shipping_address
-    params = @params[:order][:shipping_address] || @params[:order][:shipping_address_form]
-    @shipping_address ||= ShippingAddressForm.new(address_params(params))
+  def billing_address_params
+    @params[:order][:billing_address] || @params[:order][:billing_address_form]
+  end
+
+  def shipping_address_form
+    @shipping_address_form ||= ShippingAddressForm.new(address_params(shipping_address_params))
+  end
+
+  def shipping_address_params
+    @params[:order][:shipping_address] || @params[:order][:shipping_address_form]
   end
 
   def use_billing_address
