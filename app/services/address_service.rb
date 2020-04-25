@@ -1,7 +1,7 @@
 class AddressService < CheckoutBaseService
   def call
     if use_billing_address
-      billing_address.save ? current_order.deliver! : nil
+      billing_address_form.save ? current_order.deliver! : nil
     else
       valid_all_address? ? save_all_address : nil
     end

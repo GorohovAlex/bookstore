@@ -1,4 +1,4 @@
-class ConfirmService < CheckoutBaseService
+class ConfirmationService < CheckoutBaseService
   def call
     return edit_action if edit_params?
 
