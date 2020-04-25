@@ -2,7 +2,10 @@ class CartItemsController < ApplicationController
   def index
     authorize cart_items
 
-    cart_values
+    cookies[:coupon] = params[:coupon] if params[:coupon]
+    cart_items
+    coupon
+    summary_presenter
   end
 
   def create
@@ -72,11 +75,12 @@ class CartItemsController < ApplicationController
     params[:cart_item][:quantity]
   end
 
-  def cart_values
-    cookies[:coupon] = params[:coupon] if params[:coupon]
+  def coupon
     @coupon = cookies[:coupon]
-    @cart_items = policy_scope(CartItem)
-    @summary_presenter = CartItemSummaryPresenter.new(user_id: current_user&.id, session_id: session.id.to_s,
-                                                      coupon_name: @coupon)
+  end
+
+  def summary_presenter
+    @summary_presenter ||= CartItemSummaryPresenter.new(user_id: current_user&.id, session_id: session.id.to_s,
+                                                        coupon_name: coupon)
   end
 end
