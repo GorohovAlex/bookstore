@@ -2,11 +2,11 @@ module Checkouts
   class CheckoutBasePresenter < BasePresenter
     attribute :owner, Object
     attribute :notice, String
-    attribute :summary_items, SummaryPresenter
+    attribute :user_id, Integer
+    attribute :coupon_name, String
 
-    def initialize(owner: nil, coupon_name: nil, summary_items: nil)
-      super
-      @summary_items = CartItemSummaryPresenter.new(user_id: owner.user.id, coupon_name: coupon_name)
+    def summary_items
+      @summary_items ||= CartItemSummaryPresenter.new(user_id: owner.user.id, coupon_name: @coupon_name)
     end
   end
 end
