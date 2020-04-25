@@ -1,6 +1,6 @@
 module Checkouts
   class CompletedPresenter < CheckoutBasePresenter
-    def initialize(owner: nil, coupon_name: nil)
+    def initialize(owner: nil, coupon_name: nil, user_id: nil)
       super
       @summary_items = OrderItemSummaryPresenter.new(order: owner, coupon: coupon_name)
     end
