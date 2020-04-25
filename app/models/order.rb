@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   include AASM
 
+  CHECKOUT_STATUSES = %w[address delivery payment confirmation completed].freeze
+
   belongs_to :user
 
   has_one  :shipping_address, as: :owner, dependent: :destroy
@@ -10,35 +12,37 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :order_summary, dependent: :destroy
 
+  scope :not_finish_orders, ->(user_id) { where(user_id: user_id, aasm_state: CHECKOUT_STATUSES) }
+
   aasm do
     state :address, initial: true
     state :delivery
     state :payment
-    state :confirm
-    state :complete
+    state :confirmation
+    state :completed
 
-    event :to_address do
-      transitions from: :confirm, to: :address
+    event :sending do
+      transitions from: :confirmation, to: :address
     end
 
-    event :to_delivery do
-      transitions from: :confirm, to: :delivery
-      transitions from: :address, to: :confirm, guard: :states_completed?
+    event :deliver do
+      transitions from: :confirmation, to: :delivery
+      transitions from: :address, to: :confirmation, guard: :states_completed?
       transitions from: :address, to: :delivery
     end
 
-    event :to_payment do
+    event :pay do
       transitions from: :confirm, to: :payment
-      transitions from: :delivery, to: :confirm, guard: :card_completed?
+      transitions from: :delivery, to: :confirmation, guard: :card_completed?
       transitions from: :delivery, to: :payment
     end
 
-    event :to_confirm do
-      transitions from: :payment, to: :confirm
+    event :confirm do
+      transitions from: :payment, to: :confirmation
     end
 
-    event :to_complete do
-      transitions from: :confirm, to: :complete
+    event :complete do
+      transitions from: :confirmation, to: :completed
     end
   end
 

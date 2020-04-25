@@ -15,12 +15,12 @@ FactoryBot.define do
       aasm_state { :payment }
     end
 
-    trait :with_state_confirm do
-      aasm_state { :comfirm }
+    trait :with_state_confirmation do
+      aasm_state { :comfirmation }
     end
 
-    trait :with_state_complete do
-      aasm_state { :complete }
+    trait :with_state_completed do
+      aasm_state { :completed }
     end
   end
 end

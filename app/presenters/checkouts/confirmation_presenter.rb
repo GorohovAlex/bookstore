@@ -1,5 +1,5 @@
 module Checkouts
-  class ConfirmPresenter < CheckoutBasePresenter
+  class ConfirmationPresenter < CheckoutBasePresenter
     def billing_address_info_items
       owner.billing_address.decorate.address_info_items
     end

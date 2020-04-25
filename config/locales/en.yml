@@ -74,7 +74,7 @@ en:
       save_and_continue: Save and Continue
     checkout_header:
       checkout: Checkout
-    confirm:
+    confirmation:
       place_order: Place Order
       shipping_address: Shipping Address
       billing_address: Billing Address
@@ -82,7 +82,7 @@ en:
       payment_information: Payment Information
     confirm_info_box:
       edit: edit
-    complete:
+    completed:
       back_to_store: Back to Store
       thank_message: Thank You for your Order!
       thank_description: An order confirmation has been has been sent to %{user} %{email}
@@ -120,8 +120,8 @@ en:
       address: Address
       delivery: Delivery
       payment: Payment
-      confirm: Confirm
-      complete: Complete
+      confirmation: Confirm
+      completed: Complete
   address:
     create:
       successful_message: '%{type} update successful.'

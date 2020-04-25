@@ -57,7 +57,7 @@ describe 'Checkout page (payment)', type: :feature do
 
       it 'Send form with valid values' do
         checkout.button.click
-        expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.confirm'))
+        expect(checkout.steps.step_active.step_text.text).to eq(I18n.t('checkouts.step.confirmation'))
       end
     end
   end
