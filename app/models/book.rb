@@ -24,7 +24,7 @@ class Book < ApplicationRecord
   monetize :price_cents
 
   has_many :book_authors
-  has_many :order_items, dependent: :nullify
+  has_many :order_items, counter_cache: true, dependent: :nullify
 
   has_many :covers, dependent: :destroy
   accepts_nested_attributes_for :covers, allow_destroy: true
