@@ -20,10 +20,14 @@ class ConfirmationService < CheckoutBaseService
   private
 
   def create_order_items
-    cart_items = CartItems::AllItems.call(user_id: current_order.user.id)
     cart_items.each do |item|
-      OrderItem.create(order: current_order, book: item.book, quantity: item.quantity, price: item.book.price)
+      OrderItem.create(order: current_order, book: item.book, name: item.book.name, quantity: item.quantity,
+                       price: item.book.price, total: item.book.price * item.quantity)
     end
+  end
+
+  def cart_items
+    @cart_items ||= CartItems::AllItems.call(user_id: current_order.user.id)
   end
 
   def delete_cart_items
