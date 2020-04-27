@@ -1,0 +1,27 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        %span.in-grey-600
+          = t('.number')
+      %th
+        %span.in-grey-600 Completed at
+      %th
+        %span.in-grey-600 Status
+      %th
+        %span.in-grey-600 Total
+  %tbody
+    - cart_items_table.each do |order|
+      %tr
+        %td
+          %span.general-order-number
+            = order.number
+        %td
+          %span.in-grey-900.font-16.fw-300
+            = l order.created_at, format: :short
+        %td
+          %span.font-16.in-grey-900.fw-300
+            = order.aasm_state
+        %td
+          %strong.font-16
+            = order.total

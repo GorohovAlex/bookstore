@@ -136,7 +136,6 @@ en:
   best_sellers: Best Sellers
   home: Home
   not_valid: Not valid
-  settings: Settings
   shop: Shop
   phone: Phone +%{number}
   no_item_selected: No item selected
@@ -152,7 +151,7 @@ en:
   rejected: Rejected
   settings: Settings
   previous: Previous
-  orders: Orders
+  menu_orders: Orders
   reviews:
     create:
       successful_message: Thanks for Review. It will be published as soon as Admin will approve it.
@@ -193,4 +192,10 @@ en:
         country_placeholder: Country
         phone: Phone
         phone_placeholder: Example +355 66 123 4567
-
+  orders:
+    index:
+      my_orders: My Orders
+    cart_items_table:
+      number: Number
+    cart_items_grid:
+      number: Number
