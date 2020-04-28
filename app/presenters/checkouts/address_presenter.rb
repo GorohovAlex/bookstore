@@ -4,11 +4,11 @@ module Checkouts
     attribute :shipping_address_form, ShippingAddressForm
 
     def billing_address_form
-      @billing_address_form || BillingAddress.find_or_initialize_by(owner: billing_address_params)
+      @billing_address_form ||= BillingAddress.find_or_initialize_by(owner: billing_address_params)
     end
 
     def shipping_address_form
-      @shipping_address_form || ShippingAddress.find_or_initialize_by(owner: shipping_address_params)
+      @shipping_address_form ||= ShippingAddress.find_or_initialize_by(owner: shipping_address_params)
     end
 
     private
