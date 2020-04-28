@@ -1,5 +1,7 @@
 class AddressService < CheckoutBaseService
   def call
+    use_billing_address_save
+
     if use_billing_address
       billing_address_form.save ? current_order.deliver! : nil
     else
@@ -49,9 +51,11 @@ class AddressService < CheckoutBaseService
     @params[:order][:shipping_address] || @params[:order][:shipping_address_form]
   end
 
-  def use_billing_address
-    use_billing_address = ActiveModel::Type::Boolean.new.cast(@params[:order][:use_billing_address])
+  def use_billing_address_save
     current_order.update(use_billing_address: use_billing_address)
-    use_billing_address
+  end
+
+  def use_billing_address
+    @use_billing_address ||= ActiveModel::Type::Boolean.new.cast(@params[:order][:use_billing_address])
   end
 end
