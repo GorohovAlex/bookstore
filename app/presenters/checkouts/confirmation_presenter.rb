@@ -1,13 +1,7 @@
 module Checkouts
-  class ConfirmationPresenter < CheckoutBasePresenter
+  class ConfirmationPresenter < CheckoutInfoPresenter
     def billing_address_info_items
       owner.billing_address.decorate.address_info_items
-    end
-
-    def shipping_address_info_items
-      return owner.billing_address.decorate.address_info_items if owner.use_billing_address
-
-      owner.shipping_address.decorate.address_info_items
     end
 
     def shipments_info_items
