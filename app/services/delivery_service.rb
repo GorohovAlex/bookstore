@@ -13,7 +13,7 @@ class DeliveryService < CheckoutBaseService
   end
 
   def presenter
-    Checkouts::DeliveryPresenter.new(notice: @notice, owner: current_order)
+    @presenter ||= Checkouts::DeliveryPresenter.new(notice: @notice, owner: current_order)
   end
 
   private

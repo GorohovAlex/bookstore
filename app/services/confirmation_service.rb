@@ -14,7 +14,7 @@ class ConfirmationService < CheckoutBaseService
   end
 
   def presenter
-    ConfirmPresenter.new(owner: current_order)
+    @presenter ||= ConfirmPresenter.new(owner: current_order)
   end
 
   private
@@ -31,8 +31,7 @@ class ConfirmationService < CheckoutBaseService
   end
 
   def delete_cart_items
-    cart_items = CartItems::AllItems.call(user_id: current_order.user.id)
-    CartItem.destroy(cart_items.map(&:id))
+    cart_items.destroy_all
   end
 
   def create_summary
