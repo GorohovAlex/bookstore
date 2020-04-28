@@ -16,7 +16,7 @@ FactoryBot.define do
     end
 
     trait :with_state_confirmation do
-      aasm_state { :comfirmation }
+      aasm_state { :confirmation }
     end
 
     trait :with_state_completed do
