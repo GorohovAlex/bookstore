@@ -3,7 +3,7 @@
     = t('.thank_message')
   %p.fw-300
     = t('.thank_description', user: current_user.name, email: current_user.email)
-.row.mb-20
+.row.mb-20.order-info
   .col-sm-6
     .visible-xs
       %p.general-order-number.mb-0
@@ -23,4 +23,4 @@
 .text-center.general-text-right
   = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: { class: 'general-summary-table-right general-text-right' } }
 .text-center
-  = link_to t('.back_to_store'), root_path, class: 'btn btn-default mb-20'
+  = button_to t('.back_to_store'), root_path, method: 'get', class: 'btn btn-default mb-20'
