@@ -21,6 +21,6 @@
 .hidden-xs
   = render partial: 'cart_items/cart_item_table', object: @presenter.order_items, locals: { editable: false }  
 .text-center.general-text-right
-  = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: { class: 'general-summary-table-right general-text-right' } }
+  = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: { class: 'general-summary-table-right general-text-right' } }
 .text-center
   = link_to t('.back_to_store'), root_path, class: 'btn btn-default mb-20'

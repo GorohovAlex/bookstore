@@ -3,7 +3,7 @@ class CartItemSummaryPresenter < SummaryPresenter
     @service = CartItemService.new(user_id: user_id, session_id: session_id, coupon_name: coupon_name)
   end
 
-  def summary
+  def items
     {
       item_total: item_total,
       coupon: discount,

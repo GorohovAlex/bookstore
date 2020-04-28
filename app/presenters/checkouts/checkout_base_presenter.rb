@@ -6,7 +6,7 @@ module Checkouts
     attribute :coupon_name, String
 
     def summary_items
-      @summary_items ||= CartItemSummaryPresenter.new(user_id: owner.user.id, coupon_name: @coupon_name)
+      @summary_items ||= CartItemSummaryPresenter.new(user_id: owner.user.id, coupon_name: @coupon_name).items
     end
   end
 end

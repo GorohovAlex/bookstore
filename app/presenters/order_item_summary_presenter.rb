@@ -4,7 +4,7 @@ class OrderItemSummaryPresenter < SummaryPresenter
     @coupon = coupon
   end
 
-  def summary
+  def items
     {
       item_total: item_total,
       coupon: discount,
