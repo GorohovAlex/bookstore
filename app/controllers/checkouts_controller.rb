@@ -9,9 +9,7 @@ class CheckoutsController < ApplicationController
   end
 
   def create
-    if CheckoutShowService.new(current_user: current_user, params: checkout_params).current_order.completed?
-      current_user.orders.create
-    end
+    current_user.orders.create if show_service.current_order.completed?
     show
   end
 
@@ -20,8 +18,7 @@ class CheckoutsController < ApplicationController
 
     @presenter = update_service.presenter
     flash.now[:alert] = @presenter.notice
-
-    render CheckoutShowService.new(current_user: current_user, params: checkout_params).current_state
+    render show_service.current_state
   end
 
   private

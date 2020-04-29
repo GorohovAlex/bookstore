@@ -2,11 +2,14 @@ class CheckoutBaseService
   def initialize(current_user: nil, params: {})
     @current_user = current_user
     @params = params
-    @coupon = Coupon.find_by(name: params[:coupon])
   end
 
   def call
     raise NoMethodError
+  end
+
+  def coupon
+    @coupon ||= Coupon.find_by(name: @params[:coupon])
   end
 
   def current_order

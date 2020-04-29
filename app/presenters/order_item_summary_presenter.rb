@@ -4,7 +4,7 @@ class OrderItemSummaryPresenter < SummaryPresenter
     @coupon = coupon
   end
 
-  def summary
+  def items
     {
       item_total: item_total,
       coupon: discount,
@@ -16,7 +16,9 @@ class OrderItemSummaryPresenter < SummaryPresenter
   private
 
   def item_total
-    @order.order_items.sum('price_cents * quantity / 100').to_money
+    # byebug
+    @order.user.cart_item.joins(:book).sum('price_cents * quantity / 100').to_money
+    # @order.order_items.sum('price_cents * quantity / 100').to_money
   end
 
   def discount

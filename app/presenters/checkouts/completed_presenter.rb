@@ -1,22 +1,15 @@
 module Checkouts
-  class CompletedPresenter < CheckoutBasePresenter
-    def initialize(owner: nil, coupon_name: nil, user_id: nil)
-      super
-      @summary_items = OrderItemSummaryPresenter.new(order: owner, coupon: coupon_name)
+  class CompletedPresenter < CheckoutInfoPresenter
+    def summary_items
+      @summary_items ||= OrderItemCompleteSummaryPresenter.new(order: owner, coupon: coupon_name).items
     end
 
     def cart_items
-      @cart_items ||= OrderItem.where(order: @owner)
+      @cart_items ||= OrderItem.includes(:book).where(order: @owner)
     end
 
     def order_items
-      @order_items ||= OrderItem.where(order: @owner)
-    end
-
-    def shipping_address_info_items
-      return owner.billing_address.decorate.address_info_items if owner.use_billing_address
-
-      owner.shipping_address.decorate.address_info_items
+      @order_items ||= OrderItem.includes(:book).where(order: @owner)
     end
 
     def billing_address_info_items

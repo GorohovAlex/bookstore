@@ -34,6 +34,6 @@
           %span.checkbox-text
             = t('.use_billing_address')
   .general-text-align.mb-60
-    = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items.summary, html: {} }
+    = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: {} }
     = f.submit t('.save_and_continue'), class: 'btn center-block mb-20'
 = javascript_pack_tag 'checkouts/address'

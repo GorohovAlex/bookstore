@@ -32,7 +32,7 @@ class Order < ApplicationRecord
     end
 
     event :pay do
-      transitions from: :confirm, to: :payment
+      transitions from: :confirmation, to: :payment
       transitions from: :delivery, to: :confirmation, guard: :card_completed?
       transitions from: :delivery, to: :payment
     end

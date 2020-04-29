@@ -3,6 +3,10 @@ FactoryBot.define do
     use_billing_address { false }
     user
 
+    trait :with_items do
+      order_items { build_list :order_item, rand(1..10) }
+    end
+
     trait :with_state_address do
       aasm_state { :address }
     end
@@ -16,7 +20,7 @@ FactoryBot.define do
     end
 
     trait :with_state_confirmation do
-      aasm_state { :comfirmation }
+      aasm_state { :confirmation }
     end
 
     trait :with_state_completed do

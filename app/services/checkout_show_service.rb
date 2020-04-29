@@ -7,12 +7,12 @@ class CheckoutShowService < CheckoutBaseService
   end
 
   def presenter
-    presenter_name.constantize.new(owner: current_order, coupon_name: @coupon&.name, user_id: @current_user.id)
+    presenter_name.constantize.new(owner: current_order, coupon_name: coupon&.name, user_id: @current_user.id)
   end
 
   private
 
   def presenter_name
-    PRESENTER_PREFIX + (current_order.aasm_state + PRESENTER_SUFIX).singularize.camelize
+    "#{PRESENTER_PREFIX}#{current_order.aasm_state.singularize.camelize}#{PRESENTER_SUFIX}"
   end
 end
