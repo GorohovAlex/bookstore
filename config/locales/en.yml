@@ -193,6 +193,12 @@ en:
         phone: Phone
         phone_placeholder: Example +355 66 123 4567
   orders:
+    show:
+      billing_address: Billing address
+      shipping_address: Shipping Address
+      shipments: Shipments
+      payment_information: Payment Information
+      order_with_number: 'Order %{number}'
     index:
       my_orders: My Orders
     cart_items_table:

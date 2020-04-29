@@ -14,8 +14,7 @@
     - cart_items_table.each do |order|
       %tr
         %td
-          %span.general-order-number
-            = order.number
+          = link_to order.number, user_order_path(order), class: 'general-order-number'
         %td
           %span.in-grey-900.font-16.fw-300
             = l order.created_at, format: :short
@@ -24,4 +23,4 @@
             = order.aasm_state
         %td
           %strong.font-16
-            = order.total
+            -# = order.total
