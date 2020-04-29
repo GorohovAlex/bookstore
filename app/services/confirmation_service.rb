@@ -4,9 +4,9 @@ class ConfirmationService < CheckoutBaseService
 
     ActiveRecord::Base.transaction do
       create_order_items
-      delete_cart_items
       create_summary
       create_number
+      delete_cart_items
       change_coupon if @coupon.present?
     end
 
@@ -14,7 +14,7 @@ class ConfirmationService < CheckoutBaseService
   end
 
   def presenter
-    @presenter ||= ConfirmPresenter.new(owner: current_order)
+    @presenter ||= Checkouts::ConfirmationPresenter.new(owner: current_order)
   end
 
   private
@@ -35,9 +35,7 @@ class ConfirmationService < CheckoutBaseService
   end
 
   def create_summary
-    cart_summary_items = CartItemSummaryPresenter.new(user_id: nil, coupon_name: @coupon&.name).summary
-
-    cart_summary_items.each do |item|
+    presenter.summary_items.each do |item|
       OrderSummary.create(order: current_order, item_name: item[0], price: item[1])
     end
   end
