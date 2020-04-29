@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     patch 'user/email',    to: 'devise/user#update', as: 'update_user_email'
     patch 'user/address',  to: 'address#create',     as: 'user_address_forms'
     get   'user/orders',   to: 'orders#index',       as: 'user_orders'
-    get   'user/orders/:id', to: 'orders#show',        as: 'user_order'
+    get   'user/orders/:id', to: 'orders#show', as: 'user_order'
   end
 
   get 'catalog', to: 'page#catalog'
