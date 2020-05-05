@@ -1,5 +1,5 @@
 %h3.general-subtitle
-  = t('.delivery')
+  = t(".#{Order::STATE_DELIVERY}")
 .visible-xs.mb-30
   = simple_form_for @presenter.owner, url: checkout_path, method: 'PATCH' do |f|
     .general-cart-item.divider-lg-bottom
