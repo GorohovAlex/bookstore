@@ -200,8 +200,15 @@ en:
       payment_information: Payment Information
       order_with_number: 'Order %{number}'
     index:
+      filter: Filter by
+      not_authorized: You are not authorized to perform this action
       my_orders: My Orders
     cart_items_table:
       number: Number
     cart_items_grid:
       number: Number
+    status:
+      completed: Waiting for processing
+      in_delivery: In Delivery
+      delivered: Delivered
+      canceled: Canceled
