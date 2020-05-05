@@ -1,11 +1,17 @@
 class AddressService < CheckoutBaseService
   def call
-    use_billing_address_save
+    Order.transaction do
+      use_billing_address_save
 
-    if use_billing_address
-      billing_address_form.save ? current_order.deliver! : nil
-    else
-      valid_all_address? ? save_all_address : nil
+      if use_billing_address
+        raise ActiveRecord::Rollback unless billing_address_form.save
+
+        current_order.deliver!
+      else
+        raise ActiveRecord::Rollback unless valid_all_address?
+
+        save_all_address
+      end
     end
   end
 
