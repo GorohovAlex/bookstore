@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
   add_foreign_key "covers", "books", on_delete: :cascade
   add_foreign_key "order_cards", "orders", on_delete: :cascade
   add_foreign_key "order_deliveries", "orders", on_delete: :cascade
-  add_foreign_key "order_items", "books"
+  add_foreign_key "order_items", "books", on_delete: :nullify
   add_foreign_key "order_items", "orders", on_delete: :cascade
   add_foreign_key "order_summaries", "orders", on_delete: :cascade
   add_foreign_key "orders", "users", on_delete: :cascade
