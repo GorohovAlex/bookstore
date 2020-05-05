@@ -20,7 +20,7 @@
             = l order.created_at, format: :short
         %td
           %span.font-16.in-grey-900.fw-300
-            = order.aasm_state
+            = t("orders.status.#{order.aasm_state}")
         %td
           %strong.font-16
-            -# = order.total
+            = order.decorate.order_summary

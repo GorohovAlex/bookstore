@@ -10,6 +10,6 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def order_summary
-    object.order_items.sum('price_cents * quantity / 100.0').to_money
+    h.humanized_money_with_symbol object.order_items.sum('price_cents * quantity / 100.0').to_money
   end
 end
