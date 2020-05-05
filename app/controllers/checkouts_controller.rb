@@ -1,7 +1,7 @@
 class CheckoutsController < ApplicationController
   layout 'checkout'
   before_action :authorize_resource, only: %i[show create update]
-  before_action :checkout_allow?, only: %i[show update]
+  before_action :checkout_allow, only: %i[show update]
 
   def show
     presenter
@@ -55,7 +55,7 @@ class CheckoutsController < ApplicationController
     current_user.cart_item.present?
   end
 
-  def checkout_allow?
+  def checkout_allow
     exist_cart = exist_cart_items?
     exist_cart = !exist_cart if Order.not_finish_orders(current_user.id).last&.completed?
     return redirect_to root_path unless exist_cart
