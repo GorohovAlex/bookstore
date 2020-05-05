@@ -3,6 +3,10 @@ class OrderPolicy < ApplicationPolicy
     user.present?
   end
 
+  def index?
+    show?
+  end
+
   def create?
     show?
   end
