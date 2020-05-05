@@ -4,11 +4,11 @@ module Users
     attribute :shipping_address_form, ShippingAddressForm
 
     def billing_address_form
-      @billing_address_form || BillingAddress.find_or_initialize_by(owner: owner)
+      @billing_address_form ||= BillingAddress.find_or_initialize_by(owner: owner)
     end
 
     def shipping_address_form
-      @shipping_address_form || ShippingAddress.find_or_initialize_by(owner: owner)
+      @shipping_address_form ||= ShippingAddress.find_or_initialize_by(owner: owner)
     end
   end
 end
