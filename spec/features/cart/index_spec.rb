@@ -17,10 +17,7 @@ describe 'Cart page', type: :feature do
     describe 'Visit to cart page' do
       it 'Show cart items' do
         expect(cart_page).to have_cart_items
-        cart_page.cart_items.each do |_cart_item|
-          expect(cart_page).to be_all_there
-        end
-
+        expect(cart_page.cart_items).to all(be_all_there)
         expect(cart_page).to have_summary_sub_total
         expect(cart_page).to have_summary_coupon
         expect(cart_page).to have_summary_order_total
@@ -73,7 +70,6 @@ describe 'Cart page', type: :feature do
         quantity_box = cart_page.cart_items[item_index].quantity
         quantity_box.quantity_value.set '1'
         quantity_box.quantity_minus.click
-        sleep 1
         expect(cart_page.cart_items[item_index].quantity.quantity_value.value.to_i).to eq(1)
       end
     end
@@ -81,7 +77,7 @@ describe 'Cart page', type: :feature do
     describe 'Click `checkout` button' do
       it 'Open checkout page' do
         cart_page.checkout_button.click
-        expect(page).to have_current_path(new_checkout_path, ignore_query: true)
+        expect(page).to have_current_path(checkout_path, ignore_query: true)
       end
     end
   end

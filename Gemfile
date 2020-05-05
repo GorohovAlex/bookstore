@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'aasm', '~> 5.0', '>= 5.0.8'
 gem 'activeadmin'
 gem 'activeadmin_addons'
 gem 'aws-sdk-s3', '~> 1.14'
@@ -10,6 +11,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'countries'
 gem 'country_select', '~> 4.0'
+gem 'credit_card_validations'
 gem 'devise'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'draper', '~> 3.1'

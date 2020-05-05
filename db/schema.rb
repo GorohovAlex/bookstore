@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_161551) do
+ActiveRecord::Schema.define(version: 2020_04_05_091646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
     t.string "zip", limit: 10, null: false
     t.string "country", limit: 50, null: false
     t.string "phone", limit: 15, null: false
-    t.bigint "user_id"
+    t.bigint "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "type"], name: "index_addresses_on_user_id_and_type", unique: true
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.string "owner_type"
+    t.index ["owner_id", "type"], name: "index_addresses_on_owner_id_and_type", unique: true
+    t.index ["owner_id"], name: "index_addresses_on_owner_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -138,10 +139,74 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
     t.index ["book_id"], name: "index_covers_on_book_id"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.string "name"
+    t.text "days"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_cards", force: :cascade do |t|
+    t.string "number"
+    t.string "name"
+    t.string "date_expiry"
+    t.string "cvv"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_cards_on_order_id"
+  end
+
+  create_table "order_deliveries", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "delivery_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_order_deliveries_on_delivery_id"
+    t.index ["order_id"], name: "index_order_deliveries_on_order_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "book_id", null: false
+    t.string "name"
+    t.integer "quantity"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.integer "total_cents", default: 0, null: false
+    t.string "total_currency", default: "EUR", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "order_summaries", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "item_name"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_summaries_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "aasm_state"
+    t.string "number"
+    t.boolean "use_billing_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -182,6 +247,12 @@ ActiveRecord::Schema.define(version: 2020_03_15_161551) do
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "users"
   add_foreign_key "covers", "books", on_delete: :cascade
+  add_foreign_key "order_cards", "orders", on_delete: :cascade
+  add_foreign_key "order_deliveries", "orders", on_delete: :cascade
+  add_foreign_key "order_items", "books", on_delete: :nullify
+  add_foreign_key "order_items", "orders", on_delete: :cascade
+  add_foreign_key "order_summaries", "orders", on_delete: :cascade
+  add_foreign_key "orders", "users", on_delete: :cascade
   add_foreign_key "reviews", "books", on_delete: :cascade
   add_foreign_key "reviews", "users", on_delete: :cascade
 end

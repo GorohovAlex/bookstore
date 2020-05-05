@@ -1,6 +1,6 @@
 class AddressController < ApplicationController
   def create
-    present AddressPresenter.new(user_id: current_user&.id)
+    present Users::AddressPresenter.new(owner: current_user)
     @address_form = AddressForm.new(address_params)
     authorize @address_form.record, policy_class: AddressPolicy
 
@@ -10,8 +10,8 @@ class AddressController < ApplicationController
   private
 
   def address_params
-    params.permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type, :user_id)
-          .merge(user_id: current_user.id)
+    params.permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type, :owner)
+          .merge(owner: current_user)
   end
 
   def respond_to_form(success)

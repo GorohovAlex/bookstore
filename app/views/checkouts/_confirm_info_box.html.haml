@@ -1,0 +1,10 @@
+- if label.present?
+  %h3.general-subtitle
+    = label
+%p.general-address
+  = items[0]
+  - if state.present?
+    = link_to t('.edit'), checkout_path(edit: { state: state}), method: 'PATCH', class: 'general-edit'
+  - items.drop(1).each do |i|
+    %br
+    = i

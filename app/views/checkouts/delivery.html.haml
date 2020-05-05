@@ -1,0 +1,70 @@
+%h3.general-subtitle
+  = t(".#{Order::STATE_DELIVERY}")
+.visible-xs.mb-30
+  = simple_form_for @presenter.owner, url: checkout_path, method: 'PATCH' do |f|
+    .general-cart-item.divider-lg-bottom
+      %table.table
+        = f.collection_radio_buttons :order_delivery, Delivery.all, :id, :name, { checked: @presenter.owner.order_delivery&.delivery_id } do |d|
+          %tr
+            %td.col-half
+              %span.in-grey-600
+                = t('.method')
+            %td.col-half
+              .form-group.radio.mt-0.mb-0
+                %label.radio-label
+                  = d.radio_button(class: 'radio-input', hidden: 'true')
+                  %span.radio-icon
+                  %span.radio-text
+                    = d.text
+          %tr
+            %td
+              %span.in-grey-600
+                = t('.days')
+            %td
+              %span.font-16.fw-300
+                = d.object.days
+          %tr
+            %td
+              %span.in-grey-600
+                = t('.price')
+            %td
+              %span.font-16.in-gold-500
+                = humanized_money_with_symbol d.object.price
+    .general-text-align.order-summary
+      = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: { class: nil } }
+    .text-center
+      = f.submit t('.save_and_continue'), class: 'btn btn-default mb-20'
+.hidden-xs.mb-res-50
+  = simple_form_for @presenter.owner, url: checkout_path, method: 'PATCH' do |f|
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.col-method
+            %span.in-grey-600.ml-40
+              = t('.method')
+          %th
+            %span.in-grey-600
+              = t('.days')
+          %th
+            %span.in-grey-600
+              = t('.price')
+      %tbody
+        = f.collection_radio_buttons :order_delivery, @presenter.delivery_all, :id, :name, { checked: @presenter.owner.order_delivery&.delivery_id } do |d|
+          %tr.delivery-items
+            %td
+              .form-group.radio.mt-0.mb-0
+                %label.radio-label
+                  = d.radio_button(class: 'radio-input', hidden: 'true')
+                  %span.radio-icon
+                  %span.radio-text.delivery-name
+                    = d.text
+            %td
+              %span.delivery-days
+                = d.object.days
+            %td
+              %span.font-16.in-gold-500.delivery-price
+                = humanized_money_with_symbol d.object.price
+    .general-text-align
+      = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: { class: nil } }
+    .text-center
+      = f.submit t('.save_and_continue'), class: 'btn btn-default mb-20'

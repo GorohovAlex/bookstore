@@ -2,7 +2,7 @@
   %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
     %span{'aria-hidden': "true"} &times;
   .general-img-wrap-table
-    = image_tag 'http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg', alt: 'design-book', class: 'cart-img-shadow'
+    = image_tag cart_item_grid.book.decorate.main_cover_url, alt: 'design-book', class: 'cart-img-shadow'
   %p.title
     = link_to cart_item_grid.book.name, url_for(cart_item_grid.book)
   %table.table
@@ -18,7 +18,10 @@
         %span.in-grey-600
           = t('.quantity')
       %td
-        = render partial: 'counter', object: cart_item_grid
+        - if editable
+          = render partial: 'cart_items/counter', object: cart_item_grid
+        - else
+          = cart_item_grid.quantity
     %tr
       %td
         %span.in-grey-600

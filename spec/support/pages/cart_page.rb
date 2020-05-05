@@ -7,8 +7,8 @@ class CartPage < BasePage
 
   sections :cart_items,          CartItemLineSection, '.cart-line-item'
   section  :coupon,              CouponSection, 'form.coupon'
-  element  :summary_sub_total,   '#sub-total'
-  element  :summary_coupon,      '#coupon'
-  element  :summary_order_total, '#order-total'
+  element  :summary_sub_total,   '.general-summary-table .item_total'
+  element  :summary_coupon,      '.general-summary-table .coupon'
+  element  :summary_order_total, '.general-summary-table .order_total'
   element  :checkout_button,     '#checkout'
 end

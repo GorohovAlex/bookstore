@@ -1,0 +1,5 @@
+.order-summary
+  %p.in-gold-500.font-18
+    = t('.order_summary')
+  %table.general-summary-table{ class: html[:class] }
+    = render partial: 'checkouts/order_summary_item', collection: order_summary_items

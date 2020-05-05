@@ -13,5 +13,6 @@
     %th.col-total
       %span.in-grey-600
         = t('.sub_total')
-    %th.col-close
-  = render partial: 'cart_item_line', collection: cart_item_table
+    - if editable
+      %th.col-close
+  = render partial: 'cart_items/cart_item_line', collection: cart_item_table, locals: { editable: editable }
