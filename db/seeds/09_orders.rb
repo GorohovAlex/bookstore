@@ -1,6 +1,7 @@
-100.times do
+100.times do |index|
   user = User.order('RANDOM()').first
-  order = Order.create(user: user, aasm_state: :completed)
+  number = "S#{index.to_s.rjust(6, '0')}"
+  order = Order.create(user: user, aasm_state: :completed, number: number)
 
   rand(1..10).times do
     book = Book.order('RANDOM()').first
