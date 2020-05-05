@@ -16,9 +16,7 @@ class OrderItemSummaryPresenter < SummaryPresenter
   private
 
   def item_total
-    # byebug
-    @order.user.cart_item.joins(:book).sum('price_cents * quantity / 100').to_money
-    # @order.order_items.sum('price_cents * quantity / 100').to_money
+    @item_total ||= @order.user.cart_item.joins(:book).sum('price_cents * quantity / 100').to_money
   end
 
   def discount
@@ -30,6 +28,6 @@ class OrderItemSummaryPresenter < SummaryPresenter
   end
 
   def order_total
-    item_total + discount + delivery
+    @order_total ||= item_total + discount + delivery
   end
 end

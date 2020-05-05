@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   include AASM
 
-  CHECKOUT_STATUSES = %w[address delivery payment confirmation completed].freeze
+  NOT_FINISHED_STATUSES = %w[address delivery payment confirmation completed].freeze
 
   belongs_to :user
 
@@ -12,7 +12,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :order_summary, dependent: :destroy
 
-  scope :not_finish_orders, ->(user_id) { where(user_id: user_id, aasm_state: CHECKOUT_STATUSES) }
+  scope :not_finish_orders, ->(user_id) { where(user_id: user_id, aasm_state: NOT_FINISHED_STATUSES) }
 
   aasm do
     state :address, initial: true
