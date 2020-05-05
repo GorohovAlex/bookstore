@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    name { 'Mobile Development' }
+    name { FFaker::Book.genre }
   end
 end
