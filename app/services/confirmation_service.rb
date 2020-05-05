@@ -50,9 +50,9 @@ class ConfirmationService < CheckoutBaseService
 
   def edit_action
     case edit_params[:state].to_sym
-    when :address then current_order.sending!
-    when :delivery then current_order.deliver!
-    when :payment then current_order.pay!
+    when Order::STATE_ADDRESS then current_order.sending!
+    when Order::STATE_DELIVERY then current_order.deliver!
+    when Order::STATE_PAYMENT then current_order.pay!
     end
   end
 
