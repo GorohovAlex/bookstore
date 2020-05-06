@@ -1,7 +1,7 @@
 %main.container.general-main-wrap
   %h1.general-title-margin
     = t('.order_with_number', number: @order.number)
-  .row.mb-20
+  .row.mb-20.info_box
     .col-sm-3
       = render partial: 'checkouts/confirm_info_box', locals: { label: t('.shipping_address'), items: @presenter.shipping_address_info_items, state: nil }
     .col-sm-3
