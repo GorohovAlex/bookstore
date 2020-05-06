@@ -26,5 +26,9 @@ FactoryBot.define do
     trait :with_state_completed do
       aasm_state { Order::STATE_COMPLETED }
     end
+
+    trait :with_random_finish_state do
+      aasm_state { Order::FINISH_STATUSES.sample }
+    end
   end
 end
