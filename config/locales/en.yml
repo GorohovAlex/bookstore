@@ -204,9 +204,15 @@ en:
       not_authorized: You are not authorized to perform this action
       my_orders: My Orders
     cart_items_table:
+      completed_at: Completed at
       number: Number
+      status: Status
+      total: Total
     cart_items_grid:
+      completed_at: Completed at
       number: Number
+      status: Status
+      total: Total
     status:
       completed: Waiting for processing
       in_delivery: In Delivery

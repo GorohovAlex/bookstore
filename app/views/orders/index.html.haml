@@ -5,6 +5,6 @@
     = t('.filter')
   = render partial: 'dropdown_filter'
   .visible-xs
-    = render partial: 'cart_items_grid'
+    = render partial: 'cart_items_grid', object: @orders
   .hidden-xs.mb-res-50
     = render partial: 'cart_items_table', object: @orders
