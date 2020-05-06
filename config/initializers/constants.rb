@@ -2,12 +2,12 @@ module Constants
   PAGY_COUNT_DEFAULT = 12
 
   SORT_LIST = [
-    { type: :newest_first,  value: 'sort_list.newest_first',  sort_field: :created_at,   sort_direction: :desc },
-    { type: :popular_first, value: 'sort_list.popular_first', sort_field: :id,           sort_direction: :asc  },
-    { type: :price_asc,     value: 'sort_list.price_asc',     sort_field: :price_cents,  sort_direction: :asc  },
-    { type: :price_desc,    value: 'sort_list.price_desc',    sort_field: :price_cents,  sort_direction: :desc },
-    { type: :title_asc,     value: 'sort_list.title_asc',     sort_field: :name,         sort_direction: :asc  },
-    { type: :title_desc,    value: 'sort_list.title_desc',    sort_field: :name,         sort_direction: :desc }
+    { type: :newest_first,  value: 'sort_list.newest_first',  sort_field: :created_at,        sort_direction: :desc },
+    { type: :popular_first, value: 'sort_list.popular_first', sort_field: :order_items_count, sort_direction: :desc },
+    { type: :price_asc,     value: 'sort_list.price_asc',     sort_field: :price_cents,       sort_direction: :asc  },
+    { type: :price_desc,    value: 'sort_list.price_desc',    sort_field: :price_cents,       sort_direction: :desc },
+    { type: :title_asc,     value: 'sort_list.title_asc',     sort_field: :name,              sort_direction: :asc  },
+    { type: :title_desc,    value: 'sort_list.title_desc',    sort_field: :name,              sort_direction: :desc }
   ].freeze
 
   SORT_ITEM_DEFAULT = SORT_LIST.detect { |sort| sort[:type] == :title_asc }
