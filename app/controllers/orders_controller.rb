@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authorize_resource, only: %i[index show]
 
   def index
-    @orders = policy_scope(Order).where(aasm_state: params[:filter])
+    @orders = policy_scope(Order).where(aasm_state: params[:filter] || Order::FINISH_DEFAULT_STATUS)
   end
 
   def show

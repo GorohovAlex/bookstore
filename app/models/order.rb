@@ -1,8 +1,10 @@
+# rubocop:disable Metrics/BlockLength
 class Order < ApplicationRecord
   include AASM
 
   NOT_FINISH_STATUSES = %w[address delivery payment confirmation completed].freeze
   FINISH_STATUSES = %w[completed in_delivery delivered canceled].freeze
+  FINISH_DEFAULT_STATUS = 'completed'.freeze
 
   belongs_to :user
 
@@ -68,3 +70,4 @@ class Order < ApplicationRecord
     order_card.present?
   end
 end
+# rubocop:enable Metrics/BlockLength
