@@ -1,9 +1,12 @@
 class BestSellersService
   def self.update
-    Category.all.map do |category|
-      best_seller = BestSeller.find_or_initialize_by(category_id: category.id)
+    Category.all.each do |category|
       category_book = category_best_seller(category)
-      best_seller.update(book_id: category_book.id) unless category_book.nil?
+
+      if category_book.present?
+        best_seller = BestSeller.find_or_initialize_by(id: category.best_sellers.first&.id)
+        best_seller.update(book_id: category_book.id)
+      end
     end
   end
 

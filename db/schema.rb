@@ -66,12 +66,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_121045) do
   end
 
   create_table "best_sellers", force: :cascade do |t|
-    t.bigint "category_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_best_sellers_on_book_id"
-    t.index ["category_id"], name: "index_best_sellers_on_category_id", unique: true
   end
 
   create_table "book_authors", force: :cascade do |t|
@@ -248,8 +246,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_121045) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "best_sellers", "books", on_delete: :nullify
-  add_foreign_key "best_sellers", "categories", on_delete: :cascade
+  add_foreign_key "best_sellers", "books", on_delete: :cascade
   add_foreign_key "book_authors", "authors", on_delete: :cascade
   add_foreign_key "book_authors", "books", on_delete: :cascade
   add_foreign_key "book_dimensions", "books"
