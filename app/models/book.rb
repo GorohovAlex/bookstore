@@ -34,7 +34,7 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one :book_dimension, dependent: :destroy
 
-  has_one :best_seller, dependent: :destroy
+  has_one :best_seller
 
   belongs_to :category, counter_cache: true
   has_and_belongs_to_many :materials
