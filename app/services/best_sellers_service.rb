@@ -4,7 +4,7 @@ class BestSellersService
       category_book = category_best_seller(category)
 
       if category_book.present?
-        best_seller = BestSeller.find_or_initialize_by(id: category.best_sellers.first&.id)
+        best_seller = category.best_sellers.first_or_initialize
         best_seller.update(book_id: category_book.id)
       end
     end
