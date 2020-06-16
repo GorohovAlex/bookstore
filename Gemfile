@@ -21,6 +21,7 @@ gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'image_processing'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'letter_opener'
 gem 'mini_magick'
 gem 'money-rails', '~> 1.13', '>= 1.13.3'
 gem 'omniauth-facebook'
@@ -37,12 +38,12 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'webpacker', '~> 4.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'letter_opener'
   gem 'rails-controller-testing'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 4.0.0.beta4'

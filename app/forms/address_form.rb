@@ -5,7 +5,7 @@ class AddressForm < BaseForm
   ADDRESS_SITY_REGEX = /\A[-',a-zA-Z\d\s]+\z/.freeze
 
   PHONE_MAX_LENGTH = 15
-  PHONE_REGEX = /\A[\d]+\z/.freeze
+  PHONE_REGEX = /\A\+[\d]+\z/.freeze
 
   ZIP_REGEX = /\A[\d]+[-\d]*[\d]+\z/.freeze
   ZIP_MAX_LENGTH = 10

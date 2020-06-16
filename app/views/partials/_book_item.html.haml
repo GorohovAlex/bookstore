@@ -4,9 +4,9 @@
       = image_tag book_item.main_cover_url, class: 'img img-shadow general-thumbnail-img', alt: 'design-book'
       .thumb-hover
         .general-thumb-link-wrap
-          %a.thumb-hover-link{ href: '#' }
+          = link_to(book_path(book_item), class: 'thumb-hover-link') do
             %i.fa.fa-eye.thumb-icon{ 'aria-hidden': 'true' }
-          %a.thumb-hover-link{ href: '#' }
+          = link_to cart_items_path( 'cart_item[book_id]': book_item.id ), remote: true, class: 'thumb-hover-link shopping-cart', method: 'post' do          
             %i.fa.fa-shopping-cart.thumb-icon
   .mb-35
     .clearfix

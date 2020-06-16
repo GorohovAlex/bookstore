@@ -8,22 +8,22 @@
           %li
             = link_to(t('shop'), catalog_path, class: 'nav-link')
           %li
-            %a.nav-link{href: "#"}= t('orders')
+            = link_to(t('menu_orders'), user_orders_path, class: 'nav-link')
           %li
-            %a.nav-link{href: "#"}= t('settings')
+            = link_to(t('settings'), user_path, class: 'nav-link')
       .col-sm-3
         %p.general-nav-mail support@bookstore.com
         %p.general-nav-number (555)-555-5555
         %ul.list-inline.general-align
           %li
-            %a.nav-link{href: "#"}
-              %i.fa.fa-facebook{'aria-hidden': "true"}
+            %a.nav-link{ href: '#' }
+              %i.fa.fa-facebook{ 'aria-hidden': 'true' }
           %li
-            %a.nav-link{href: "#"}
-              %i.fa.fa-twitter{'aria-hidden': "true"}
+            %a.nav-link{ href: '#' }
+              %i.fa.fa-twitter{ 'aria-hidden': 'true' }
           %li
-            %a.nav-link{href: "#"}
-              %i.fa.fa-google-plus{'aria-hidden': "true"}
+            %a.nav-link{ href: '#' }
+              %i.fa.fa-google-plus{ 'aria-hidden': 'true' }
           %li
-            %a.nav-link{href: "#"}
-              %i.fa.fa-instagram{'aria-hidden': "true"}
+            %a.nav-link{ href: '#' }
+              %i.fa.fa-instagram{ 'aria-hidden': 'true' }

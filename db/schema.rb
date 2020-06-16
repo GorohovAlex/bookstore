@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_05_091646) do
+ActiveRecord::Schema.define(version: 2020_05_06_121045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "best_sellers", force: :cascade do |t|
+    t.bigint "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_best_sellers_on_book_id"
+  end
+
   create_table "book_authors", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "author_id"
@@ -93,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
+    t.integer "order_items_count"
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
@@ -176,7 +184,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
 
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
-    t.bigint "book_id", null: false
+    t.bigint "book_id"
     t.string "name"
     t.integer "quantity"
     t.integer "price_cents", default: 0, null: false
@@ -238,6 +246,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "best_sellers", "books", on_delete: :cascade
   add_foreign_key "book_authors", "authors", on_delete: :cascade
   add_foreign_key "book_authors", "books", on_delete: :cascade
   add_foreign_key "book_dimensions", "books"
@@ -249,7 +258,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_091646) do
   add_foreign_key "covers", "books", on_delete: :cascade
   add_foreign_key "order_cards", "orders", on_delete: :cascade
   add_foreign_key "order_deliveries", "orders", on_delete: :cascade
-  add_foreign_key "order_items", "books", on_delete: :nullify
+  add_foreign_key "order_items", "books", on_delete: :cascade
   add_foreign_key "order_items", "orders", on_delete: :cascade
   add_foreign_key "order_summaries", "orders", on_delete: :cascade
   add_foreign_key "orders", "users", on_delete: :cascade
