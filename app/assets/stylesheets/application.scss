@@ -12,6 +12,9 @@
  *
  * require_tree .
  * require_self
+
+ = require font-awesome
  */
 
-@import "style.scss";
+ @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+ @import "style.scss";

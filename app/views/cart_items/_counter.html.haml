@@ -1,0 +1,7 @@
+.input-group.counter
+  = simple_form_for counter, method: 'PATCH', remote: true, authenticity_token: true do |f|
+    %a.input-link.quantity-minus{ href: '#' }
+      %i.fa.fa-minus.line-height-40
+    = f.input_field :quantity, class: 'form-control quantity-input', value: counter.quantity, as: :string, id: nil
+    %a.input-link.quantity-plus{ href: '#' }
+      %i.fa.fa-plus.line-height-40

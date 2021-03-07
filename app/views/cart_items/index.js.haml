@@ -1,0 +1,8 @@
+:plain
+  $(document).ready(function() {
+    $(".shop-quantity").html("#{j(CartItems::Count.call(session_id: session.id.to_s, user_id: current_user&.id))}");
+    $("#cart-items-table").html("#{j(render partial: 'cart_item_table', object: @cart_items, locals: { editable: true })}");
+    $("#sub-total").html("#{j(humanized_money_with_symbol @cart_sub_total)}");
+    $("#order_summary").html("#{j(render partial: 'checkouts/order_summary', locals: { order_summary_items: @summary_presenter.items, html: { class: 'general-summary-table-right general-text-right' } })}");
+    $("#order-total").html("#{j(humanized_money_with_symbol @order_total)}");
+  });

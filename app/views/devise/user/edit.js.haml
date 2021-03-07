@@ -1,0 +1,11 @@
+:plain
+  $(document).ready(function() {    
+    var flash_notice = $("#notice");
+    flash_notice.html("#{j(notice)}");
+    flash_notice.css('display', flash_notice.text().length == 0 ? 'none' : 'block')
+    $("#billing_address_form").html("#{j(render partial: 'devise/user/address_form', locals: { address: (@address_form&.type&.eql? 'BillingAddress') ? @address_form : presenter.billing_address_form, id: 'billing_address_form' }) }");
+    $("#shipping_address_form").html("#{j(render partial: 'devise/user/address_form', locals: { address: (@address_form&.type&.eql? 'ShippingAddress') ? @address_form : presenter.shipping_address_form, id: 'shipping_address_form' }) }");
+    $("#address_form_new_password_form").html("#{j(render 'devise/user/password_form')}");
+    $("#new_users_email_form").html("#{j(render 'devise/user/email_form')}");
+    $("#user-email").html("#{j(current_user.email)}");
+  });

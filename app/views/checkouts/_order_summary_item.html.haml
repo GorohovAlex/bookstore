@@ -1,0 +1,7 @@
+%tr
+  %td
+    %p.font-16
+      = t(".#{order_summary_item[0]}")
+  %td
+    %p.font-16{ class: order_summary_item[0] }
+      = humanized_money_with_symbol order_summary_item[1]

@@ -1,0 +1,18 @@
+%table.table.table-hover#cart-items-table
+  %tr.no-hover
+    %th.col-pic.pl-0
+      %span.in-grey-600
+        = t('.product')
+    %th.col-title
+    %th.col-price
+      %span.in-grey-600
+        = t('.price')
+    %th.col-quantity
+      %span.in-grey-600
+        = t('.quantity')
+    %th.col-total
+      %span.in-grey-600
+        = t('.sub_total')
+    - if editable
+      %th.col-close
+  = render partial: 'cart_items/cart_item_line', collection: cart_item_table, locals: { editable: editable }

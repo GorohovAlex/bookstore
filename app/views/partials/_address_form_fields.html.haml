@@ -1,0 +1,8 @@
+= f.input :type,       as: :hidden
+= f.input :first_name, placeholder: t('.first_name_placeholder'), label: t('.first_name'), wrapper_html: { class: 'first-name-group' }
+= f.input :last_name,  placeholder: t('.last_name_placeholder'),  label: t('.last_name'),  wrapper_html: { class: 'last-name-group' }
+= f.input :address,    placeholder: t('.address_placeholder'),    label: t('.address'),    wrapper_html: { class: 'address-group' }
+= f.input :city,       placeholder: t('.city_placeholder'),       label: t('.city'),       wrapper_html: { class: 'city-group' }
+= f.input :zip,        placeholder: t('.zip_placeholder'),        label: t('.zip'),        wrapper_html: { class: 'zip-group' }
+= f.input :country,    placeholder: t('.country_placeholder'),    label: t('.country'),    wrapper_html: { class: 'country-group' }, as: :country, id: 'country'
+= f.input :phone,      placeholder: t('.phone_placeholder'),      label: t('.phone'),      wrapper_html: { class: 'phone-group' }

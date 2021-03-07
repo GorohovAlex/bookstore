@@ -1,0 +1,24 @@
+%h3.general-subtitle
+  = t('.credit_card')
+= simple_form_for @presenter.owner, url: checkout_path, method: 'PATCH', defaults: { required: false }, html: { class: 'card-form' } do |f|
+  = f.simple_fields_for @presenter.order_card_form do |c|
+    .max-600.mb-80
+      .form-group.number-group
+        = c.input :number, label: t('.number_label'), placeholder: t('.number_placeholder'), input_html: { maxlength: '16' }, wrapper_html: { class: 'mb-5' }
+        .general-info-text.font-12
+          = t('.example_number')
+      .row
+        .col-sm-6
+          .form-group.name-group
+            = c.input :name, label: t('.name_on_card_label'), placeholder: t('.name_on_card_placeholder')
+        .col-sm-3
+          .form-group.date-expiry-group
+            = c.input :date_expiry, as: :string, label: t('.date_expiry_label'), placeholder: t('.date_expiry_placeholder')
+        .col-sm-3
+          .form-group.relative.cvv-group
+            = c.input :cvv, as: :password, label: t('.cvv_label'), placeholder: t('.cvv_placeholder')
+            %i.fa.fa-question-circle.general-form-help{ title: t('.cvv_hint') }
+  .general-text-align
+    = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: {} }
+  .text-center
+    = f.submit t('.save_and_continue'), class: 'btn btn-default mb-80'

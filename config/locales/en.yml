@@ -1,33 +1,220 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      short: '%d/%m/%y'
+      checkout: '%B %d, %Y'
+  books:
+    show:
+      back_to_results: Back to results
+      description: Description
+      dimensions: Dimensions
+      dimension_line: 'H:%{height}" x W: %{width}" x D: %{depth}"'
+      materials: Materials
+      year_of_publication: Year of publication
+      read_more: Read more
+      read_less: Read less
+      review_caption: Write a Review
+  page:
+    catalog:
+      title: Catalog
+      filter_by_category: Filter by category
+      sort_by: Sort by
+    checkout_email_login:
+      not_authorized: ''
+      returning_customer: Returning Customer
+      or: or
+      new_customer: New Customer
+      log_in_with_password: Log In with Password
+      email_label: Enter Email
+      email_placeholder: Enter Email
+      password_label: Password
+      password_placeholder: Password
+      forgot_password: Forgot password?
+      log_in: Log In with Password
+      continue_to_checkout: Continue to Checkout
+      quick_registrate: Quick Register
+      quick_registrate_message: You’ll be able to create password later
+  cart_items:
+    index:
+      caption: Cart
+      your_cart_is_empty: Your cart is empty
+      back_to_home: Back to Home
+    order_summary_table:
+      sub_total: SubTotal
+      order_total: Order Total
+      summary_coupon: Coupon
+    cart_item:
+      apply_coupon: Apply Coupon
+      checkout: Checkout
+      order_summary: Order Summary
+      coupon_label: Enter Your Coupon Code
+      coupon_placeholder: Enter Your Coupon Code
+    cart_item_table:
+      price: Price
+      product: Product
+      sub_total: SubTotal
+      quantity: Quantity
+    cart_item_grid:
+      price: Price
+      product: Product
+      sub_total: SubTotal
+      quantity: Quantity
+  checkouts:
+    delivery:
+      days: Days
+      delivery: Delivery
+      method: Method
+      price: Price
+      save_and_continue: Save and Continue
+    address:
+      all_fields_are_required: all fields are required
+      billing_address: Billing Address
+      shipping_address: Shipping Address
+      use_billing_address: Use Billing Address
+      save_and_continue: Save and Continue
+    checkout_header:
+      checkout: Checkout
+    confirmation:
+      place_order: Place Order
+      shipping_address: Shipping Address
+      billing_address: Billing Address
+      shipments: Shipments
+      payment_information: Payment Information
+    confirm_info_box:
+      edit: edit
+    completed:
+      back_to_store: Back to Store
+      thank_message: Thank You for your Order!
+      thank_description: An order confirmation has been has been sent to %{user} %{email}
+      order_number: "Order #%{number}"
+    payment:
+      credit_card: Credit card
+      example_number: ' Example: 6798823404354258'
+      name_on_card_label: Name on Card
+      name_on_card_placeholder: Name on Card
+      name_on_card_error: only allows letters and space
+      number_label: Card Number
+      number_placeholder: Card Number
+      date_expiry_label: MM / YY
+      date_expiry_placeholder: MM / YY
+      date_expiry_error: 'example: 12/22'
+      cvv_label: CVV
+      cvv_placeholder: CVV
+      cvv_hint: |
+        3-digit security code, usually found on the back of your card.
+        American Express cards has 4-digit code, located on the front.
+      cvv_error: only allows numbers
+      save_and_continue: Save and Continue
+    order_summary_item:
+      coupon: Discount
+      item_total: 'Item Total:'
+      order_total: 'Order Total:'
+      delivery: Delivery
+    order_summary:
+      order_summary: Order Summary
+    update:
+      not_authorized: User not authorized for update
+    destroy:
+      not_authorized: User not authorized for destroy
+    step:
+      address: Address
+      delivery: Delivery
+      payment: Payment
+      confirmation: Confirm
+      completed: Complete
+  address:
+    create:
+      successful_message: '%{type} update successful.'
+      not_authorized: You are not authorized to perform this action.
+  all: All
+  view_more: View more
+  add_to_cart: Add to Cart  
+  site_name: Bookstore
+  welcome_caption: Welcome to our amazing Bookstore!
+  welcome_message: We pore through hundreds of new books each month and select the five best we can find to share with our members.
+  get_started:  Get Started
+  best_sellers: Best Sellers
+  home: Home
+  not_valid: Not valid
+  shop: Shop
+  phone: Phone +%{number}
+  no_item_selected: No item selected
+  mobile_development: Mobile development
+  photo: Photo
+  web_design: Web design
+  sign_up: Sign up
+  log_in: Log in
+  log_out: Log out
+  unprocessed: Unprocessed
+  unprocessable_entity: Unprocessable entity
+  approved: Approved
+  rejected: Rejected
+  settings: Settings
+  previous: Previous
+  menu_orders: Orders
+  reviews:
+    create:
+      successful_message: Thanks for Review. It will be published as soon as Admin will approve it.
+  sort_list:
+    newest_first: Newest first
+    popular_first: Popular first
+    price_asc: 'Price: Low to hight'
+    price_desc: 'Price: Hight to low'
+    title_asc: 'Title: A - Z'
+    title_desc: 'Title: Z - A'
+  partials:
+    header:
+      my_account: My Account
+      close: Close
+    slider:
+      buy_now: Buy Now
+      previous: Previous
+      next: Next
+    reviews_list:
+      reviews_count: Reviews (%{count})
+    review_write:
+      score: Score
+      title: Title
+      post: Post
+      review: Review
+    address_form_fields:
+        first_name: First name
+        first_name_placeholder: First name
+        last_name: Last name
+        last_name_placeholder: Last name
+        address: Address
+        address_placeholder: Address
+        city: City
+        city_placeholder: City
+        zip: Zip
+        zip_placeholder: Zip
+        country: Country
+        country_placeholder: Country
+        phone: Phone
+        phone_placeholder: Example +355 66 123 4567
+  orders:
+    show:
+      billing_address: Billing address
+      shipping_address: Shipping Address
+      shipments: Shipments
+      payment_information: Payment Information
+      order_with_number: 'Order %{number}'
+    index:
+      filter: Filter by
+      not_authorized: You are not authorized to perform this action
+      my_orders: My Orders
+    cart_items_table:
+      completed_at: Completed at
+      number: Number
+      status: Status
+      total: Total
+    cart_items_grid:
+      completed_at: Completed at
+      number: Number
+      status: Status
+      total: Total
+    status:
+      completed: Waiting for processing
+      in_delivery: In Delivery
+      delivered: Delivered
+      canceled: Canceled

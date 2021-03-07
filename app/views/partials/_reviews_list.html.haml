@@ -1,0 +1,28 @@
+%h3.in-gold-500.mb-25#reviews_count
+  = t('.reviews_count', count: reviews_list.count)
+#reviews_list
+  - reviews_list.each do |review|
+    .general-message-wrap.divider-lg
+      .clearfix
+        -if review.user.image.nil?
+          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty
+            = review.user.decorate.name_first_letter
+        -else
+          %img.img-circle.logo-size.inlide-block.pull-left{src: review.user.image}
+        .ml-70
+          %div
+            .general-message-date.hidden-xs
+              = l review.created_at, format: :short
+            .max-240
+              .general-message-verified
+                = t(review.status)
+              .general-message-name
+                = review.user.name
+          .mb-15
+            - review.rating.times do |t|
+              %i.fa.fa-star.rate-star
+            %p
+          %h4
+            = review.title
+          %p
+            = review.review

@@ -1,0 +1,9 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin
+    = t('.caption')
+  - if @cart_items.empty?
+    .h1.text-center.mb-20
+      = t('.your_cart_is_empty')
+    = button_to t('.back_to_home'), root_path, class: 'btn btn-default mb-20 hidden-xs center-block', method: 'get'
+  - else
+    = render partial: 'cart_item', locals: { cart_items: @cart_items, coupon: @coupon, cart_sub_total: @cart_sub_total, discount: @discount, order_total: @order_total }

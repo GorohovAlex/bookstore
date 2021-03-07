@@ -1,0 +1,17 @@
+.row.mb-20.confirm_info_box
+  .col-sm-3
+    = render partial: 'confirm_info_box', locals: { label: t('.shipping_address'), items: @presenter.shipping_address_info_items, state: Order::STATE_ADDRESS }
+  .col-sm-3
+    = render partial: 'confirm_info_box', locals: { label: t('.billing_address'), items: @presenter.billing_address_info_items, state: Order::STATE_ADDRESS }
+  .col-sm-3
+    = render partial: 'confirm_info_box', locals: { label: t('.shipments'), items: @presenter.shipments_info_items, state: Order::STATE_DELIVERY }
+  .col-sm-3
+    = render partial: 'confirm_info_box', locals: { label: t('.payment_information'), items: @presenter.payment_info_items, state: Order::STATE_PAYMENT }
+.visible-xs
+  = render partial: 'cart_items/cart_item_grid', collection: @presenter.cart_items, locals: { editable: false }
+.hidden-xs
+  = render partial: 'cart_items/cart_item_table', object: @presenter.cart_items, locals: { editable: false }
+.text-center.general-text-right
+  = render partial: 'order_summary', locals: { order_summary_items: @presenter.summary_items, html: { class: 'general-summary-table-right general-text-right' } }
+.text-center
+  = button_to t('.place_order'), checkout_path, method: 'patch', class: 'btn btn-default mb-20'

@@ -1,0 +1,21 @@
+.visible-xs
+  = render partial: 'cart_item_grid', collection: cart_items, locals: { editable: true }
+.hidden-xs
+  = render partial: 'cart_item_table', object: cart_items, locals: { editable: true }
+  .general-order-wrap
+    .row
+      .col-sm-4
+        = simple_form_for :coupon, url: cart_items_path, method: 'get', remote: true do |f|
+          .input-group.general-input-group
+            = f.input :coupon, label: t('.coupon_label'), label_html: { class: 'input-label' }, input_html: { class: 'mb-30', placeholder: t('.coupon_placeholder'), name: 'coupon', value: coupon }
+            %div
+              = f.button :submit, t('.apply_coupon'), class: 'btn btn-primary mr-5 mb-15', name: nil
+      .col-sm-8
+        .res-mr-200.text-center.general-text-right#order_summary
+          = render partial: 'checkouts/order_summary', locals: { order_summary_items: @summary_presenter.items, html: { class: 'general-summary-table-right general-text-right' } }
+
+          %button.btn.btn-default.mb-20.visible-xs-inline-block
+            = t('.checkout')
+  .center-block{ style: 'text-align: center'}
+    = button_to t('.checkout'), checkout_path, method: :post, class: 'btn btn-default mb-20 hidden-xs', id: 'checkout'
+= javascript_pack_tag 'cart_items/index'

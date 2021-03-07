@@ -1,0 +1,4 @@
+%h1.general-title-margin
+  = t('.checkout')
+%ul.steps.list-inline
+  = render partial: 'step', collection: Order::NOT_FINISH_STATUSES, spacer_template: 'step_line', locals: { state_index: Order::NOT_FINISH_STATUSES.find_index(state) }

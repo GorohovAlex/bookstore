@@ -1,0 +1,7 @@
+%ul.list-inline.pt-10.mb-25.mr-240
+  %li.mr-35
+    = link_to(catalog_path(request.params.merge(category_id: nil)), class: 'filter-link') do
+      = t('all')
+      %span.badge.general-badge
+        = categories.map(&:books).sum(&:size)
+  = render partial: 'partials/categories_line_item', collection: categories
