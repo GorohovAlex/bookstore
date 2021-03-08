@@ -169,7 +169,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    down (5.1.1)
+    down (5.2.0)
       addressable (~> 2.5)
     draper (3.1.0)
       actionpack (>= 5.0)
@@ -308,7 +308,7 @@ GEM
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
-    public_suffix (4.0.4)
+    public_suffix (4.0.6)
     puma (4.3.3)
       nio4r (~> 2.0)
     pundit (2.1.0)
@@ -440,7 +440,7 @@ GEM
     sexp_processor (4.14.1)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
-    shrine (3.2.1)
+    shrine (3.3.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
     simple_form (5.0.2)
@@ -570,7 +570,7 @@ DEPENDENCIES
   sassc-rails (>= 2.1.0)
   selenium-webdriver
   shoulda-matchers
-  shrine (~> 3.2, >= 3.2.1)
+  shrine (~> 3.3)
   simple_form
   simplecov
   site_prism (~> 3.4, >= 3.4.2)
