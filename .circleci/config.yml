@@ -5,7 +5,7 @@ executors:
     working_directory: ~/repo
     description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           PG_HOST: 127.0.0.1
           PG_USER: bookstore_admin
@@ -14,22 +14,22 @@ executors:
         environment:
           POSTGRES_USER: bookstore_admin
           POSTGRES_DB: bookstore_test
-caches: 
+caches:
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
 commands:
   run_linters:
     description: command to start linters
     steps:
-      - run: 
+      - run:
           name: rubocop
           command: bundle exec rubocop
-      - run: 
+      - run:
           name: fasterer
           command: bundle exec fasterer
 
   run_specs:
     steps:
-      - run: 
+      - run:
           name: run specs
           command: |
             mkdir /tmp/test-results
@@ -60,7 +60,7 @@ commands:
           key: *bundle_cache
           paths:
             - bundle vendor/bundle
-      
+
 jobs:
   lintering:
     executor: default
