@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '2.7.3'
 
 gem 'aasm', '~> 5.0'
 gem 'activeadmin'
@@ -29,7 +29,7 @@ gem 'pagy', '~> 3.7', '>= 3.7.2'
 gem 'pg', '~> 1.2', '>= 1.2.2'
 gem 'puma', '~> 4.3'
 gem 'pundit', '~> 2.1'
-gem 'rails', '~> 6'
+gem 'rails', '~> 6.1'
 gem 'rectify'
 gem 'sass-rails', '>= 6'
 gem 'sassc-rails', '>= 2.1.0'
